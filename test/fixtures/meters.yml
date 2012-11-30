@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  meter_identifier: asdf
+  source_type: source_type_one
+
+two:
+  id: 2
+  meter_identifier: asdf
+  source_type: source_type_two

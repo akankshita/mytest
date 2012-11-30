@@ -1,0 +1,25 @@
+<div class="crc-form">
+
+  <fieldset id="the_fieldset">
+    <legend>Please Login</legend>
+
+    <% form_for(@user_session) do |f| %>
+        <%= f.error_messages %>
+
+        <p>
+          <%= f.label :username %><br/>
+          <%= f.text_field :username %>
+        </p>
+
+        <p>
+          <%= f.label :password %><br/>
+          <%= f.password_field :password %>
+        </p>
+
+        <p>
+          <%= f.submit 'Login', :class => "submit_button" %>
+        </p>
+    <% end %>
+  </fieldset>
+
+</div>

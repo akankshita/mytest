@@ -1,0 +1,53 @@
+
+			<div class="crc-form">
+				<fieldset id = "the_fieldset" >
+					<legend><b>Additional Disclosure of Information</b></legend>
+						<% form_for(@disclosure_task) do |f| %>
+						  <%= f.error_messages %>
+						  </p>
+						  <p>
+						<b>	Does your CRC organisation disclose long-term carbon emission reduction targets in its annual reporting in respect of the majority of its crc energy use? </b>
+						  <br />
+						  <div class = "left_margin">
+						    <%= f.radio_button :question_1, 0 %> Yes<br/>
+							<%= f.radio_button :question_1, 1 %> No<br/>
+							<%= f.radio_button :question_1, 2 %> No answer
+						  </div>
+						  </p>
+						  <p>
+					<b>Does your crc organisation disclose carbon emissions performance against these targets in its annual reporting in respect of the majority of its CRC energy use?</b>
+						    <br />
+						    <div class = "left_margin">
+							    <%= f.radio_button :question_2, 0 %> Yes<br/>
+								<%= f.radio_button :question_2, 1 %> No<br/>
+								<%= f.radio_button :question_2, 2 %> No answer
+							  </div>
+						  </p>
+						  <p>
+						<b>	Does your crc organisation name a Director with responsibility for overseeing carbon performance in respect of the majority of its CRC energy use, in its annual reporting?</b>
+						    <br />
+						    <div class = "left_margin">
+							    <%= f.radio_button :question_3, 0 %> Yes<br/>
+								<%= f.radio_button :question_3, 1 %> No<br/>
+								<%= f.radio_button :question_3, 2 %> No answer
+							  </div>
+						  </p>
+						  <p>
+						<b>	Do you actively engage employees to reduce energy use?</b>
+						    <br />
+						    <div class = "left_margin">
+							    <%= f.radio_button :question_4, 0 %> Yes<br/>
+								<%= f.radio_button :question_4, 1 %> No<br/>
+								<%= f.radio_button :question_4, 2 %> No answer
+							  </div>
+						  </p>
+
+                            <%= render :partial => "shared/status", :locals => {:task_status => @disclosure_task.status} %>
+
+						    <%= f.submit 'Save', :class => "submit_button" %>
+						  
+						<% end %>
+						</fieldset>
+					</div>
+
+<%= link_to 'Back', annual_reports_path, :class => "back_button" %>

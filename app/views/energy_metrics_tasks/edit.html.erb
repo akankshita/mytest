@@ -1,0 +1,210 @@
+
+
+<% form_for(@energy_metrics_task) do |f| %>
+  <%= f.error_messages %>
+<div class="crc-form">
+<fieldset id = "the_fieldset">
+	<legend><b>Enter Energy Supplies</b></legend>
+	<table>
+		<tr>
+			<td>
+  <p>
+    <%= f.label :core_electricity %><br />
+    <%= f.text_field :core_electricity %>
+  </p>
+</td>
+<td>
+  <p>
+    <%= f.label :core_gas %><br />
+    <%= f.text_field :core_gas %>
+  </p>
+</td>
+</tr>
+</table>
+</fieldset>
+<br/>
+
+<fieldset id = "the_fieldset">
+<legend><b>Other Fuels</b></legend>
+
+<table class = "task_table">
+		
+<tr>
+	<td>
+<p>
+	 <%= f.label :non_core_electricity %>
+	 <br />
+	 <%= f.text_field :non_core_electricity %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :non_core_gas %>
+	 <br />
+	 <%= f.text_field :non_core_gas %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :aviation_spirit %>
+	 <br />
+	 <%= f.text_field :aviation_spirit %>
+</p>
+</td>
+
+
+
+<td>
+<p>
+	 <%= f.label :blast_furnace_gas %>
+	 <br />
+	 <%= f.text_field :blast_furnace_gas %>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+	 <%= f.label :burning_fuels %>
+	 <br />
+	 <%= f.text_field :burning_fuels %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :coke_oven_gas %>
+	 <br />
+	 <%= f.text_field :coke_oven_gas %>
+</p>
+</td>
+
+
+
+<td>
+<p>
+	 <%= f.label :colliery_methane %>
+	 <br />
+	 <%= f.text_field :colliery_methane %>
+</p>
+</td>
+
+
+<td>
+<p>
+	 <%= f.label :diesel %>
+	 <br />
+	 <%= f.text_field :diesel %>
+</p>
+</td>
+</tr>
+<tr>
+
+<td>
+<p>
+	 <%= f.label :fuel_oil %>
+	 <br />
+	 <%= f.text_field :fuel_oil %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :gas_oil %>
+	 <br />
+	 <%= f.text_field :gas_oil %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :industrial_coal %>
+	 <br />
+	 <%= f.text_field :industrial_coal %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :LPG %>
+	 <br />
+	 <%= f.text_field :LPG %>
+</p>
+</td>
+</tr>
+
+<tr>
+<td>
+<p>
+	 <%= f.label :lubricants %>
+	 <br />
+	 <%= f.text_field :lubricants %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :waste %>
+	 <br />
+	 <%= f.text_field :waste %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :naphtha %>
+	 <br />
+	 <%= f.text_field :naphtha %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :natural_gas %>
+	 <br />
+	 <%= f.text_field :natural_gas %>
+</p>
+</td>
+</tr>
+
+<tr>
+
+<td>
+<p>
+	 <%= f.label :petrol_gas %>
+	 <br />
+	 <%= f.text_field :petrol_gas %>
+</p>
+</td>
+
+<td>
+<p>
+	 <%= f.label :petrol %>
+	 <br />
+	 <%= f.text_field :petrol %>
+</p>
+</td>
+</td>
+</table>
+
+   <%= render :partial => "shared/status", :locals => {:task_status => @energy_metrics_task.status} %>
+
+ 
+    <%= f.submit 'Update', :class => "submit_button" %>
+</fieldset>
+
+<% end %>
+
+
+<td>
+
+<br/>
+
+</div>
+</td>
+
+
+	
+<%= link_to 'Back', footprint_report_page_path, :class => "back_button"%>

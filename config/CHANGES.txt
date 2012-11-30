@@ -1,0 +1,4 @@
+CHANGES MADE TO JQUERY CSS FILES
+
+
+.ui-button .ui-button-text  LINE 472 of jquery-ui-1.8.5.custom.css (attribute line-height:1.4em has been removed)

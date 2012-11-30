@@ -1,0 +1,34 @@
+<h1>Development Database Checker</h1>
+
+<h2>config_app - <%=h @config_app.count %> records returned</h2>
+<table class = "list_table">
+	<% @config_app.each do |record| %>
+	<tr class="odd">
+		<td> <%=h record.id %> </td>
+		<td> <%=h record.crc %> </td>
+		<td> <%=h record.gas %> </td>
+	</tr>
+</table>
+<% end %>
+<br><br><br>
+
+
+
+<h2>user - <%=h @user.count %> records returned</h2>
+<table class = "list_table">
+	<% @user.each do |record| %>
+	<tr class="odd">
+		<td> <%=h record.id %> </td>
+		<td> <%=h record.username %> </td>
+		<td> <%=h record.email %> </td>		
+	</tr>
+<% end %>
+</table>
+<br><br><br>
+
+
+
+<h2>electricity_reading - <%=h @electricity_reading.count %> records returned</h2>
+<br>
+<h2>electricity_reading - <%=h @gas_reading.count %> records returned</h2>
+<br><br>

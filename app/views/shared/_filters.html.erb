@@ -1,0 +1,289 @@
+<script type="text/javascript">
+
+function addOptionToSelectionBox(selectbox,text,value )
+{
+	var optn = document.createElement("OPTION");
+	optn.text = text;
+	optn.value = value;
+	selectbox.options.add(optn);
+}
+
+function clearSelectBox(selectBox)
+{
+
+	var l = selectBox.options.length;
+		
+	for(var i=0;i<l;++i)
+	{		
+		selectBox.options[0] = null;
+	}
+}
+
+function reloadMeterSelectionBox()
+{
+	<%= @reloadMeterSelectionData %>
+	/* data to be passed in from the controller:
+	    i)   number of groups
+	    ii)  array with all meter names
+	    iii) array with all meter values
+	    iv)  array with starting indexes of the above two arrays for each meter group. It must also contain a final index which will also be the number of meters
+	    v)   array with all meter names (even ones not belonging to any group)
+	    vi)  array with all meter values (even ones not belonging to any group)
+	    vii) total number of meters
+	    */   	
+
+	var meterBox = document.getElementById('selected_meter_value');
+	var meterGroupBox = document.getElementById('selected_meter_group_value');
+	
+	clearSelectBox(meterBox);
+	var nothingSelected = true;
+	for(var i=0;i<numberOfGroups;++i)
+	{		
+		//alert("i="+i);  alert( document.getElementById('selected_meter_group_value').options[i].selected ); //debugger	
+		if( meterGroupBox.options[i].selected )		
+		{						
+			nothingSelected = false;
+			var a=meter_index[i];
+			while(a<meter_index[i+1])
+			{
+				//alert("a="+a); //debugger			
+				addOptionToSelectionBox( meterBox, meter_names[a], meter_values[a] );
+				a++;
+			}			
+		}
+	}
+	
+	//if no group options are selected, list all meters
+	if(nothingSelected)
+	{
+		for(var i=0;i<totalNumberOfMeters;++i)
+		{
+			addOptionToSelectionBox( meterBox, all_meter_names[i], all_meter_values[i] );	
+		}
+	}	
+}
+
+function reloadRegionSelectionBox()
+{
+	var regionBox = document.getElementById('selected_region_value' );
+	var countryBox = document.getElementById('selected_country_value' );
+
+	<%= @reloadRegionSelectionData %>	
+	clearSelectBox(regionBox);
+	for(var i=0;i<numberOfCountries;++i)
+	{	
+		//alert("i="+i);  alert( document.getElementById('selected_country_value').options[i].selected ); //debugger		
+		if( countryBox.options[i].selected )		
+		{
+			var a=index_array[i];
+			while(a<index_array[i+1])
+			{				
+				//alert("a="+a); //debugger
+				addOptionToSelectionBox( regionBox, region_names[a], region_values[a] );
+				a++;
+			}
+		}
+	}
+}
+
+function reloadLocationSelectionBox()
+{		
+	var locationBox = document.getElementById('selected_location_value');
+	var regionBox = document.getElementById('selected_region_value');
+	var numberOfRegions = regionBox.length;
+		
+	<%= @reloadLocationSelectionData %>
+	
+	var nothingSelected = true;
+	
+	clearSelectBox(locationBox);
+	for(var i=0;i<numberOfRegions;++i)
+	{	
+		//alert("i="+i);  alert( document.getElementById('selected_country_value').options[i].selected ); //debugger		
+		if( regionBox.options[i].selected )		
+		{			 				
+			nothingSelected = false;
+			for(var a=0;a<numberOfLocations;++a)
+			{			
+				if(regionBox.options[i].value == region_indexed_locations[a])
+				{ 										
+					addOptionToSelectionBox( locationBox, location_names[a], location_values[a] );					
+				}
+			}
+						 
+		}
+	}	
+	
+	if(nothingSelected)
+	{
+		for(var i=0;i<numberOfLocations;++i)
+		{
+				addOptionToSelectionBox( locationBox, location_names[i], location_values[i] );
+		}
+	}
+}
+
+</script>
+	
+	
+<% #### WARNING: FL: if you change the .sort used on some of the select boxes below it may break the javascript above as the ordering of elements is important ! %>
+
+	
+<% form_tag({:action => "index"}, {:id => "select_filters"}) do %>
+	
+<div id="summary_top" class = "aesthetics"></div>
+	
+<div class="filter_container">
+	<div id = "accordion_box">		
+		<div id="accordion">
+	
+	<% if electricity_page %>
+	
+	<h3 class="header"><a href="#top_of_filters">Average Readings:</a></h3>
+		
+	<div id = "each_green_box">
+	<%= render :partial => "shared/time_resolution_buttons" %>		
+	</div>	
+		<% end %>	
+	
+	
+	<% if compare_meters_enabled %>
+	<h3 class="header"><a href="#top_of_filters">Filter by meter:</a></h3>
+	<div id = "each_green_box">
+			<div class = "filter_box">
+				Select meter group: <br/>								
+				
+				<%= select(:selected_meter_group, :value, @all_meter_groups, options={:selected => @current_selected_meter_group}, {:size => 3, :multiple => "multiple", :onchange=>"reloadMeterSelectionBox()"}) %> 
+			 </div>	
+			
+			<div class = "filter_box">	
+			Select meter: <br/>						
+			
+			<%= select(:selected_meter, :value, @all_meters.sort, options={:selected => @current_selected_meter}, {:size => 3, :multiple => "multiple"}) %>
+    		</div>
+	</div>
+	<% end %>
+	
+	
+	
+	
+	<h3 class="header"><a href="#top_of_filters">Filter by date:</a></h3>
+	<div id = "each_green_box">	
+			<div class="filter_box">
+				Select year: <br/>
+				<%= select(:selected_year, :value, @all_years.sort {|a,b| -1*(a[0]<=>b[0]) }, options={:selected => @current_selected_year}, { :size => 4, :multiple => "multiple"}) %>
+			 </div>
+			
+			<div class="filter_box">
+				Select month: <br/>
+				<%= select(:selected_month, :value, @all_months, options={:selected => @current_selected_month}, { :size => 4, :multiple => "multiple"}) %>
+			 </div>
+			
+			<div class="filter_box">
+				Select date: <br/>
+				<%= select(:selected_day_of_month, :value, @all_days_of_month, options={:selected => @current_selected_day_of_month}, { :size => 4, :multiple => "multiple"}) %>
+			 </div>
+			
+			<div class="filter_box">
+				Select day: <br/>
+				<%= select(:selected_day_of_week, :value, @all_days_of_week, options={:selected => @current_selected_day_of_week}, { :size => 4, :multiple => "multiple"}) %>
+			 </div>
+</div>
+
+
+
+
+	<h3 class="header"><a href="#top_of_filters">Filter by date span:</a></h3>
+	<div id = "each_green_box">	
+			Start date:
+			<%= text_field_tag :selected_start_date, @current_selected_start_date, :class => 'datepicker'  %>
+
+<br /><br />
+			End date:
+			<%= text_field_tag :selected_end_date, @current_selected_end_date, :class => 'datepicker' %>
+	</div>
+
+
+
+
+	<h3 class="header"><a href="#top_of_filters">Filter by time span:</a></h3>
+	<div id ="each_green_box">
+			Start time:
+			H:<%= text_field_tag :selected_start_time_hour, @current_selected_start_time_hour, :size => 3 %>
+		<!--	M:<%= text_field_tag :selected_start_time_minute, @current_selected_start_time_minute, :size => 3 %> BoD DEBT removed to simplify db query -->
+			<%= select(:selected_start_time_am_pm, :value, [["am",0], ["pm",1]], options={:selected => @current_selected_start_time_am_pm}) %>
+			
+		<br /><br />
+
+			End time:
+			H:<%= text_field_tag :selected_end_time_hour, @current_selected_end_time_hour, :size => 3 %>
+		<!--	M:<%= text_field_tag :selected_end_time_minute, @current_selected_end_time_minute, :size => 3 %> BoD DEBT removed to simplify db query -->
+			<%= select(:selected_end_time_am_pm, :value, [["am",0], ["pm",1]], options={:selected => @current_selected_end_time_am_pm}) %>
+	</div>
+
+
+
+	<% if compare_meters_enabled %>
+	<h3 class="header"><a href="#top_of_filters">Filter by country and region:</a></h3>
+	<div id = "each_green_box_region">		
+			<div class="filter_box">
+				Select Country: <br/>				
+											
+				<%= select(:selected_country, :value, @all_countries.sort, options={:selected => @current_selected_country}, { :size => 8, :multiple => "multiple", :onchange => "reloadRegionSelectionBox()"}) %>
+			 </div>
+			
+			
+			<div class="filter_box">
+				Select Region: <br/>
+
+				<%= select(:selected_region, :value, @all_regions.sort, options={:selected => @current_selected_region}, { :size => 8, :multiple => "multiple", :onchange => "reloadLocationSelectionBox()"}) %>		
+			 </div>
+			
+			
+			<div class="filter_box">
+				Select Location: <br/>
+				<%= select(:selected_location, :value, @all_locations.sort, options={:selected => @current_selected_location}, { :size => 8, :multiple => "multiple"}) %>
+			 </div>
+	</div>
+	<% end %>
+</div>
+
+
+<br/>
+
+
+	
+<div id = "submit_reset">
+	<%= submit_tag 'Apply Filters', :class => 'submit_button'%>
+	<% if electricity_page %>
+		<a href=<%= electricity_summary_path+"?reset=true" %> class="blank_button">Reset Filters</a>
+	<% else %>	
+		<a href=<%= gas_summary_path %> class="blank_button" >Reset Filters</a>
+	<% end %>
+</div>
+	
+<% end %>	
+	
+	
+<div id = "filters_selected">	
+	<div class = "filter_details">
+	<% if @selected_filters != nil %>
+		Selected Filters:
+		<%= @selected_filters %>  
+	<% end %>
+</div>
+
+
+	<div class = "filter_details">
+	<% if @data_count != nil %>
+		Data Points Displayed:
+		<%=h @data_count %>
+	<% end %>
+	</div>
+	
+	<% if @search_tip != nil %>
+		<%= @search_tip %>
+	<% end %>
+
+</div>
+</div>

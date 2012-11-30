@@ -1,0 +1,36 @@
+<%= link_to 'Enter New Gas Reading', new_gas_reading_path, :class => "show_button nohover" %>
+<br/>
+<br/>
+
+<div id = "paginate"> <%= will_paginate @gas_readings %> </div>
+<div id = "around_table">
+<table class="list_table" >
+  <tr>
+    <th>Gas Value (kWh)</th>
+	<th>Timestamp</th>
+	<th>Meter</th>
+    <th>Entered By</th>
+	<th>Gas upload file</th>
+	<th>Show</th>
+	<th>Edit</th>
+	<th>Delete</th>
+  </tr>
+
+<% @gas_readings.each do |gas_reading| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%=h format_decimal(gas_reading.gas_value) %></td>
+	<td><%=h TimeUtils.to_uk_s(gas_reading.end_time) %></td>
+	<td><%=h gas_reading.meter.node_entry.name %></td>
+    <td><%=h gas_reading.user.username %></td>
+    <% if gas_reading.gas_upload.nil? %>
+		<td>Manual input</td>
+	<% else %>
+		<td><%=h gas_reading.gas_upload.filename %></td>
+	<% end %>
+	<td><%= link_to 'Show', gas_reading, :class => "show_button nohover" %></td>
+	<td><%= link_to 'Edit', edit_gas_reading_path(gas_reading), :class => "edit_button nohover" %></td>
+    <td><%= link_to 'Delete', gas_reading, :confirm => 'Are you sure?', :method => :delete, :class => "delete_button nohover" %></td>
+  </tr>
+<% end %>
+</table>
+</div>

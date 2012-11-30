@@ -1,0 +1,30 @@
+
+<div class="crc-form">	
+		
+<fieldset id = "the_fieldset">
+<legend><b>CCA Excemptions</b></legend>
+
+<table class="list_table">
+  <tr>
+    <th>Tui</th>
+    <th>Company Name</th>
+	<th>Emissions Covered</th>
+  </tr>
+
+<tr>
+	<td><%=h @cca_exemption.tui %></td>
+	<td><%=h @cca_exemption.company_name %></td>
+    <td><%=h @cca_exemption.emissions_covered %></td>
+</tr>
+</table>
+
+
+
+
+<%= link_to 'Edit', edit_cca_exemption_path(@cca_exemption), :class => "edit_button" %> 
+</div>
+<br/>
+	
+</fieldset>
+<br/>
+<%= render :partial => "back_button"%>

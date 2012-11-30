@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  annual_report: 
+  more_info: MyString
+  status: 1
+  question_1: 1
+  question_2: 1
+  question_3: 1
+  question_4: 1
+
+two:
+  annual_report: 
+  more_info: MyString
+  status: 1
+  question_1: 1
+  question_2: 1
+  question_3: 1
+  question_4: 1

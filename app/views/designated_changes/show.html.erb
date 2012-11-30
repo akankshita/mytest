@@ -1,0 +1,12 @@
+<p>
+  <b>Date of change:</b>
+  <%=h @designated_change.date_of_change %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%=h @designated_change.text %>
+</p>
+
+<%= link_to 'Edit', edit_designated_change_path(@designated_change.designated_changes_task), :class=>"edit_button" %>
+<%= link_to 'Back to footprint report', footprint_report_page_path, :class=>"back_button" %>

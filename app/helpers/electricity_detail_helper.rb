@@ -1,0 +1,2 @@
+module ElectricityDetailHelper
+end

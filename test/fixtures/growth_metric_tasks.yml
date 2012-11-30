@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  annual_report: 
+  status: 1
+  more_info: MyString
+  turnover: 1.5
+
+two:
+  annual_report: 
+  status: 1
+  more_info: MyString
+  turnover: 1.5

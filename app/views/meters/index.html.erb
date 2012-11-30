@@ -1,0 +1,22 @@
+<%= link_to 'New meter', new_meter_path, :class => "new_button nohover" %>
+
+<table>
+  <tr>
+    <th>Meter identifier</th>
+    <th>Type of meter</th>
+    <th>Name</th>
+  </tr>
+
+<% @meters.each do |meter| %>
+  <tr>
+    <td><%=h meter.meter_identifier %></td>
+    <td><%=h meter.source_type.name %></td>
+    <td><%=h meter.node_entry.name %></td>
+    <td><%= link_to 'Show', meter, :class => "show_button nohover" %></td>
+    <td><%= link_to 'Edit', edit_meter_path(meter), :class => "edit_button nohover" %></td>
+    <td><%= link_to 'Delete', meter, :class => "delete_button nohover", :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

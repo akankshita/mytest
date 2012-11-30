@@ -1,0 +1,38 @@
+
+
+	<div class="crc-form">
+
+
+<fieldset id = "the_fieldset"><legend>Renewables</legend>
+
+<% form_for(@renewable) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+  	Renewable Obligation Certificate (ROC)
+    <%= f.text_field :roc %>
+  </p>
+  <p>
+  	Feed In Tarrifs (FIT)
+    <%= f.text_field :fit %>
+  </p>
+  <p>
+	Generated or self-supplied electricity 
+    <%= f.text_field :renewablesGenerated %>
+  </p>
+
+
+  <%= render :partial => "shared/status", :locals => {:task_status => @renewable.renewable_task.status} %>
+
+  <p>
+    <%= f.submit 'Update', :class => 'submit_button' %>
+  </p>
+<% end %>
+
+</fieldset>
+
+	</div>
+
+	
+<%= link_to 'Back', "/annual_reports", :class => 'back_button' %>
+

@@ -1,0 +1,26 @@
+<div class="crc-form">
+
+  <fieldset id="the_fieldset">
+    <legend>Configure Application</legend>
+    <p>
+      <strong>CRC reporting enabled:</strong>
+      <%= h @app_config.crc %>
+    </p>
+
+    <p>
+      <strong>Gas Monitoring enabled:</strong>
+      <%= h @app_config.gas %>
+    </p>
+
+    <p>
+      <strong>Compare Electricity Meters enabled:</strong>
+      <%= h @app_config.compare_meters %>
+    </p>
+
+
+    <p>
+      <%= link_to "Edit", edit_app_config_path(@app_config), :class => "edit_button" %>
+    </p>
+
+  </fieldset>
+</div>

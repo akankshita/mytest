@@ -1,0 +1,28 @@
+<% form_for(@other_fuel) do |f| %>
+  <%= f.error_messages %>
+<div class="crc-form">
+<fieldset id = "the_fieldset"><legend>Other Fuels</legend>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  
+    <p>
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+    </p>
+    
+    <p>
+
+	<%= collection_select(:other_fuel, :unit, @all_units, :id, :name ) %>
+  </p>
+    
+
+    <%= f.submit 'Create', :class => "submit_button" %>
+
+  
+</fieldset>
+<% end %>
+</div>
+
+<%= link_to 'Back', other_fuels_path, :class => "back_button" %>

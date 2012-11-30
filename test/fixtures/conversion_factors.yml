@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  references: 
+  references: 
+  rate: 1.5
+  official: false
+
+two:
+  references: 
+  references: 
+  rate: 1.5
+  official: false

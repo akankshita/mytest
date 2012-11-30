@@ -1,0 +1,1196 @@
+/************** Main Application Layoiut *************/
+
+div.ui-datepicker
+{
+ font-size:14px;
+}
+
+
+#paginate
+{
+	color:#6E9B2D;
+	font-weight:bold;
+	font-size:16px;
+	margin-bottom:15px;
+}
+
+#paginate a
+{
+	color:#6E9B2D;
+	font-weight:bold;
+	font-size:16px;
+}
+
+.current
+{
+	color:black;
+}
+
+#the_fieldset
+{
+	margin:10px 5px 10px 5px;
+	padding: 20px 20px 20px 20px;
+	border-radius: 8px;
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+
+
+body
+{
+	margin: auto;
+	background-color: white;
+}
+
+#WholePage
+{
+    background-color: white;
+	margin: auto;
+}
+
+#Container
+{
+	width: 962px;
+	margin: auto;
+}
+
+#Top
+{	
+	background: left 71px no-repeat;
+}
+
+#Header
+{
+	font-family: arial;
+	padding-top: 10px;
+	background: url('/stylesheets/images/main-bg2.png') repeat-x left top;
+	font-weight:normal;
+}
+
+#logo
+{
+	position:absolute; 
+	padding-left: 15px;
+	padding-top: 25px;
+	width:290px;
+	height:43px;
+}
+
+#main_picture
+{		
+	vertical-align:center;
+	background: url('/img/editable1.png');	
+	background-repeat:none;
+	height:137px;
+	width: 962px;
+	margin-top: 40px;	
+}
+
+
+#title_name
+{
+	padding-left: 20px;
+	padding-top: 100px;
+	color: white;
+	font-family: arial;
+	font-size: 21px;
+	font-weight: normal;
+}
+#Content
+{
+	padding-left: 0px;
+}
+
+#Content, #Left
+{
+	padding-top: 2px;
+}
+
+#Footer
+{
+	background-repeat: repeat-x;
+	background-position: left top;
+  	height: 56px;
+    width: 100%;
+    float: left;
+   	margin: 0px auto;  
+}
+
+#Bottom
+{
+    height: 32px;
+  	width: 962px;
+	background: url('/stylesheets/images/main-bg2.png') repeat-x left top;
+	text-align: center;
+	line-height: 32px;
+	clear: left;
+	margin: 0px auto;
+	font-family: arial;
+	font-size: 14px;
+	color: white;
+}
+
+#Bottom a 
+{
+	text-decoration: none;
+	color: white;
+	text-align:center;
+	font-size:15px;
+	font-family: sans-serif, Helvetica, Verdana, arial;
+	
+}
+
+#Bottom a:hover
+{
+	text-decoration: underline;
+}
+
+
+#Left
+{
+	float: left;
+	width: 100%
+}
+
+#Left
+{
+	width: 274px;
+}
+
+
+.Part,.TopPart,#LeftMenu
+{
+	border: 2px solid #d0d1d0;
+	background: #e4ece3;
+}
+
+#LeftMenu
+{
+	font-size: 14px;
+	font-family: arial;
+	padding-bottom: 8px;
+}
+.TopPart 
+{
+	border: 0px;
+	background: url('/img/first-banner.png') no-repeat left top;
+	height: 184px;
+	padding: 8px;
+}
+
+.Part,.TopPart
+{
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-family: arial;
+	text-align: justify;
+}
+
+.TopPart p
+{
+	margin-bottom: 0px;
+	margin-top: 6px;
+}
+.Part 
+{
+	clear: left;
+	padding-left: 0px;
+}
+.Part img
+{
+	float: left;
+	margin: 8px;
+
+}
+.TopPart h2
+{
+	margin: 0px;
+	color: #edf32d;
+	font-size: 18px;
+	font-weight: normal;
+	font-family: arial;
+	text-transform: uppercase;
+}
+.TopPart .Larger
+{
+	font-size: 14px;
+}
+.LeftHeader
+{
+	margin: 0px;
+	background: url('img/left-header.png') no-repeat left top;
+	height: 38px;
+}
+.Part h2
+{
+	margin: 0px;
+	background: url('/stylesheets/images/main-bg2.png') repeat left top;
+	float right background: url('img/content-header.png');
+	height: 37px;
+	display: block;
+	font-weight: normal;
+}
+.LeftHeader,
+.Part h2
+{
+	font-family: arial;
+	font-size: 16px;
+	color: white;
+	line-height: 37px;
+	padding-left: 10px;
+}
+.Part a
+{
+	color: white;
+}
+.Part ul
+{
+	clear: left;
+	padding: 0px;
+	margin: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+}
+.Part li
+{
+	margin-top: 3px;
+	list-style-type: none;
+}
+
+#validator
+{
+	clear: left;
+	float: left;
+}
+
+#validator img 
+{
+	border:0 solid #FFFFFF;
+	height:31px;
+	width:88px;
+}
+
+#RightHeader
+{
+	float: right;
+	padding-right: 10px;
+	font-size: 14px;
+	padding-top:8px;
+	padding-bottom:10px;
+}
+
+#RightHeader a
+{
+	padding-left: 16px;
+	padding-right: 4px;
+	color: white;
+	text-decoration: none;
+	background: no-repeat 0px 0px;
+}
+
+#RightHeader a:hover 
+{
+	background-position: 0px -12px; 
+}
+
+#RightHeader a#home:hover 
+{
+	background-position: 0px -12px; 
+}
+
+#RightHeader 
+{
+	background-image: url('img/');
+}
+
+li,ul /* korekce pro IE6 */
+{
+	_padding-bottom: 0px;
+	_height: 12px;
+	_padding-top: 0px;
+	_margin: 0px;
+}
+
+
+/**********  CSS for the Tabbing on the home page ****/
+
+#tabs 
+{
+   float:left;
+   width:100%;
+}
+
+#tabs ul 
+{
+   clear:left;
+   float:left;
+   list-style:none;
+   margin-left:150px;
+   text-align:center;
+   margin-bottom:-1px;
+}
+
+
+#tabs ul li 
+{
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   padding-left:3px;
+   padding-right:3px; 	
+}
+
+#tabs ul li a 
+{
+   display:block;
+   margin:0 0 0 0px;
+   padding:3px 10px;
+   background:#6E9B2D;
+   color:white;
+   font-size:14px;
+   text-decoration:none;
+   overflow:hidden;
+   margin-bottom:-1px;
+   border-radius: 8px 8px 0 0;
+   behavior: url('/stylesheets/PIE.htc');	
+   position:relative;
+}
+
+#tabs ul li a:hover
+{
+	color:#D9D9D9;
+}
+
+#tabs #selected_tab a
+{  
+	color: black;
+	background-color:#E4ECE3;
+	border-top-right-radius:8px; 
+	border-top-left-radius:8px;
+	border-top:1px solid black;
+	border-left:1px solid black;
+	border-right:1px solid black;	
+	border-radius: 8px 8px 0 0;
+    behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+	bottom:1px;
+}
+
+
+/*** These are the style properties for the Status Tab ****/
+#form_password
+{
+	width:auto;
+}
+
+#login
+{
+	width:auto;
+	border-radius:8px;
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+
+#content_tabs 
+{
+	border:1px solid;
+	clear: both;
+	width:920px;
+	height:auto;
+	background-color:#E4ECE3;
+	border-radius: 8px 8px 8px 8px;
+    behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+
+#choose_start_end
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:200px;
+	text-align:center;
+	color:#424242;
+	font-size:16px;
+	padding-top:5px;
+	font-weight:bold;
+}
+
+#start_end_filters
+{
+	border: 2px solid #757575; 	
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	width:600px;
+	padding-top:0px;
+	padding-bottom:30px;
+	height:35px;
+	-pie-background: linear-gradient(#FFFFFF, #C9CBC8);
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+	
+.aesthetics
+{
+	 border-radius:8px;		
+}
+
+#allprogress
+{
+	width:900px;
+	float:left;
+	margin-left:20px;
+	margin-right:0px;
+	padding-left:2px;
+}
+
+#progress
+{
+	float:left;
+	width: 270px;
+	height: 95px;
+	margin-left:8px;
+	margin-right:8px;
+	margin-top:30px;
+	margin-bottom:30px;
+	border: 3px solid #757575;
+	-pie-background: linear-gradient(#FFFFFF, #C9CBC8);
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;	
+}
+
+#progress1
+{
+	height: 100px;	
+}
+
+#title1
+{
+	padding-top:5px;
+	padding-left:55px;
+	width: 150px;
+	height: 25px;
+	float: left;
+	font-family:sans-serif;
+	font-size:18px;
+	text-align:center;
+	color: #3E576F;
+	margin:auto;
+	font-weight:bold;	
+}
+#progress1_graph
+{
+	height: 25px;
+	width:100px;
+	float:left;	
+	padding-top:5px;
+	padding-left:35px;
+	margin:auto;
+	behavior: url('/stylesheets/PIE.htc');
+	position:relative;	
+}
+
+#progress2_graph
+{
+	height: 25px;
+	width:100px;
+	float:left;	
+	padding-top:5px;
+	padding-left:35px;
+	margin:auto;
+	behavior: url('/stylesheets/PIE.htc');
+	position:relative;
+}
+
+#progress3_complete
+{
+	height: 25px;
+	width:200px;
+	padding-top:30px;
+	text-align:left;	
+	font-weight:bold;
+	font-size:30px;
+	color:#3E576F;
+	padding-left:30px;
+	text-align:center;
+}
+
+#tasks_complete_annual
+{
+	text-align:center;
+	height:30px;
+	width:260px;
+	padding-top:70px;
+	color:#3E576F;
+}
+
+#tasks_complete_footprint
+{
+	text-align:center;
+	height:30px;
+	width:260px;
+	padding-top:70px;
+	color:#3E576F;
+}
+#tasks_complete_evidence
+{
+	text-align:center;
+	height:30px;
+	width:260px;
+	padding-top:15px;
+	color:#3E576F;
+}
+
+
+#electricity_summary_top 
+{
+	position:absolute;
+	border: 1px solid;
+	left: 100px;
+	top: 200px;
+	width: 300px;
+	height: 20px;
+}
+
+#electricity_summary_bottom 
+{	
+	position:absolute;
+	border: 1px solid;
+	left: 400px;
+	top: 200px;
+	width: 300px;
+	height: 200px;
+}	
+
+#rssfeed
+{
+	border: 3px solid #757575;
+	width: 860px;
+	height: 195px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:10px;
+	margin-bottom:20px;
+	overflow: hidden;
+	background-color: #d0d0d0;
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+
+#top_summary
+{
+	float:left;
+	width: 860px;
+	height: 300px;
+	margin-top: 30px; 
+	margin-bottom:30px;
+    margin-left:30px;
+	margin-right:30px;	
+}
+
+#log_box
+{
+	margin-left:auto;
+	margin-right:auto;
+	border:1px solid;
+	width:860px;
+	text-align:center;
+	margin-top:30px;
+	height:30px;
+	padding-top:15px;
+	margin-bottom:20px;
+	vertical-align:center;	
+	color: #3E576F;
+	border:3px solid #757575;
+	font-size:16px;
+	font-weight:bold;
+	-pie-background: linear-gradient(#FFFFFF, #C9CBC8);
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;	
+}
+	
+
+	
+/************ Gas and Electricty Summary ***********/
+
+#summary_top 
+{
+	margin: 20px auto 20px auto;
+	height:250px;
+	width:845px;
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+
+.filter_container
+{
+	height:auto;	
+}
+
+#submit_reset
+{
+	width:255px;
+	margin-top:0px
+}
+
+#accordion_container
+{
+	width:860px;
+	margin-left:auto;
+	margin-right:auto;
+	height:auto;
+	padding:5px;
+	margin-bottom:5px;
+	-pie-background: linear-gradient(#F5F0DB,#E4ECE3 );
+	border-radius:8px;
+	behavior: url('/stylesheets/PIE.htc');	
+	border:2px solid #757575;
+	position:relative;
+}
+
+#accordion_box
+{
+	width:820px;
+	margin-left:auto;
+	margin-right:auto;
+	height:auto;
+	padding: 10px;
+	margin-bottom:20px;
+	-pie-background: linear-gradient(#F5F0DB, #E4ECE3);
+	border:2px solid #757575;
+	border-radius:8px;
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+
+#each_green_box
+{
+	width: auto;    
+    text-align: center;      
+    white-space: nowrap;  
+    overflow: hidden;
+}
+
+#each_green_box_region
+{
+	width: auto;    
+    text-align: center;      
+    white-space: nowrap;  
+    overflow: hidden;
+    height:200px;
+}
+
+.filter_details
+{
+	font-size:15px;
+	padding-bottom:5px;
+	color:#424242;
+	padding-top:10px;
+	padding-bottom:10px;
+	font-weight:bold;
+}
+
+.data_count
+{
+	font-size:14px;
+}
+
+
+#login_name
+{
+	margin-bottom:5px;
+}
+
+
+#radio_buttons
+{
+	width:300px;
+	height:40px;	
+	margin-left:auto;
+	margin-right:auto;
+	border-radius:8px;
+	border:2px solid #757575;
+	background:url('/img/50-50scaled.png') repeat-x;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+#button_text
+{
+	padding-top:10px;
+	text-align:center;
+	color:white;
+}
+
+.button_organiser
+{
+	border:1px solid black;
+	width:400px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+
+/******************* Styles for forms ******************/
+
+
+.crc-form legend, .show_table legend 
+{
+	color: #dfd;
+	background: #141;
+	font-family:sans-serif;
+	padding: 0.2em 1em;
+	font-weight:bold;
+}
+
+#notice 
+{
+	color: #424242;
+	text-align:center;
+	padding-top: 15px;
+	font-size:16px;
+	font-weight:bold;
+}	
+
+.new_button 
+{
+	margin-bottom: 15px;
+}
+
+.nohover a:hover 
+{ 
+	color:red;
+	background-color: transparent; 
+	text-decoration: none;
+}
+
+.content_pane
+{
+	margin: 20px;
+}
+
+.filter_container
+{
+	height:auto;	
+}
+
+
+#each_green_box
+{
+	width: auto;    
+    text-align: center;      
+    white-space: nowrap;  
+    overflow: hidden;
+}
+
+#each_green_box_region
+{
+	width: auto;    
+    text-align: center;      
+    white-space: nowrap;  
+    overflow: hidden;
+    height:200px;
+}
+
+#submit_reset
+{
+	width:300px;
+	margin-top:0px;
+	margin-bottom:20px;
+}
+
+
+/********************* CSS For Tables ******************/
+
+#electricity_upload_buttons
+{
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;	
+}
+
+.list_table 
+{
+	text-align: left;
+	margin-top:8px;
+	width:100%;
+	border:3px solid #6E9B2D;     
+	text-align:center;	
+	margin-bottom:20px;
+}
+
+.list_table .odd 
+{
+	background: url('/img/50-bigger.png') repeat-x;
+}
+
+.list_table .even 
+{
+	background: url('/img/50-bigger.png') repeat-x;
+}
+
+.list_table td
+{
+ 	border-bottom:1px solid white;  
+}
+
+.list_table td:hover
+{
+	background-color:silver;
+}
+	
+.list_table th
+{
+	font-size:14px;
+	height:20px;
+	border-bottom:3px solid #6E9B2D;
+	padding-bottom:3px;
+    background-color:#CCCCCC;
+	border-collapse:collapse;
+}
+
+.list_table .red_row
+{
+	color:red;
+	font-weight: bold;	
+}
+
+
+/*******************************************************/
+
+#tree_view
+{
+	border: 1px solid black;
+	width: 300px;
+	height: 570px;
+	float:left;
+	border-radius: 8px;
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+
+.tree_view_form 
+{
+	margin-bottom: 15px;
+	border-radius: 8px;
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+	
+}
+
+#tree_view 
+{
+	margin: 15px;
+}
+
+.filter_box 
+{
+	width: 150px;
+	height:120px;
+	display: inline-block;  
+	vertical-align: middle;
+}
+
+.filter_box > select 
+{
+	width: 120px;
+	margin:0 auto;
+}
+
+
+
+/************ Style properties for the Detail Pages *********/
+
+#meter_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#metergroup_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#location_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#region_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#country_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+
+#year_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#month_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#date_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#day_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#shift_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+
+/***************** Used on report pages *****************/
+
+
+
+#status_text_green
+{
+	color : green;
+	font-style: bold;
+	font-size: 18px;
+}
+
+#status_text_orange
+{
+	color : #FF8700;
+	font-style: bold;
+	font-size: 18px;
+}
+
+#status_text_red
+{
+	color : red;
+	font-style: bold;
+	font-size: 18px;		
+}
+
+#popup 
+{
+	font-size: 18px;
+	color: black;
+}
+
+#popup span 
+{
+	display: none;
+	text-decoration: none;
+}
+
+#popup:hover span 
+{
+	background-color: #F0F0F0;
+	font-size: 16px;
+	line-height: 25px;
+	display: inline;
+	border: 1px solid black;
+	position:absolute;
+	padding: 15px;
+	margin-left: 30px;
+	margin-top:-40px;
+	overflow: hidden;
+	width:200px;
+	height:auto;	
+}
+
+
+/********** Tables in each reports sections *********/
+
+.radio_buttons_status_title
+{
+	color:green;
+	font-weight:bold;
+	font-size:16px;
+}
+
+.radio_buttons_status
+{	
+	border:1px solid;
+	width:230px;
+	margin-top:10px;
+	height:100px;
+	padding-top:10px;
+	margin-bottom:20px;	
+	border:1px solid #757575;
+	font-size:14px;
+	border-radius: 8px;
+	-pie-background: linear-gradient(#FFFFFF, #C9CbC8);
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+	padding-left:20px;
+}
+
+#report_metrics
+{
+	width: 100%;
+}
+
+#inner_table
+{
+	vertical-align:top;
+}
+
+#footprint_report_table
+{
+	text-align:center;
+	width:630px;	
+}
+ 
+#footprint_report_table td
+{
+	vertical-align: center;
+}
+
+
+/********New Buttons (footprint report page)****************/
+
+.footprint_report_button 
+{
+	width: 300px;
+	margin-top:5px;
+    margin-bottom:5px;
+}
+
+/************* filters and params*******************/
+
+#result_params
+{
+	border:1px solid black;
+	padding:10px;
+	-pie-background: linear-gradient(#F5F0DB, #E4ECE3);
+	border-radius:8px;
+	behavior: url('/stylesheets/PIE.htc');	
+	position:relative;
+}
+.filter_label
+{
+	font-weight: bolder;
+}
+
+.filter_params
+{
+	font-style:italic;
+}
+
+label
+{
+	width: 12em;
+	float: left;
+	text-align: left;
+	margin-right: 0.5em;
+	display: block;
+}
+
+#log-out
+{
+	width:300px;
+	height:20px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	border:3px solid #757575;
+	padding:10px;
+	color:black;
+	font-size:20px;
+	font-weight:bold;
+	-pie-background: linear-gradient(#FFFFFF, #C9CBC8);
+	behavior: url('/stylesheets/PIE.htc');	
+	border-radius:8px;
+	position:relative;
+}
+
+#logout_time
+{
+	width:300px;
+	height:50px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:15px;
+}
+
+#errorExplanation 
+{
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 0px 0px 10px;
+  font-size: 16px;
+  background:none;
+  color: black;
+  line-height:20px;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:10px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+  margin-left:15px;
+}
+
+
+
+
+

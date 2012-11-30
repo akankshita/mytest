@@ -1,0 +1,21 @@
+
+			<div class="crc-form">
+				<fieldset id = "the_fieldset">
+					<legend><b>Growth Metrics</b></legend>
+					<% form_for(@growth_metric_task) do |f| %>
+  					<%= f.error_messages %>
+					  <p>
+					    Please specify your turnover in £ <%= f.text_field :turnover, :size => 10 %>
+					  </p>
+
+                      <%= render :partial => "shared/status", :locals => {:task_status => @growth_metric_task.status} %>
+
+					  <p>
+					    <%= f.submit 'Save', :class => "submit_button" %>
+					  </p>
+					<% end %>
+				</fieldset>
+			</div>
+
+
+<%= link_to 'Back', annual_reports_path, :class => "back_button" %>

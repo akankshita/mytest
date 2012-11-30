@@ -1,0 +1,64 @@
+<% form_for(@reconfirmation_exemption_task) do |f| %>
+  <%= f.error_messages %>
+
+
+		<div class="crc-form">
+<fieldset id ="the_fieldset">
+	<legend><b>Re-confirm CCA exemptions</b></legend>
+
+<p>
+	<input type="radio" id="choice_1" name="reconfirmation_exemption_task[choice]" value="1"
+
+	<%if @reconfirmation_exemption_task.choice == 1 %>
+		checked="checked"
+	<%end%>
+	
+	/> <strong>Not eligible for any exemptions</strong>
+  </p>
+<p>
+	<input type="radio" id="choice_2" name="reconfirmation_exemption_task[choice]" value="2"
+	
+	<%if @reconfirmation_exemption_task.choice == 2 %>
+		checked="checked"
+	<%end%>
+	
+	/> <strong>General (single entity) CCA exemption 
+  	</strong><p>Select this option if your are a single entity organisation with up to 25 percent CCA coverage.
+		</p>
+	</p>
+<p>
+	<input type="radio" id="choice_3" name="reconfirmation_exemption_task[choice]" value="3"
+	
+	<%if @reconfirmation_exemption_task.choice == 3 %>
+		checked="checked"
+	<%end%>
+	
+	/><strong> Group CCA exemption</strong>
+		<p>Select this option if, once the energy use of exempt group members has been removed, your remaining organization has less than 1,000MWh of qualifying half-hourly electricity remaining in CRC, your entire organization will be exempt.
+		</p>
+  </p>
+<p>
+	<input type="radio" id="choice_4" name="reconfirmation_exemption_task[choice]" value="4"
+	
+	<%if @reconfirmation_exemption_task.choice == 4 %>
+		checked="checked"
+	<%end%>
+	
+	/><strong> Member CCA exemption(s)</strong	>
+		<p>If any member of your organisational group has greater than 25 percent of its emissions covered by a CCA, that member is treated as exempt when working out your group's total footprint emissions.
+	
+		</p>
+
+  <%= render :partial => "shared/status", :locals => {:task_status => @reconfirmation_exemption_task.status} %>
+
+  <p>
+    <%= f.submit 'Submit', :class => "submit_button" %>
+  </p>
+</fieldset>
+<% end %>
+</td>
+</div>
+
+<br/>
+
+<%= link_to 'Back', footprint_report_page_path, :class => "back_button" %>

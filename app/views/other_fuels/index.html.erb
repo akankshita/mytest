@@ -1,0 +1,47 @@
+
+	<div class="crc-form">
+		<fieldset id = "the_fieldset">
+			<legend><b>Other Fuels</b></legend>
+			
+<%= link_to 'Add Other Fuel', new_other_fuel_path, :class => "new_button" %>
+<div id="inner_table">
+<table class="list_table">
+  <tr>	
+ 	<th>Other fuel</th>
+    <th>Amount</th>
+    <th>Unit</th>
+	<th>Show</th>
+	<th>Edit</th>
+	<th>Delete</th>
+ </tr>
+
+<% @other_fuels.each do |other_fuel| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%=h other_fuel.description %></td>
+    <td><%=h other_fuel.amount %></td>
+    <td><%=h other_fuel.unit.name %> &nbsp;&nbsp;&nbsp; </td>    
+    <td><%= link_to 'Show', other_fuel, :class => "show_button" %></td>
+    <td><%= link_to 'Edit', edit_other_fuel_path(other_fuel), :class => "edit_button" %></td>
+    <td><%= link_to 'Delete', other_fuel, :confirm => 'Are you sure?', :method => :delete, :class => "delete_button"%></td>
+  </tr>
+<% end %>
+</table>
+
+  <% form_for(:other_fuels_task, @other_fuels_task, :url => {:controller => "other_fuels", :action => "status"}, :html => {:id => "status_form"}) do |f| %>
+    <%= render :partial => "shared/status", :locals => {:task_status => @other_fuels_task.status} %>
+    <%= f.submit "Save", :class => 'submit_button' %>
+  <% end %>
+
+
+</div>
+
+
+</fieldset>
+
+
+
+
+
+
+<%= link_to 'back', footprint_report_page_path, :class => "back_button" %>
+</div>

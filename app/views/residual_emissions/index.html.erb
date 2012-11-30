@@ -1,0 +1,46 @@
+
+			
+	<div class="crc-form">
+	<fieldset id = "the_fieldset">
+	<legend><b>Residual Emissions</b></legend>
+
+<%= link_to 'New residual emission', new_residual_emission_path, :class => "new_button"%>	
+			
+<table class="list_table">
+  <tr>
+    <th>Description</th>
+    <th>Tonnes c02</th>
+	<th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+
+
+<% @residual_emissions.each do |residual_emission| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%=h residual_emission.fuel_list.fuel_name %></td>
+    <td><%=h residual_emission.tonnes_c02 %></td>
+    <td><%= link_to 'Show', residual_emission, :class => "show_button" %></td>
+    <td><%= link_to 'Edit', edit_residual_emission_path(residual_emission), :class => "edit_button" %></td>
+    <td><%= link_to 'Delete', residual_emission, :confirm => 'Are you sure?', :method => :delete, :class =>"delete_button" %></td>
+<% end %>
+  </tr>
+</td>
+ </table> 
+
+
+      <% form_for(:residual_emissions_task, @residual_emissions_task, :url => {:controller => "residual_emissions", :action => "status"}, :html => {:id => "status_form"}) do |f| %>
+         <%= render :partial => "shared/status", :locals => {:task_status => @residual_emissions_task.status} %>
+         <%= f.submit "Save", :class => 'submit_button' %>
+      <% end %>
+
+
+
+</fieldset>
+
+
+
+
+<%= link_to 'Back', footprint_report_page_path, :class => "back_button"%>
+</div>

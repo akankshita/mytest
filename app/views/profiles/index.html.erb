@@ -1,0 +1,66 @@
+
+<%= render :partial => "shared/tabs" %>
+
+<div id="content_tabs">
+	
+<div id = "start_end_filters" class = "aesthetics">
+	<div id = "choose_start_end">Choose Time Period</div>
+
+		<% form_tag({:action => "index"}, {:id => "select_filters"}) do %>
+		
+			Start date:
+			<%= text_field_tag :selected_start_date, @current_selected_start_date, :class => 'datepicker'  %>
+	&nbsp &nbsp		
+			End date:
+			<%= text_field_tag :selected_end_date, @current_selected_end_date, :class => 'datepicker' %>
+		&nbsp		
+			<%= submit_tag 'Filter', :class => "submit_button" %>
+	  <% end %>
+
+</div>
+
+
+	<%= render :partial => "shared/profiles_graph_accordion"%>
+</div>
+ 
+</br>
+
+
+<script>
+
+$(document).ready(function() {
+
+	$("#profiles_tab").attr("id","selected_tab")
+		
+	
+/***************Function calls for each graph********/
+
+
+
+	//daily profile
+	<%=h @daily_upper %>
+	<%=h @daily_avg %>
+	<%=h @daily_lower %>
+	<%=h @daily_time %>
+    daily_xaxis_label_interval = 4
+	generate_profile_graph('daily_graph', daily_upper, daily_avg, daily_lower, daily_time, 'Daily Profile (Mon-Fri)', daily_xaxis_label_interval)  
+
+
+	//weekly profile
+	<%=h @weekly_upper %>
+	<%=h @weekly_avg %>
+	<%=h @weekly_lower %>
+	<%=h @weekly_time %>
+	weekly_xaxis_label_interval = 48   
+	generate_profile_graph('weekly_graph', weekly_upper, weekly_avg, weekly_lower, weekly_time, 'Weekly Profile', weekly_xaxis_label_interval)
+
+});
+
+</script>
+
+
+
+
+
+
+

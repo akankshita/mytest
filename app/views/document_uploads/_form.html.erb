@@ -1,0 +1,43 @@
+<div class="crc-form">
+	
+<% form_for(@document_upload, :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+
+  <fieldset id = "the_fieldset">
+	<legend><strong>Upload Document</strong></legend>
+  <p>
+	 <b><%= f.label :name %></b><br />
+	 <%= f.text_field :name %>
+  </p>
+  <p>
+    <b><%= f.label :document_type %></b><br />
+    <%= collection_select(:document_upload, :document_type, @document_types, :id, :name, options ={:prompt => "-Select a document type"}) %>
+  </p>
+  <p>
+    <b><%= f.label :start_date %></b><br />
+    <%= text_field_tag "document_upload[start_date]", @start_date_formatted, { :class => 'datepicker' }  %>
+  </p>
+  <p>
+    <b><%= f.label :end_date %></b><br />
+    <%= text_field_tag "document_upload[end_date]", @end_date_formatted, { :class => 'datepicker' }  %>
+  </p>
+  <p>
+   <b><%= f.label :purchase_order_number %>(Optional)</b><br />
+    <%= f.text_field :purchase_order_number %>
+  </p>
+  <% if(is_new) %>
+  <p>
+	<b><label for="document_upload"> Choose file(pdf format):
+	</label>
+	</b>
+	<br />
+	<%= f.file_field :uploaded_data %>
+  </p>
+  <% end %>
+  <p>
+    <%= f.submit 'Save', :class => "submit_button" %>
+  </p>
+  </fieldset>
+<% end %>
+
+</div>

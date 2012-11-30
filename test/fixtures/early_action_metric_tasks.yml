@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  annual_report: 
+  status: 1
+  more_info: MyString
+  coverage: 1
+  scheme_provider: 
+  voluntary_arm: 1
+
+two:
+  annual_report: 
+  status: 1
+  more_info: MyString
+  coverage: 1
+  scheme_provider: 
+  voluntary_arm: 1

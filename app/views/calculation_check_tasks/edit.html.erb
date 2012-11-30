@@ -1,0 +1,31 @@
+<fieldset>
+	<legend>Calculation Check</legend>
+<% form_for(@calculation_check_task) do |f| %>
+  <%= f.error_messages %>
+
+
+<p>#TODO: this section will display a number of calculated values which the user assess and then sets the in_order option below to show he is satisfied with the results.
+	</p>
+	<p>
+		<input type="radio" id="in_order" name="calculation_check_task[in_order]" value="false"
+
+		<%if @calculation_check_task.in_order == false %>
+			checked="checked"
+		<%end%>
+		/>Calculations are not in order
+	</p>
+	<p>
+		<input type="radio" id="in_order" name="calculation_check_task[in_order]" value="true"
+
+		<%if @calculation_check_task.in_order %>
+			checked="checked"
+		<%end%>
+		/>Calculations are in order
+	</p>
+
+  <p>
+    <%= f.submit 'Update', :class => "submit_button" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', footprint_report_page_path, :class => "back_button" %>

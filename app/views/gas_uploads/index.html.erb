@@ -1,0 +1,29 @@
+<div id = "electricity_upload_buttons">
+<%= link_to 'Upload Gas Data File', new_gas_upload_path, :class => "new_button nohover" %>
+
+<%= link_to 'View Gas Readings Data', gas_readings_path, :class => "show_button nohover" %>
+
+</div>
+
+
+<table class="list_table">
+  <tr>
+	<th>Filename</th>
+    <th>Uploaded by</th>
+    <th>Size</th>
+	<th>Download</th>
+	<th>Show</th>
+	<th>Delete</th>
+  </tr>
+
+<% @gas_uploads.each do |gas_upload| %>
+  <tr class="<%= cycle('odd','even') %>">
+	<td><%=h gas_upload.filename %></td>
+    <td><%=h gas_upload.user.username %></td>
+    <td><%=h gas_upload.size %></td>
+	<td><a href="<%=h gas_upload.public_filename(thumbnail = nil) %>" class="blank_button">Download</a></td>
+    <td><%= link_to 'Show', gas_upload, :class => "show_button" %></td>
+    <td><%= link_to 'Delete', gas_upload, :confirm => 'Are you sure?', :method => :delete, :class => "delete_button" %></td>
+  </tr>
+<% end %>
+</table>

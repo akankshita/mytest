@@ -1,0 +1,28 @@
+<div class="crc-form">
+
+  <fieldset id="the_fieldset">
+    <legend>Configure Application</legend>
+    <% form_for @app_config do |f| %>
+        <%= f.error_messages %>
+        <p>
+          <%= f.label :crc, "CRC reporting enabled:" %>
+          <%= f.check_box :crc %>
+        </p>
+
+        <p>
+          <%= f.label :gas, "Gas Monitoring enabled" %>
+          <%= f.check_box :gas %>
+        </p>
+
+        <p>
+          <%= f.label :compare_meters, "Meter comparison enabled" %>
+          <%= f.check_box :compare_meters %>
+        </p>
+
+        <p><%= f.submit "Submit", :class => "submit_button"  %></p>
+    <% end %>
+
+  </fieldset>
+</div>
+
+

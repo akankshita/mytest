@@ -1,0 +1,18 @@
+<div id="tabs">
+  <ul>
+    <li id="status_home_tab"><a href="<%= status_home_path %>">Status</a></li>
+    <li id="electricity_summary_tab"><a href="<%= electricity_summary_path %>">Electricity Totals</a></li>
+    <% if gas_enabled %>
+        <li id="gas_summary_tab"><a href="<%= gas_summary_path %>">Gas Totals</a></li>
+    <% end %>
+    <li id="electricity_detail_tab"><a href="<%= electricity_detail_path %>">Electricity Comparisons</a></li>
+    <% if gas_enabled %>
+        <li id="gas_detail_tab"><a href="<%= gas_detail_path %>">Gas Comparisons</a></li>
+    <% end %>
+
+
+    <li id="profiles_tab"><a href="<%= profiles_path %>">Profiles</a></li>
+
+  </ul>
+</div>
+

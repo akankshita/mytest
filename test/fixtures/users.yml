@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+rover:
+    id: 1
+    name: rover
+    hashed_password: fa20b0d2fc8289430d3caee64cfc31abd5d6cdcf
+    salt: "195499000.440337994979201"
+    #password = rover don't change this or it will break integration test > login_test

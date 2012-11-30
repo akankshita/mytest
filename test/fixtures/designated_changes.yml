@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date_of_change: 2010-08-19
+  text: blah
+  footprint_report: one 
+
+two:  
+    date_of_change: 2010-09-19
+    text: blah
+    footprint_report: two

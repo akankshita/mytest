@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+electricity_reading_one:
+    electricity_upload_id: 1
+    electricity_value: 9.99
+    source: a
+    electricity_timestamp: 2010-03-30 12:00:00
+
+electricity_reading_two:
+    electricity_upload_id: 1 
+    electricity_value: 2.99
+    source: a
+    electricity_timestamp: 2010-03-30 12:30:00
+
+electricity_reading_three:
+    electricity_upload_id: 1 
+    electricity_value: 5.99
+    source: a
+    electricity_timestamp: 2010-03-30 13:00:00
+
+electricity_reading_four:
+    electricity_upload_id: 1 
+    electricity_value: 7.99
+    source: a
+    electricity_timestamp: 2010-03-30 13:30:00
+
+electricity_reading_five:
+    electricity_upload_id: 1 
+    electricity_value: 8.99
+    source: a
+    electricity_timestamp: 2010-03-30 14:00:00

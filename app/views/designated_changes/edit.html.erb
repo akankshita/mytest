@@ -1,0 +1,41 @@
+	<div class="crc-form">
+
+	<% form_for(@designated_change) do |f| %>
+	  <%= f.error_messages %>
+
+		<fieldset id = "the_fieldset">
+			<legend><b>
+				Describe designated changes to your organisation 
+			</b></legend>
+          <p>
+		    <%= f.label :date_of_change %><br />
+            <%= text_field_tag "designated_change[date_of_change]", @formatted_date_string, { :class => 'datepicker' }  %>
+		  </p>
+
+		  <p>
+		    <%= f.label :text %><br />
+		    <%= f.text_area :text, {:cols => 100, :rows => 20} %>
+		  </p>
+
+
+
+          <%= render :partial => "shared/status", :locals => {:task_status => @designated_change.designated_changes_task.status} %>
+
+          <%= f.submit 'Save', :class => "submit_button" %>
+
+		</fieldset>
+
+
+	<% end %>
+
+	</div>
+	
+
+	
+<%= link_to 'Back', footprint_report_page_path, :class=>"back_button" %>
+	
+
+	
+	
+	
+	

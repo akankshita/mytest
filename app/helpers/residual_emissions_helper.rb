@@ -1,0 +1,2 @@
+module ResidualEmissionsHelper
+end
