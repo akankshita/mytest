@@ -25,13 +25,13 @@
 </br>
 
 <!--<><>months_with_data<><><%= @months_with_data.to_s %><><>-->
-
+ <script type="text/javascript" src="/javascripts/column_graphs.js"></script>
 <script>
 
 
 $(document).ready(function() {
 
-	$("#gas_detail_tab").attr("id","selected_tab")
+	//$("#gas_detail_tab").attr("id","selected_tab")
 		
 	
 /***************Function calls for each graph********/
@@ -39,37 +39,45 @@ $(document).ready(function() {
  	//month
 	<%=h @month_data %>
 	<%=h @month_categories %>
-	generate_detail_graph('month_graph','Emissions by Month', data, categories)
+	//generate_detail_graph('month_graph','Emissions by Month', data, categories)
+    generate_column_graph('month_graph','Emissions by Month', data, categories)
 
  	//year
 	<%=h @year_data %>
 	<%=h @year_categories %>
-	generate_detail_graph('year_graph','Emissions by Year', data, categories)
+	//generate_detail_graph('year_graph','Emissions by Year', data, categories)
+	generate_column_graph('year_graph','Emissions by Year', data, categories)
 
  	//meter
 	<%=h @meter_data %>
 	<%=h @meter_categories %>
-	generate_detail_graph('meter_graph','Emissions by Meters', data, categories)
+	//generate_detail_graph('meter_graph','Emissions by Meters', data, categories)
+	generate_column_graph('meter_graph','Emissions by Month', data, categories)
+
 	
 	//meter groups	
 	<%=h @meter_group_data %>
 	<%=h @meter_group_categories %>	
-	generate_detail_graph('metergroup_graph', 'Emissions by Meter Group' , data, categories)	
+	//generate_detail_graph('metergroup_graph', 'Emissions by Meter Group' , data, categories)
+	generate_column_graph('metergroup_graph', 'Emissions by Meter Group' , data, categories)
 	
 	//location
 	<%=h @location_data %>
 	<%=h @location_categories %>	
-	generate_detail_graph('location_graph', 'Emissions by Location' , data, categories)
+	//generate_detail_graph('location_graph', 'Emissions by Location' , data, categories)
+	generate_column_graph('location_graph', 'Emissions by Location' , data, categories)
 
 	//region
 	<%=h @region_data %>
 	<%=h @region_categories %>	
-	generate_detail_graph('region_graph', 'Emissions by Region' , data, categories)
+	//generate_detail_graph('region_graph', 'Emissions by Region' , data, categories)
+	generate_column_graph('region_graph', 'Emissions by Region' , data, categories)
 
 	//country
 	<%=h @country_data %>
 	<%=h @country_categories %>	
-	generate_detail_graph('country_graph', 'Emissions by Country' , data, categories)
+	//generate_detail_graph('country_graph', 'Emissions by Country' , data, categories)
+	generate_column_graph('country_graph', 'Emissions by Country' , data, categories)
 
 });
 
