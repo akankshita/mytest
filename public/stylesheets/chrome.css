@@ -2,6 +2,7 @@
 div.ui-datepicker
 {
  font-size:14px;
+ background-color: #33640D
 }
 
 
@@ -628,7 +629,7 @@ li,ul /* korekce pro IE6 */
 {
 	padding-top:10px;
 	text-align:center;
-	color:white;	
+	color:black;	
 }
 
 .button_organiser
@@ -847,6 +848,7 @@ li,ul /* korekce pro IE6 */
     text-align: center;      
     white-space: nowrap;  
     overflow: hidden;
+	color: black
 }
 
 #each_green_box_region
@@ -856,6 +858,7 @@ li,ul /* korekce pro IE6 */
     white-space: nowrap;  
     overflow: hidden;
     height:200px;
+	color: black
 }
 
 .filter_box 
@@ -864,6 +867,7 @@ li,ul /* korekce pro IE6 */
 	height:120px;
 	display: inline-block;  
 	vertical-align: middle;
+	color: black;
 }
 
 .filter_box > select 
