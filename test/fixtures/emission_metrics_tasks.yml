@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  core_energy_ETS: 1.5
+  non_core_energy_ETS: 1.5
+  cca_subsidiaries: 1.5
+  cca_core_energy: 1.5
+  cca_non_core_energy: 1.5
+  electricity_generated_credit: 1.5
+  renewables_generation: 1.5
+  footprint_report: 
+
+two:
+  core_energy_ETS: 1.5
+  non_core_energy_ETS: 1.5
+  cca_subsidiaries: 1.5
+  cca_core_energy: 1.5
+  cca_non_core_energy: 1.5
+  electricity_generated_credit: 1.5
+  renewables_generation: 1.5
+  footprint_report: 

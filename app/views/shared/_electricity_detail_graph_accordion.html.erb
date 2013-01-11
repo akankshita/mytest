@@ -1,0 +1,51 @@
+<br/>
+<div id = "accordion_container">
+<div id="accordion_active">
+
+<h3 class = "header"><a href="#">Emissions By Day</a></h3>
+	<div>
+		<div id = "day_graph"></div>
+	</div>
+
+<h3 class = "header"><a href="#">Emissions By Month</a></h3>
+	<div>
+		<div id = "month_graph"></div>
+	</div>
+
+<h3 class = "header"><a href="#">Emissions By Year</a></h3>
+	<div>
+		<div id = "year_graph"></div>
+	</div>
+
+<% if compare_meters_enabled %>
+<h3 class = 'header'><a href='#'>Emissions By Meter</a></h3>
+	<div>
+		<div id = 'meter_graph'></div>
+	</div>
+	
+<h3 class ="header"><a href="#">Emissions By Meter Group</a></h3>
+	<div>
+    	<div id = "metergroup_graph"></div>
+	</div>
+
+
+<h3 class ="header"><a href="#">Emissions By Location</a></h3>
+	<div>
+		<div id = "location_graph"></div>
+	</div>
+
+
+<h3 class ="header"><a href="#">Emissions By Region</a></h3>
+	<div>
+		<div id = "region_graph"></div>
+	</div>
+		
+<h3 class ="header"><a href="#">Emissions By Country</a></h3>
+	<div>
+		<div id = "country_graph"></div>	
+	</div>
+	
+<% end #this closes the compare_meters customization%>
+
+</div>
+</div>

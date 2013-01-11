@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+source_type_one:
+  id: 1
+  name: Electrical
+
+source_type_two:
+  id: 2
+  name: Gas

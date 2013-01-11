@@ -1,0 +1,28 @@
+
+
+<% form_for(@location) do |f| %>
+
+  <%= f.error_messages %>
+  <% if(!@location.region.nil?) %>
+
+<div class="crc-form">
+	<fieldset id ="the_fieldset">
+		<legend><b>New Location</b></legend>
+
+  
+    <p>
+        <b>Region:</b> <%= @location.region.name %>
+    </p>
+  <% end %>
+  <p>
+    <b><%= f.label :name %></b><br />
+    <%= f.text_field :name %>
+  </p>
+</fieldset>
+  <p>
+    <%= f.submit 'Create', :class => "submit_button" %>
+    <%= link_to 'Back', source_manager_path, :class => "back_button nohover" %>
+  </p>
+<% end %>
+</div>
+

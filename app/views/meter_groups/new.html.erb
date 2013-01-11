@@ -1,0 +1,19 @@
+<div class="crc-form">
+	<fieldset>
+		<legend>New Meter Group</legend>
+<% form_for(@meter_group) do |f| %>
+  <%= f.error_messages %>
+	
+  <p>
+ 	<%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+</fieldset>
+<%= f.hidden_field :parent_id %>
+  <p>
+    <%= f.submit 'Create', :class => "submit_button" %>
+  </p>
+<% end %>
+</div>
+
+<%= link_to 'Back', meter_groups_path, :class => "back_button nohover" %>

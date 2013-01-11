@@ -1,0 +1,26 @@
+<div class="show_table">
+  <fieldset id="the_fieldset">
+    <legend>User Details:</legend>
+
+    <b>Username:</b>
+    <%= h @user.username %>
+    <br/>
+
+    <b>Email:</b>
+    <%= h @user.email %>
+    <br/>
+
+    <b>Last login date:</b>
+    <%= h TimeUtils.to_uk_date_s(@user.last_login_at) unless @user.last_login_at.nil? %>
+    <br/>
+
+    <b>Last ip address:</b>
+    <%= h @user.last_login_ip unless @user.last_login_ip.nil? %>
+    <br/>
+
+  </fieldset>
+</div>
+<br/>
+
+<%= link_to 'Edit', edit_user_path(@user), :class => "edit_button nohover" %>
+<%= link_to 'Back', users_path, :class => "back_button nohover" %>

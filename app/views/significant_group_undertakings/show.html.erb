@@ -1,0 +1,16 @@
+<table class="list_table">
+	<tr>
+		<th><%= f.label :name %></th>
+		<th><%= f.label :carbon_emitted %></th>
+		<th>Edit</th>
+	</tr>
+
+  	<tr>
+		<td><%= f.text_field :name %></td>
+		<td><%= f.text_field :carbon_emitted %></td>
+		<td><%= link_to 'Edit', edit_significant_group_undertaking_path(@significant_group_undertaking), :class => "edit_button" %> </td>
+	</tr>
+</table>
+
+ |
+<%= link_to 'Back', significant_group_undertakings_path, :class => "back_button" %>

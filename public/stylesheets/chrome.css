@@ -1,0 +1,1384 @@
+/************** Main Application Layoiut *************/
+div.ui-datepicker
+{
+ font-size:14px;
+}
+
+
+#log_box
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:860px;
+	text-align:center;
+	margin-top:10px;
+	height:30px;
+	padding-top:15px;
+	margin-bottom:20px;
+	vertical-align:center;	
+	color: #3E576F;
+	border:2px solid #757575 ;
+	font-size:16px;
+	font-weight:bold;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#C9CbC8));
+	-webkit-box-shadow: 3px 3px 3px #888;	
+}
+
+.left_margin
+{
+	margin-left: 40px;
+}
+
+#paginate
+{
+	color:#6E9B2D;
+	font-weight:bold;
+	font-size:16px;
+	margin-bottom:15px;
+
+}
+
+#paginate a
+{
+	color:#6E9B2D;
+	font-weight:bold;
+	font-size:16px;
+}
+
+.current
+{
+	color:black;
+}
+
+#the_fieldset
+{
+	width:auto;
+	margin:10px 10px 5px 5px;
+	padding: 20px 5px 20px 5px;
+	-webkit-border-radius:8px;
+}
+
+body
+{
+	margin: auto;
+	background-color: white;
+}
+
+#WholePage
+{
+    background-color: white;
+	margin: auto;
+}
+
+#Container
+{
+	width: 962px;
+	margin: auto;
+}
+
+#Top
+{	
+	background: left 71px no-repeat;
+}
+
+#Header
+{
+	font-family: arial;
+	padding-top: 10px;
+	background: url('/stylesheets/images/main-bg2.png') repeat-x left top;
+	font-weight:normal;
+}
+
+#logo
+{
+	position:absolute; 
+	padding-left: 15px;
+	padding-top: 25px;
+	width:290px;
+	height:43px;
+}
+
+#main_picture
+{		
+	vertical-align:center;
+	background: url('/img/editable1.png');	
+	background-repeat:none;
+	height:137px;
+	width: 962px;
+	margin-top: 40px;	
+}
+
+
+#title_name
+{
+	padding-left: 20px;
+	padding-top: 100px;
+	color: white;
+	font-family: arial;
+	font-size: 21px;
+	font-weight: normal;
+}
+#Content
+{
+	padding-left: 0px;
+}
+
+#Content, #Left
+{
+	padding-top: 2px;
+}
+
+#Footer
+{
+	background-repeat: repeat-x;
+	background-position: left top;
+  	height: 56px;
+    width: 100%;
+    float: left;
+   	margin: 0px auto;  
+}
+
+#Bottom
+{
+    height: 32px;
+  	width: 962px;
+	background: url('/stylesheets/images/main-bg2.png') repeat-x left top;
+	text-align: center;
+	line-height: 32px;
+	clear: left;
+	margin: 0px auto;
+	font-family: arial;
+	font-size: 14px;
+	color: white;
+}
+
+#Bottom a 
+{
+	text-decoration: none;
+	color: white;
+	text-align:center;
+	font-size:15px;
+	font-family: sans-serif, Helvetica, Verdana, arial;
+}
+
+#Bottom a:hover
+{
+	text-decoration: underline;
+}
+
+
+#Left
+{
+	float: left;
+	width: 100%
+}
+
+#Left
+{
+	width: 274px;
+}
+
+
+.Part,.TopPart,#LeftMenu
+{
+	border: 2px solid #d0d1d0;
+	background: #e4ece3;
+}
+
+#LeftMenu
+{
+	font-size: 14px;
+	font-family: arial;
+	padding-bottom: 8px;
+}
+.TopPart 
+{
+	border: 0px;
+	background: url('/img/first-banner.png') no-repeat left top;
+	height: 184px;
+	padding: 8px;
+}
+
+.Part,.TopPart
+{
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-family: arial;
+	text-align: justify;
+}
+
+.TopPart p
+{
+	margin-bottom: 0px;
+	margin-top: 6px;
+}
+.Part 
+{
+	clear: left;
+	padding-left: 0px;
+}
+.Part img
+{
+	float: left;
+	margin: 8px;
+
+}
+.TopPart h2
+{
+	margin: 0px;
+	color: #edf32d;
+	font-size: 18px;
+	font-weight: normal;
+	font-family: arial;
+	text-transform: uppercase;
+}
+.TopPart .Larger
+{
+	font-size: 14px;
+}
+.LeftHeader
+{
+	margin: 0px;
+	background: url('img/left-header.png') no-repeat left top;
+	height: 38px;
+}
+.Part h2
+{
+	margin: 0px;
+	background: url('/stylesheets/images/main-bg.png') repeat left top;
+	float right background: url('img/content-header.png');
+	height: 37px;
+	display: block;
+	font-weight: normal;
+}
+.LeftHeader,
+.Part h2
+{
+	font-family: arial;
+	font-size: 16px;
+	color: white;
+	line-height: 37px;
+	padding-left: 10px;
+}
+.Part a
+{
+	color: white;
+}
+.Part ul
+{
+	clear: left;
+	padding: 0px;
+	margin: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+}
+.Part li
+{
+	margin-top: 3px;
+	list-style-type: none;
+}
+
+#validator
+{
+	clear: left;
+	float: left;
+}
+
+#validator img 
+{
+	border:0 solid #FFFFFF;
+	height:31px;
+	width:88px;
+}
+
+#RightHeader
+{
+	float: right;
+	padding-right: 10px;
+	font-size: 14px;
+	padding-top:8px;
+	padding-bottom:10px;
+}
+
+#RightHeader a
+{
+	padding-left: 16px;
+	padding-right: 4px;
+	color: white;
+	text-decoration: none;
+	background: no-repeat 0px 0px;
+}
+
+#RightHeader a:hover 
+{
+	background-position: 0px -12px; 
+}
+
+#RightHeader a#home:hover 
+{
+	background-position: 0px -12px; 
+}
+
+#RightHeader 
+{
+	background-image: url('img/
+	');
+}
+
+li,ul /* korekce pro IE6 */
+{
+	_padding-bottom: 0px;
+	_height: 12px;
+	_padding-top: 0px;
+	_margin: 0px;
+}
+
+
+/**********  CSS for the Tabbing on the home page ****/
+
+
+
+#tabs 
+{
+   float:left;
+   width:100%;
+}
+
+
+#tabs ul 
+{
+   clear:left;
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+   left:50%;
+   text-align:center;
+   margin-bottom:-1px;
+}
+
+
+#tabs ul li 
+{
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+   right:50%;
+   padding-left:3px;
+   padding-right:3px; 
+}
+
+#tabs ul li a 
+{
+   display:block;
+   margin:0 0 0 0px;
+   padding:3px 10px;
+   background:#6E9B2D;
+   color:white;
+   font-size:14px;
+   text-decoration:none;
+   border-top-right-radius:8px; 
+   border-top-left-radius:8px;
+   overflow:hidden;
+}
+
+#tabs ul li a:hover
+{
+	color:#D9D9D9;
+}
+
+#tabs #selected_tab a
+{
+	position: relative;  
+	color: black;
+	background-color:#E4ECE3;
+	border-top-right-radius:8px; 
+	border-top-left-radius:8px;
+	border-top:1px solid black;
+	border-left:1px solid black;
+	border-right:1px solid black;	
+}
+
+
+/*** These are the style properties for the Status Tab ****/
+
+#content_tabs 
+{
+	border:1px solid;
+	clear: both;
+	width:920px;
+	height:auto;
+	background-color:#E4ECE3;
+	-webkit-border-radius:8px;
+}
+
+#choose_start_end
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:200px;
+	text-align:center;
+	color:#424242;
+	font-size:16px;
+	padding-top:5px;
+	font-weight:bold;
+}
+
+#start_end_filters
+{
+	border: 2px solid #757575; 	
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	width:600px;
+	padding-top:0px;
+	padding-bottom:30px;
+	height:40px;
+	color:#424242;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#C9CbC8));
+	-webkit-box-shadow: 5px 5px 5px #888;
+}
+
+#ui-datepicker
+{
+	height:20px;
+	width:20px;
+}
+	
+.aesthetics
+{
+	 border-radius:8px;
+}
+
+#allprogress
+{
+	width:900px;
+	float:left;
+	margin-left:20px;
+	margin-right:0px;
+	padding-left:2px;
+}
+
+#progress
+{
+	float:left;
+	width: 270px;
+	height: 95px;
+	margin-left:8px;
+	margin-right:8px;
+	margin-top:30px;
+	margin-bottom:30px;
+	border: 3px solid #757575; 
+	-webkit-box-shadow: 5px 5px 5px #888;	
+}
+
+#progress1
+{
+	height: 95px;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#C9CbC8));
+}
+
+#title1
+{
+	padding-top:5px;
+	padding-left:55px;
+	width: 150px;
+	height: 25px;
+	float: left;
+	font-family:sans-serif;
+	font-size:18px;
+	text-align:center;
+	color: #3E576F;
+   	margin-bottom:5px;	
+	font-weight:bold;	
+}
+
+#progress1_graph
+{
+	height: 25px;
+	width:100px;
+	float:left;	
+	padding-left:35px;
+	margin-top:3px;
+}
+
+#progress2_graph
+{
+	height: 25px;
+	width:100px;
+	float:left;	
+	padding-left:35px;
+	margin-top:3px;
+}
+
+#progress3_complete
+{
+	height: 40px;
+	width:170px;
+	padding-top:30px;	
+	font-weight:bold;
+	font-size:30px;
+	color:#3E576F;
+	text-align:center;
+	padding-left:45px;
+}
+
+#tasks_complete_annual
+{
+	text-align:center;
+	height:30px;
+	width:260px;
+	padding-top:70px;
+	color:#3E576F;
+}
+
+#tasks_complete_footprint
+{
+	text-align:center;
+	height:30px;
+	width:260px;
+	padding-top:70px;
+	color:#3E576F;
+}
+
+#tasks_complete_evidence
+{
+	text-align:center;
+	height:30px;
+	width:260px;
+	padding-top:-10px;
+	color:#3E576F;
+}
+
+#electricity_summary_top 
+{
+	position:absolute;
+	border: 1px solid;
+	left: 100px;
+	top: 200px;
+	width: 300px;
+	height: 20px;
+}
+
+
+#top_summary
+{
+	float:left;
+	width: 860px;
+	height: 300px;
+	margin-top: 30px; 
+	margin-bottom:30px;
+    margin-left:30px;
+	margin-right:30px;
+	border-bottom: 1px solid #757575;
+	border-right: 1px solid #757575;	
+	-webkit-box-shadow: 3px 3px 3px #888;
+}
+
+#rssfeed
+{
+	border: 2px solid #757575;
+	width: 860px;
+	height: 195px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:0px;
+	margin-bottom:30px;
+	overflow: hidden;
+	background-color: #d0d0d0;
+	-webkit-box-shadow: 3px 3px 3px #888;
+}
+
+	
+	
+/************ Gas and Electricty Summary ***********/
+
+
+
+#summary_top 
+{
+	margin: 20px auto 20px auto;
+	height:250px;
+	width:830px;
+	border-bottom:2px solid #757575;
+	border-right:2px solid #757575;
+	-webkit-box-shadow: 3px 3px 3px #888;
+}
+
+
+#radio_buttons
+{
+	width:300px;
+	height:40px;	
+	margin-left:auto;
+	margin-right:auto;
+	border-radius:8px;
+	border:2px solid #757575;
+	background:url('/img/50-50scaled.png') repeat-x;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+#button_text
+{
+	padding-top:10px;
+	text-align:center;
+	color:white;	
+}
+
+.button_organiser
+{
+	border:1px solid black;
+	width:400px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+
+/******************* Styles for forms ******************/
+
+
+.crc-form legend, .show_table legend 
+{
+	color: #dfd;
+	background: #141;
+	font-family:sans-serif;
+	padding: 0.2em 1em;
+	font-weight:bold;
+}
+
+#notice 
+{
+	color: #424242;
+	text-align:center;
+	padding-top: 15px;
+	font-size:16px;	
+	font-weight:bold;
+}
+
+
+.new_button 
+{
+	margin-bottom: 15px;
+}
+
+.nohover a:hover 
+{ 
+	color:red;
+	background-color: transparent; 
+	text-decoration: none;
+}
+
+.content_pane
+{
+	margin: 20px;
+}
+
+#accordion_container
+{
+	border:2px solid #757575;
+	width:860px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:5px;
+	margin-bottom:20px;
+	-webkit-border-radius:8px;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#F5F0DB), to(#E4EcE3));
+	-webkit-box-shadow: 3px 3px 3px #888;
+}
+
+#accordion_box
+{
+	width:820px;
+	margin-left:auto;
+	margin-right:auto;
+	height:auto;
+	border:2px solid #757575;	
+	-webkit-border-radius:8px;
+	padding: 5px;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#F5F0DB), to(#E4EcE3));
+	-webkit-box-shadow: 3px 3px 3px #888;
+}
+
+.filter_container
+{
+	height:auto;
+	padding-bottom:10px;
+	margin-bottom:10px;
+}
+
+#submit_reset
+{
+	width:300px;
+	margin-top:0px;
+	margin-bottom:20px;
+}
+
+.filter_details
+{
+	font-size:15px;
+	padding-bottom:5px;
+	color:#424242;
+	padding-top:10px;
+	padding-bottom:10px;
+	font-weight:bold;
+}
+
+.data_count
+{
+	font-size:14px;
+}
+
+
+
+/********************* CSS For Tables ******************/
+
+#electricity_upload_buttons
+{
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;	
+}
+
+.list_table 
+{
+	text-align: left;
+	margin-top:8px;
+	width:100%;
+	border:3px solid #6E9B2D;  
+	border-radius:15px;
+	text-align:center;
+	margin-bottom:20px;
+  	-webkit-box-shadow: 3px 3px 3px #888;	
+}
+
+.list_table .odd 
+{
+	background: url("/img/50-bigger.png") repeat-x;
+}
+
+.list_table .even 
+{
+	background: url("/img/50-bigger.png") repeat-x;
+}
+
+.list_table td
+{
+ 	border-bottom:1px solid white;
+}
+
+.list_table td:hover
+{
+	background-color:silver;
+}
+
+.list_table th
+{
+	font-size:14px;
+	height:20px;
+	border-bottom:3px solid #6E9B2D;
+	padding-bottom:3px;
+	border-collapse:collapse;
+	background-color:#CCCCCC;
+	text-shadow: #f0f0f0 1px 1px 0px;
+	
+}
+
+.list_table tr:last-of-type td:first-of-type
+{
+	border-bottom-left-radius:8px;	
+}
+
+.list_table tr:last-of-type td:last-of-type
+{
+	border-bottom-right-radius:8px;	
+}
+
+.list_table th:first-of-type
+{
+	border-top-left-radius:8px; 
+}
+
+.list_table th:last-of-type
+{
+	border-top-right-radius:8px; 
+}
+
+.list_table .red_row
+{
+	color:red;
+	font-weight: bold;	
+}
+
+
+/*******************************************************/
+
+#tree_view
+{
+	border: 1px solid black;
+	width: 300px;
+	height: 710px;
+	float:left;
+    -webkit-border-radius:8px;
+
+
+}
+
+.tree_view_form 
+{
+	margin-bottom: 10px;
+	-webkit-border-radius:8px;
+
+}
+
+#tree_view 
+{
+	margin: 15px;
+}
+
+#each_green_box
+{
+	width: auto;    
+    text-align: center;      
+    white-space: nowrap;  
+    overflow: hidden;
+}
+
+#each_green_box_region
+{
+	width: auto;    
+    text-align: center;      
+    white-space: nowrap;  
+    overflow: hidden;
+    height:200px;
+}
+
+.filter_box 
+{
+	width: 150px;
+	height:120px;
+	display: inline-block;  
+	vertical-align: middle;
+}
+
+.filter_box > select 
+{
+	width: 120px;
+	margin:0 auto;
+}
+
+
+
+/************ Style properties for the Detail Pages *********/
+
+#meter_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#metergroup_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#location_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#region_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#country_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+
+#year_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#month_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#date_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#day_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#shift_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+
+/************ Style properties for the Profile pages *********/
+
+#daily_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+#weekly_graph
+{
+	margin:auto;
+	height: 350px;
+	width: 800px;
+	margin-bottom:30px;
+}
+
+
+
+/***************** Used on report pages *****************/
+
+#status_text_green
+{
+	color : green;
+	font-style: bold;
+	font-size: 18px;
+}
+
+#status_text_orange
+{
+	color : #FF8700;
+	font-style: bold;
+	font-size: 18px;
+}
+
+#status_text_red
+{
+	color : red;
+	font-style: bold;
+	font-size: 18px;		
+}
+
+#popup 
+{
+	font-size: 18px;
+	color: black;
+}
+
+#popup span 
+{
+	display: none;
+	text-decoration: none;
+}
+
+#popup:hover span 
+{
+	background-color: #F0F0F0;
+	font-size: 16px;
+	line-height: 25px;
+	display: inline;
+	border: 1px solid black;
+	position:absolute;
+	padding: 15px;
+	margin-left: 30px;
+	margin-top:-40px;
+	overflow: hidden;
+	width:200px;
+	height:auto;
+	border-radius:8px;
+	-webkit-box-shadow: 3px 3px 3px #888;
+}
+
+
+/********** Tables in each reports sections *********/
+
+.radio_buttons_status_title
+{
+	color:green;
+	font-weight:bold;
+	font-size:16px;
+}
+
+.radio_buttons_status
+{	
+	border:1px solid;
+	width:230px;
+	margin-top:10px;
+	height:100px;
+	padding-top:10px;
+	margin-bottom:20px;	
+	border:1px solid #757575;
+	font-size:14px;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#C9CbC8));
+	-webkit-box-shadow: 5px 5px 5px #888;
+	-webkit-border-radius:8px;
+	padding-left:20px;
+}
+
+
+#report_metrics
+{
+	width: 100%;
+}
+
+#inner_table
+{
+	vertical-align:top;
+}
+
+#footprint_report_table
+{
+	text-align:center;
+	width:630px;	
+}
+ 
+#footprint_report_table td
+{
+	vertical-align: center;
+}
+
+label
+{
+	width: 12em;
+	float: left;
+	text-align: left;
+	margin-right: 0.5em;
+	display: block;
+}
+
+#form_password
+{
+	width:auto;
+}
+
+#login
+{
+	width:auto;
+	border-radius:8px;
+}
+
+
+/********New Buttons (footprint report page)****************/
+
+.footprint_report_button 
+{
+	width: 300px;
+	margin-top:5px;
+    margin-bottom:5px;
+}
+
+/************* filters and params*******************/
+
+#result_params
+{
+	border:1px solid black;
+	padding:10px;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#C9CbC8));
+	-webkit-box-shadow: 5px 5px 5px #888;
+}
+
+.filter_label
+{
+	font-weight: bolder;
+}
+
+.filter_params
+{
+	font-style:italic;
+}
+
+
+#log-out
+{
+	width:300px;
+	height:20px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	border:3px solid #757575;
+	padding:10px;
+	color:black;
+	font-size:20px;
+	font-weight:bold;
+	-webkit-border-radius:8px;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#C9CbC8));
+	-webkit-box-shadow: 5px 5px 5px #888;
+}
+
+#logout_time
+{
+	width:300px;
+	height:50px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:15px;
+}
+
+
+#errorExplanation 
+{
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 0px 0px 10px;
+  font-size: 16px;
+  background:none;
+  color: black;
+  line-height:20px;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:10px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+  margin-left:15px;
+}
+
+
+
+/******************************************* HELP SECTION *****************************************/
+
+
+.helpinfo
+{
+	margin-bottom:10px;
+}
+
+#userdocstitle
+{
+	color:grey;
+	font-weight:bold;	
+	width:250px;
+	height:40px;
+	color:#757575;
+	font-size:25px;
+	font-weight:bold;
+	float:left;
+}
+
+
+.helplinks
+{
+	border-right:1px solid black;
+	width:300px;
+	height:620px;
+	background-color:white;
+	padding:15px;
+	overflow:auto;
+	float:left;
+}
+
+#helppage
+{
+	border:1px solid black;
+	width:auto;
+	height:650px;
+}
+
+.treetitle
+{
+	color:black;
+	font-size:20px;
+}
+
+
+
+
+/******************** TREE MENU AESTHETICS ON DOCS PAGE ***********************/
+
+.treeview ul
+{ 
+   margin: 0;
+   padding: 0;
+}
+
+.treeview li
+{ /*Style for LI elements in general (excludes an LI that contains sub lists)*/
+   background: white url('/img/list.gif') no-repeat left center;
+   list-style-type: none;
+   padding-left: 22px;
+   margin-bottom: 3px;
+}
+
+.treeview li.submenu
+{ /* Style for LI that contains sub lists (other ULs). */
+   background: white url('/img/closed.gif') no-repeat left 1px;
+   cursor: hand !important;
+   cursor: pointer !important;
+}
+
+.treeview li.submenu a:hover
+{ /* Style for LI that contains sub lists (other ULs). */
+   cursor: hand !important;
+   cursor: pointer !important;
+   color:#4D4D4D;
+}
+
+
+.treeview li.submenu ul
+{ /*Style for ULs that are children of LIs (submenu) */
+   display: none; /*Hide them by default. Don't delete. */
+   font-size:13px;
+   color:#757575;
+   font-weight:bold;
+}
+
+.treeview .submenu ul li
+{ /*Style for LIs of ULs that are children of LIs (submenu) */
+   cursor: default;
+}
+
+
+/************************IFRAME FOR HELPDOCS*********************************/
+
+#helpdocpage
+{
+	float:left;
+	width:581px;
+	height:646px;
+}
+
+a.link_docs_lev3
+{
+	color:#757575;
+	text-decoration:none;
+}
+
+a.link_docs_lev1
+{
+	color:black;
+	text-decoration:none;
+}
+a.link_docs_lev2
+{
+	color:black;
+	text-decoration:none;
+}
+
+/************************ SUBMIT A TICKET ********************************/
+
+
+
+#submit_title
+{
+	color:black;
+	font-size:25px;
+	width:300px;
+	height:40px;
+	text-align:center;
+	margin-top:10px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#ticket_box
+{
+	margin-left:auto;
+	margin-right:auto;
+}
+.ticket
+{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+textarea#support_ticket_message
+{
+	width:250px;
+	height:150px;
+	margin:0 25px 0 20px;
+}
+input#support_ticket_subject
+{
+	width:250px;
+	margin:0 20px 0 20px;
+}
+
+
+#inner_ticket
+{
+	width:400px;
+	height:240px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:20px;
+	border:1px solid #A8A8A8;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFFFF), to(#C9CbC8));	
+	-webkit-border-radius:8px;	
+	-webkit-box-shadow: 1px 1px 1px #888;
+}
+
+a.form_link
+{
+	color:black;
+	font-size:15px;
+}
+
+a.form_link:hover
+{
+	color:#5C5C5C;
+	font-size:15px;
+	text-decoration:none;	
+}
+
+
+
+

@@ -1,0 +1,19 @@
+development:
+  bucket_name: crc-demo-development
+  access_key_id: AKIAIMJFQYXURBXBYYLQ
+  secret_access_key: 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
+
+test:
+  bucket_name: crc-demo-test
+  access_key_id: AKIAIMJFQYXURBXBYYLQ
+  secret_access_key: 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
+
+production:
+  bucket_name: crc-demo
+  access_key_id: AKIAIMJFQYXURBXBYYLQ
+  secret_access_key: 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
+
+cucumber:
+  bucket_name: crc-demo-test
+  access_key_id: AKIAIMJFQYXURBXBYYLQ
+  secret_access_key: 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

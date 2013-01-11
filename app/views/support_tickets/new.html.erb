@@ -1,0 +1,41 @@
+
+
+<div class="crc-form">
+	<fieldset id = "the_fieldset">
+		<legend><b>Support Tickets</b></legend>
+
+<div id="submit_ticket">
+
+  <div id="submit_title">
+    Submit a Support Ticket
+  </div>
+
+  <% form_for(@support_ticket) do |f| %>
+      <%= f.error_messages %>
+
+      <div id="ticket_box">
+        <div id="inner_ticket">
+          <table class="ticket">
+            <tr>
+              <td><b>Query:</b></td>
+              <td><%= f.text_field :subject, :value => "Subject of your query:" %></td>
+            </tr>
+            <tr>
+              <td valign="top"><b>Message:</b></td>
+              <td><%= f.text_area :message, :value => "Please describe your issue:" %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align="right" style="padding-right:20px;">
+                <%= f.submit "Open Ticket", :class => "submit_button" %>
+              </td>
+            </tr>
+          </table>
+    <% end %>
+  </div>
+</div>
+</div>
+
+</fieldset>
+
+

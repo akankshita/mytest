@@ -1,0 +1,2 @@
+module StatusGraphHelper
+end

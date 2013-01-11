@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  filename: MyString
+  content_type: MyString
+  size: 1
+  interval_seconds: 1
+
+two:
+  user: 
+  filename: MyString
+  content_type: MyString
+  size: 1
+  interval_seconds: 1

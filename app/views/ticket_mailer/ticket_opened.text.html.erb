@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+	<div id="email_title" style="color:#383838;font-size:14px">
+    	<p>Dear <%=h @support_ticket.user.username %>,</p>
+    </div>
+
+	<div id="email_body" style="color:#383838;font-size:12px">
+		<p>
+      		A ticket has been opened by <%=h @support_ticket.user.username %>, we are currently working on your issue and will be in contact with you shortly.
+    	</p>
+    	<p>
+      		<b>Ticket Subject:</b> <%=h @support_ticket.subject %>
+    	</p>
+    	<p>
+      		<b>Ticket Message:</b> <%=h @support_ticket.message %>
+    	</p>
+
+    	<p>Thank you for your patience in this regard:</p>
+    	<p>Kind Regards,</p>
+		<br />
+    	<p>The e-MissionManagement Support Team</p>
+		<img src=" http://www.e-missionmanagement.com/images/hello.png" style="width:350px;height:50px"/>
+	</div>
+		<table style="size:10px;color:#383838">
+			<tr>
+				<td colspan="2">
+					<hr style="border-style: 1px dashed black;"/>
+				</td>
+			</tr>	
+			<tr>
+				<td><b>Technical Support:</b></td> 
+				<td align="right"> +353 (0) 61 436 761</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<hr style="border-style: 1px dashed black;"/>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Sales:</b></td>
+				<td align="right">  +353 (0) 61 332 074</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<hr style="border-style: 1px dashed black;"/>
+				</td>
+			</tr>
+		</table>		
+	</body>
+</html>

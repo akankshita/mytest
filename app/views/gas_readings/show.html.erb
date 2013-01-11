@@ -1,0 +1,40 @@
+<div class="crc-form">
+
+	<fieldset id = "the_fieldset">
+		<legend><b>Gas Readings</b></legend>
+	<table class="list_table">
+	<tr>
+	   <th>Gas Upload File</th>
+	   <th>Meter</th>
+	   <th>Entered By</th>
+	   <th>Gas Value (kWh)</th>
+	   <th>Start Time</th>
+	   <th>End Time</th>
+    </tr>
+		
+	<tr class="<%= cycle('odd','even') %>">
+		<td><% if(@gas_reading.gas_upload.nil?) %>
+				Manual Entry
+			  <% else %>	
+			  	<%=h @gas_reading.gas_upload.filename %>
+			  <% end %>
+		</td>
+		<td><% if (@gas_reading.meter.nil?) %>
+				No Meter provided
+			<% else %>
+				<%=h @gas_reading.meter.get_name %>
+			<% end %>
+		</td>
+		<td><%=h @gas_reading.user.username %></td>
+		<td><%=h format_decimal(@gas_reading.gas_value) %></td>
+		<td><%=h TimeUtils.to_uk_s @gas_reading.start_time %></td>
+		<td><%=h TimeUtils.to_uk_s @gas_reading.end_time %></td>
+		</tr>
+		
+</table>
+</fieldset>
+</div>
+<br/>
+<%= link_to 'Edit', edit_gas_reading_path(@gas_reading), :class => "edit_button nohover" %>
+<%= link_to 'Back', gas_readings_path, :class => "back_button nohover" %>
+

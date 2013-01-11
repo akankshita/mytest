@@ -1,0 +1,24 @@
+
+			<div class="crc-form">
+				<fieldset id = "the_fieldset">
+					<legend><b>Confirm Energy Supply</b></legend>
+
+					<% form_for(@confirm_energy_supply_task) do |f| %>
+					  <%= f.error_messages %>
+
+					  <p>Confirm that you have uploaded all your core electricity and gas usage data into the system:
+					  Yes: <%= f.radio_button :is_confirmed, 'true' %>
+					  No: <%= f.radio_button :is_confirmed, 'false' %>
+					  </p>
+
+                      <%= render :partial => "shared/status", :locals => {:task_status => @confirm_energy_supply_task.status} %>
+
+					  <p>
+					    <%= f.submit 'Confirm', :class => "submit_button" %>
+					  </p>
+					<% end %>
+				</fieldset>
+			</div>
+
+
+<%= link_to 'Back', annual_reports_path, :class => "back_button" %>

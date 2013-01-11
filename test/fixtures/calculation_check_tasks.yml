@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  status: 1
+  in_order: false
+  footprint_report: 
+
+two:
+  status: 1
+  in_order: false
+  footprint_report: 

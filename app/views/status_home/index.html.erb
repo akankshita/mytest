@@ -1,0 +1,284 @@
+<%= render :partial => "shared/tabs" %>
+<div id="content_tabs">
+
+  <div class="aesthetics"></div>
+
+  <div id="top_summary" class="aesthetics"></div>
+  <% if crc_enabled %>
+      <div id="allprogress">
+        <div id="progress" class="aesthetics">
+          <div id="progress1" class="aesthetics">
+            <div id="title1">
+              Footprint Report
+            </div>
+            <div id="progress1_graph"></div>
+            <div id="tasks_complete_footprint">
+              <%= h @footprint_string %>
+            </div>
+          </div>
+        </div>
+
+        <div id="progress" class="aesthetics">
+          <div id="progress1" class="aesthetics">
+            <div id="title1">
+              Annual Report
+            </div>
+            <div id="progress2_graph"></div>
+            <div id="tasks_complete_annual">
+              <%= h @annual_string %>
+            </div>
+          </div>
+        </div>
+
+        <div id="progress" class="aesthetics">
+          <div id="progress1" class="aesthetics">
+            <div id="title1">
+              Evidence Pack
+            </div>
+            <div id="progress3_complete"><%= @documents_count %></div>
+            <div id="tasks_complete_evidence">documents uploaded</div>
+
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <div id="dialog" title="Related Documents">
+    <p><a href="/document_uploads" class="uploaded_documents_query_link">View related documents</a></p>
+    <p><a href="/document_uploads/new">Upload new document</a></p>
+  </div>
+
+  <div id="rssfeed" class="aesthetics">
+    <div id="feed-control">
+      <span style="color:#676767;font-size:11px;margin:10px;padding:4px;">Loading...</span>
+    </div>
+
+
+    <script src="http://www.google.com/jsapi?key=ABQIAAAAEltCVQq57j-hh4djvXUL-RQqvm3USREUwtBTtfuMsqiRGoV2RxR811pIonoSQmXoxc1zn5LAnIQmRw"
+            type="text/javascript"></script>
+
+    <script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js"
+            type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function LoadDynamicFeedControl() {
+            var feeds = [
+                //{title: 'Energy Management News',
+                //    url: 'http://enviroireland.com/?feed=rss2&cat=3'
+                //}
+
+				{title: 'Energy Management News',
+                    url: 'http://www.specifinder.com/feeds/building-industry-news.asp'
+                },	
+				//{title: 'Energy Management News',
+                  //  url: 'http://www.edie.net/news/rss2.xml'
+                //},
+                {title: 'Ireland EPA',
+                    url: 'http://www.igi.ie/feed.rss.htm'
+                }
+            ];
+            var options = {
+                stacked : false,
+                horizontal : false,
+                title : ""
+            }
+
+            new GFdynamicFeedControl(feeds, 'feed-control', options);
+        }
+        // Load the feeds API and set the onload callback.
+        google.load('feeds', '1');
+        google.setOnLoadCallback(LoadDynamicFeedControl);
+    </script>
+
+  </div>
+  <div id="log_box" class="aesthetics"><%= @lastlogon if @lastlogon != nil %></div>
+</div>
+
+<script>
+
+    /*******Code for Calling the Progress Graph Function******/
+            <% if gas_enabled %>
+    var renderingTo1 = 'progress1_graph';
+    var renderingTo2 = 'progress2_graph';
+
+    var borderColor = '757575';
+    var incompleteColor = 'AA4643';
+    var ongoingColor = 'FF8700';
+    var completedColor = '6E9B2D';
+
+    progress_chart = generate_progress_graph(renderingTo1, borderColor, incompleteColor, ongoingColor, completedColor, <%=h @footprint_report_progress %>)
+
+    progress_chart = generate_progress_graph(renderingTo2, borderColor, incompleteColor, ongoingColor, completedColor, <%=h @annual_report_progress %>)
+    <% end %>
+
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $("#status_home_tab").attr("id", "selected_tab")
+        $.fx.speeds._default = 1000;
+        var masterChart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'top_summary',
+                zoomType: 'x',
+                borderColor:'#757575',
+				defaultSeriesType: 'column',
+                borderWidth: 2,
+                marginTop: 60,
+                marginBottom: 40,
+                marginRight: 80,
+                marginLeft: 70,
+                backgroundColor:{ linearGradient: [0, 250, 0, 0], stops: [
+                    [0, 'rgb(230, 232, 220)'],
+                    [.5,'rgb(250, 250, 250)'],
+                    [1, 'rgb(230, 232, 220)']
+                ]    }
+            },
+            title: {
+                text: 'Cost of Electricity',
+                y:20,
+                style :{
+                    fontSize:'20px',
+                    fontFamily:'Trebuchet MS',
+                    fontWeight: 'bold'
+                },
+            },
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                        '' :
+                        '',
+                y:40
+            },
+
+            xAxis: {
+				categories: <%= @electricity_categories %>,
+				endOnTick: false,
+				maxZoom: 'default', // fourteen days
+                title: {
+                    text: null
+                },
+               
+            },
+
+
+            yAxis: [
+                {//primary yAxis
+
+                    labels: {
+                        style: {
+                            color: '#4572A7'
+                        }
+                    },
+
+                    title: {
+                        text: 'Money Spent (€)',
+                        margin: 15,
+                        style: {
+                            color: '#4572A7',
+                            fontSize:'16px',
+                            fontFamily:'Trebuchet MS'
+                        }
+                    }
+                }
+                <% if gas_enabled %>
+                ,
+                {//secondary yAxis
+
+                    labels: {
+                        style: {
+                            color: '#AA4643'
+                        }
+                    },
+                    title: {
+                        text: 'Gas Emissions (tCO2e)',
+                        margin: 15,
+                        style: {
+                            color: '#C10000',
+                            fontSize:'16px',
+                            fontFamily:'Trebuchet MS'
+                        }
+                    },
+                    style: {
+                        color: '#C10000'
+
+                    },
+                    opposite: true,
+                }
+                <% end %>
+            ],
+
+
+
+            tooltip: {
+                formatter: function() {
+                    return '€' + Highcharts.numberFormat(this.y, 0) ;
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    lineWidth: 4,
+                    marker: {
+                        radius: 1,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                radius: 5
+                            }
+                        }
+                    },
+  
+
+
+
+
+
+                }
+            },
+            credits:
+            {
+                enabled:false
+            },
+
+            series: [
+                {
+						
+						
+							color: {
+						       linearGradient: ['0px', '60px', 0, '150px'],			      	
+						       stops: [
+						            [0, 'rgb(151, 202, 249)'],
+						            [1, 'rgb(61, 102, 148)']
+						          ]
+						        },
+						
+						
+                    data: <%= @electricity_data %>,
+                    name: "Electrical%20Readings"
+                }
+                <% if gas_enabled %>
+                ,
+                {
+                    yAxis: 1,
+                    data: <%= @gas_data %>,
+                    color: '#C10000',
+                    name: "Gas%20Readings"
+                }
+                <% end %>
+            ]
+        });
+    });
+
+</script>
+
+    <!--  events: {
+            click: function(event) {
+                $("#dialog").dialog("open");
+                $(".uploaded_documents_query_link").attr('href', generate_document_uploads_query_url(event.point.x, this.name));
+            }
+        }-->
+
+

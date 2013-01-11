@@ -1,0 +1,9 @@
+Meter.find_by_sql("CREATE VIEW electricity_edges AS SELECT electricity_readings.id, node_entries.lft, node_entries.rgt FROM electricity_readings, meters, node_entries WHERE (((electricity_readings.meter_id = meters.id) AND (meters.id = node_entries.node_id)) AND ((node_entries.node_type)::text = 'Meter'::text));")
+
+Meter.find_by_sql("CREATE VIEW locations_edges AS SELECT node_entries.lft, node_entries.rgt, countries.id AS country, regions.id AS region, node_entries.name FROM locations, countries, regions, node_entries WHERE ((((locations.region_id = regions.id) AND (regions.country_id = countries.id)) AND (locations.id = node_entries.node_id)) AND ((node_entries.node_type)::text = 'Location'::text));")
+
+Meter.find_by_sql("CREATE VIEW electricity_detail AS SELECT electricity_edges.id, locations_edges.country, locations_edges.region, locations_edges.name FROM locations_edges, electricity_edges WHERE ((locations_edges.lft <= electricity_edges.lft) AND (locations_edges.rgt >= electricity_edges.rgt));")
+
+Meter.find_by_sql("CREATE VIEW gas_edges AS SELECT gas_readings.id, node_entries.lft, node_entries.rgt FROM gas_readings, meters, node_entries WHERE (((gas_readings.meter_id = meters.id) AND (meters.id = node_entries.node_id)) AND ((node_entries.node_type)::text = 'Meter'::text));")
+
+Meter.find_by_sql("CREATE VIEW gas_detail AS SELECT gas_edges.id, locations_edges.country, locations_edges.region, locations_edges.name FROM locations_edges, gas_edges WHERE ((locations_edges.lft <= gas_edges.lft) AND (locations_edges.rgt >= gas_edges.rgt));")

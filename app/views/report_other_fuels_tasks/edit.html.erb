@@ -1,0 +1,172 @@
+
+		<% form_for(@report_other_fuels_task) do |f| %>
+		  <%= f.error_messages %>
+		  <div class="crc-form">
+		  <fieldset id = "the_fieldset">
+			<legend><b>Report Other Non-core Fuels</b></legend>
+
+
+			<table id = "other_fuels_first">
+
+			<tr>
+			<td>
+			<p>
+				 <%= f.label :aviation_spirit %>
+				 <br />
+				 <%= f.text_field :aviation_spirit %>
+			</p>
+			</td>
+			<td>
+			<p>
+				 <%= f.label :petrol_gas %>
+				 <br />
+				 <%= f.text_field :petrol_gas %>
+			</p>
+			</td>
+
+			<td>
+			<p>
+				 <%= f.label :petrol %>
+				 <br />
+				 <%= f.text_field :petrol %>
+			</p>
+			</td>
+		
+			<td>
+			<p>
+				 <%= f.label :blast_furnace_gas %>
+				 <br />
+				 <%= f.text_field :blast_furnace_gas %>
+			</p>
+			</td>
+				</tr>
+
+				<tr>
+
+			<td>
+			<p>
+				 <%= f.label :burning_fuels %>
+				 <br />
+				 <%= f.text_field :burning_fuels %>
+			</p>
+			</td>
+
+			<td>
+			<p>
+				 <%= f.label :coke_oven_gas %>
+				 <br />
+				 <%= f.text_field :coke_oven_gas %>
+			</p>
+			</td>
+			
+			<td>
+			<p>
+				 <%= f.label :colliery_methane %>
+				 <br />
+				 <%= f.text_field :colliery_methane %>
+			</p>
+			</td>
+
+			<td>
+			<p>
+				 <%= f.label :diesel %>
+				 <br />
+				 <%= f.text_field :diesel %>
+			</p>
+			</td>
+			</tr>
+
+			<tr>
+
+			<td>
+			<p>
+				 <%= f.label :fuel_oil %>
+				 <br />
+				 <%= f.text_field :fuel_oil %>
+			</p>
+			</td>
+		
+			<td>
+			<p>
+				 <%= f.label :gas_oil %>
+				 <br />
+				 <%= f.text_field :gas_oil %>
+			</p>
+			</td>
+
+			<td>
+			<p>
+				 <%= f.label :industrial_coal %>
+				 <br />
+				 <%= f.text_field :industrial_coal %>
+			</p>
+			</td>
+				
+
+			<td>
+			<p>
+				 <%= f.label :LPG %>
+				 <br />
+				 <%= f.text_field :LPG %>
+			</p>
+			</td>
+			</tr>
+
+			<tr>
+		
+			<td>
+			<p>
+				 <%= f.label :lubricants %>
+				 <br />
+				 <%= f.text_field :lubricants %>
+			</p>
+			</td>
+
+			<td>
+			<p>
+				 <%= f.label :waste %>
+				 <br />
+				 <%= f.text_field :waste %>
+			</p>
+			</td>
+
+			<td>
+			<p>
+				 <%= f.label :naphtha %>
+				 <br />
+				 <%= f.text_field :naphtha %>
+			</p>
+			</td>
+		
+			<td>
+			<p>
+				 <%= f.label :natural_gas %>
+				 <br />
+				 <%= f.text_field :natural_gas %>
+			</p>
+			</td>
+			
+
+			</tr>
+
+			<tr>
+				<td colspan="3">
+			  	
+
+				  
+				</td>
+			</tr>
+
+		</table>
+
+        <%= render :partial => "shared/status", :locals => {:task_status => @report_other_fuels_task.status} %>
+        <%= f.submit 'Save', :class => "submit_button" %>
+	</fieldset>
+  <% end %>
+
+</div>
+</td>
+
+
+	<br />		
+<%= link_to 'Back', annual_reports_path, :class => "back_button"%>

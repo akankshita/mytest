@@ -1,0 +1,20 @@
+<fieldset>
+	<legend>Enter Residual Emissions</legend>
+<% form_for(@residual_emission) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+	<%= collection_select(:residual_emission, :fuel_list, @all_fuels, :id, :fuel_name ) %>
+	
+  </p>
+  <p>
+    <%= f.label :tonnes_c02 %><br />
+    <%= f.text_field :tonnes_c02 %>
+  </p>
+  <p>
+    <%= f.submit 'Update', :class => 'submit_button' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @residual_emission, :class => "show_button" %> 
+<%= link_to 'Back', residual_emissions_path, :class => "back_button" %>

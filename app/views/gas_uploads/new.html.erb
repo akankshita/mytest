@@ -1,0 +1,31 @@
+<div class="crc-form">
+<% form_for(@gas_upload, :url => { :action => "create" },
+								 :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+<fieldset id = "the_fieldset">
+	<legend><strong>Upload Gas Data File</strong></legend>
+  
+	
+	<table class="list_table">
+	  <tr>
+	    <th>Upload Gas File</th>
+	   	<th>Select Meter</th>
+	   	<th>Units</th>
+	   	<th>Interval (Minutes Between Readings)</th>	
+	  </tr>
+	
+	<tr class="<%= cycle('odd','even') %>">
+		<td><%= f.file_field :uploaded_data, :class=>"submit" %></td>
+		<td><%= collection_select(:gas_upload, :meter, @all_meters, :id, :get_name) %></td>
+		<td><%= select_tag('kwh_equivalents', options_from_collection_for_select(@all_units, 'id', 'name')) %> </td>
+		<td><%= f.text_field :interval %></td>
+	</tr>
+	
+	</table>
+	 <%= f.submit 'Create', :class => "submit_button" %>
+	</fieldset>
+
+<% end %>
+</div>
+
+<%= link_to 'Back', gas_uploads_path, :class => "back_button" %>

@@ -1,0 +1,23 @@
+<div class="crc-form">
+<fieldset id = "the_fieldset">
+	<legend><strong>Gas upload file</strong></legend>
+	
+	<table class="list_table">
+		<tr>
+			<th>Uploaded By</th>
+			<th>Filename</th>
+			<th>Size</th>
+			<th>Interval(Minutes Between Readings)</th>
+		</tr>	
+		
+	<tr class="<%= cycle('odd','even') %>">
+		<td> <%=h @gas_upload.user.username %></td>
+		<td> <%=h @gas_upload.filename %></td>
+		<td> <%=h @gas_upload.size %></td>
+		<td> <%=h @gas_upload.interval %></td>
+	</tr>
+</table>
+</fieldset>
+</div>
+<br/>
+<%= link_to 'Back', gas_uploads_path, :class => "back_button" %>

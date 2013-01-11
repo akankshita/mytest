@@ -1,0 +1,73 @@
+<h3>Emission Conversion Factors</h3>
+
+<div>
+<%= link_to 'New Conversion Factor', new_conversion_factor_path, :class => "new_button"%>
+</div>
+
+<h3 style="margin-top:0px; margin-bottom:0px">Electricity</h3>
+
+<table class="list_table">
+  <tr>
+    <th>Conversion factor</th>
+   	<th>Year</th>
+    <th>Official or Custom value </th>	
+	<th>Edit</th>
+    <th>Show</th>
+</tr>
+  
+<% @elec_conversion_factors.each do |cfs| %>  
+
+	
+	  <% if cfs.official %>
+	  	<tr class="<%= cycle('odd','even') %>">
+		<td> <%=h cfs.rate %> </td>
+		<td> <%=h cfs.year %> </td>
+		<td> Official </td>		
+		</tr>
+	  <% else %>
+	  <tr class= "red_row" >
+        <td> <%=h cfs.rate %> </td>
+		<td> <%=h cfs.year %> </td>
+		<td> Custom </td>
+        <td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button"%>      	</td>  		
+    	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
+    </tr>
+      <% end %>		
+<%end%>
+</table>
+
+<h3>Gas</h3>
+
+<table class="list_table">
+  <tr>
+    <th>Conversion factor</th>
+   	<th>Year</th>
+    <th>Official or Custom value </th>
+	<th>Edit</th>
+    <th>Show</th>
+  </tr>
+  
+<% @gas_conversion_factors.each do |cfs| %>  
+
+	
+	  <% if cfs.official %>
+	  	<tr class="<%= cycle('odd','even') %>">
+		<td> <%=h cfs.rate %> </td>
+		<td> <%=h cfs.year %> </td>
+		<td> Official </td>		
+		</tr>
+	  <% else %>
+  
+	  <tr class= "red_row">
+        <td> <%=h cfs.rate %> </td>
+		<td> <%=h cfs.year %> </td>
+		<td> Custom </td>		
+    	<td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button" %> </td>   		
+    	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
+    </tr>
+
+      <% end %>		
+<%end%>
+</table>
+
+

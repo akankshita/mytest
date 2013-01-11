@@ -1,0 +1,37 @@
+
+			<div class="crc-form">
+				<fieldset id = "the_fieldset">
+					<legend>Early Action Metrics</legend>
+
+					<% form_for(@early_action_metric_task) do |f| %>
+					  <%= f.error_messages %>
+					  <p>
+					  Please specify the Carbon reduction scheme provider your organisation is involved with: 
+					<br/> 
+					<%= collection_select(:early_action_metric_task, :scheme_provider, SchemeProvider.all(:order => "name desc"), :id, :name, :prompt => "Select a scheme") %> 
+					  </p>
+					<br/> 
+					  <p>
+					    Please specify the percentage of your total emissions are covered by this scheme:
+					<br/> 
+					<%= f.text_field :coverage, :size => 3 %> %
+					  </p>
+					 <br/>  
+					  <p>
+					  Please specify the percentage of your electricity/gas supply that is covered by automated</br> meter readings (excluding that covered by mandatory half hourly meters): 
+					<br/> 
+					<%= f.text_field :voluntary_amr, :size => 3 %> %
+					  </p>
+
+                      <%= render :partial => "shared/status", :locals => {:task_status => @early_action_metric_task.status} %>
+
+					    <%= f.submit 'Save', :class => "submit_button" %>
+					  
+					<% end %>
+				</fieldset>
+			</div>
+
+</table>
+
+
+<%= link_to 'Back', annual_reports_path, :class => "back_button" %>

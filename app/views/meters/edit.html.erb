@@ -1,0 +1,28 @@
+<div class="crc-form">
+	<fieldset>
+		<legend>Edit Meter</legend>
+		<% form_for(@meter) do |f| %>
+  		  <%= f.error_messages %>
+
+		  <p>
+		    <%= f.label :meter_identifier %><br />
+		    <%= f.text_field :meter_identifier %>
+		  </p>
+		 <p>
+			 <%= f.label :source_type %><br />
+			 <%= collection_select(:meter, :source_type, @all_sources_types, :id, :name, options ={:prompt => "-Select a source"}) %>
+		 </p>
+		  <p>
+		    <%= f.label :name %><br />
+		    <%= f.text_field :name %>
+		  </p>
+		<input type="hidden" id="meter_group_parent_id" name="meter_group[parent_id]" value="" />
+	</fieldset>
+	<p>
+	    <%= f.submit 'Update', :class => "submit_button" %>
+	</p>
+	<% end %>
+</div>
+
+<%= link_to 'Show', @meter, :class => "show_button nohover" %> 
+<%= link_to 'Back', meters_path, :class => "back_button nohover" %>

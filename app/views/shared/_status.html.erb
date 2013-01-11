@@ -1,0 +1,14 @@
+<div class = "radio_buttons_status">
+	<div class="radio_buttons_status_title">
+		Task Status:
+	</div>
+	
+    <% [ ['Incomplete', 0], ['On-going', 1], ['Complete', 2]].each do |status, value| %>
+    <% checked = (value == task_status) %>
+        <br/><%= radio_button_tag 'task_status', value, checked  %>
+        <%= label_tag  'task_status', status%>
+    <% end %>
+</div>
+
+	
+	

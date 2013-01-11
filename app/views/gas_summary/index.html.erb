@@ -1,0 +1,37 @@
+<%= render :partial => "shared/tabs" %>
+
+<div id="content_tabs">
+
+
+<%= render :partial => "shared/filters", :locals => {:electricity_page => false}%>
+
+</div>
+
+<div id="dialog" title="Related Documents">
+	<p><a href="/document_uploads" class="uploaded_documents_query_link">View related documents</a></p>
+	<p><a href="/document_uploads/new">Upload new document</a></p>
+</div>
+
+<script>
+$(document).ready(function(){
+
+	$("#gas_summary_tab").attr("id","selected_tab")
+
+    // Parameters passed in for the Summary Graph
+    
+	var xTitle = 'Total Gas Usage';
+	var yTitle = 'kW hours';
+	var document_type = 'Gas%20Readings';
+    
+   
+	// Data generated from backend server
+
+	<%=h @data %>
+
+    // create the master chart
+    masterChart = generate_summary_graph(data, <%= @max_min[1] %>, <%= @max_min[0] %>, xTitle ,yTitle , document_type);
+
+});
+
+</script>
+<!-- debug info to help with cucumber testing <>DataCount<><><%=h @data_count %><>-->

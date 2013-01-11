@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+electricity_upload_one:
+      id: 1
+      content_type: application/octet-stream
+      filename: data.csv
+      size: 24
+      user_id: 1

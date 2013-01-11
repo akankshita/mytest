@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tui: MyString
+  company_name: MyString
+  emissions_covered: 1.5
+
+two:
+  tui: MyString
+  company_name: MyString
+  emissions_covered: 1.5

@@ -1,0 +1,28 @@
+<div class="crc-form">
+
+<% form_for(@electricity_config) do |f| %>
+  
+	<%= f.error_messages %>
+  <fieldset>
+	<legend>Electricity Conversion Factor</legend>
+  <p>
+    <%= f.label :conversion_number %><br />
+    <%= f.text_field :conversion_number %>
+  </p>
+  <p>
+    <%= f.label :year %><br />
+    <%= select( "electricity_config", "year", @years) %>
+  </p>
+  <p>
+    <label for="electricity_config_is_default">Is this conversion number the default?&nbsp;&nbsp;&nbsp;
+    <%= f.check_box :is_default %>
+	</label>
+  </p>
+  </fieldset>
+  <br/>
+  <p>
+    <%= f.submit 'Save', :class => "submit_button" %>
+  </p>
+<% end %>
+
+</div>

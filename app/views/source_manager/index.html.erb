@@ -1,0 +1,192 @@
+<script type="text/javascript" src="javascripts/jquery.jstree.min.js"></script>
+
+<script>
+var init_data = [<%= @init_data %>]
+ $(function () {
+	$("#tree_view").bind("select_node.jstree", function (event, data) {
+		$(".selected_node_text").text(data.args[0].text);
+		$("#node_entry_id").val(data.args[0].parentNode.id);
+		$("#meter_parent_id").val(data.args[0].parentNode.id);
+		$("#meter_group_parent_id").val(data.args[0].parentNode.id);
+	}).jstree({ 
+		"json_data" : {
+			"data" : [ init_data ]
+		}, 
+		"themes" : {
+					"theme" : "default",
+					"dots" : false,
+					"icons" : false
+				},	
+		"ui" : {
+					"select_limit" : 1,
+					"selected_parent_close" : "select_parent"
+				},
+		"plugins" : [ "themes", "json_data", "ui" ]
+	});
+
+	$("#meter_group_submit").bind('click', function() {
+	  if($("#meter_group_parent_id").val() == "" || $("#meter_group_parent_id").val() == null) {
+	  	alert("Please select a parent")
+	  } else {
+		$("#meter_group_form").submit();
+	  }
+	});
+
+	$("#meter_submit").bind('click', function() {
+
+	  if($("#meter_parent_id").val() == "" || $("#meter_parent_id").val() == null) {
+	  	alert("Please select a parent")
+	  } else {
+		$("#meter_form").submit();
+	  }
+	});
+	
+	$("#meter_delete").bind('click', function() {
+
+	  if($("#node_entry_id").val() == "" || $("#node_entry_id").val() == null) {
+	  	alert("Please select a parent")
+	  } else {
+		$("#meter_delete_form").submit();
+	  }
+	});
+
+});
+
+function drawRegionMenu()
+{
+	section = document.getElementById('DivArea');	 		
+	choice = document.getElementById('region_country_id_').value;	
+		
+	switch(choice)
+	{						
+		<%= @region_switch_statment %>
+	}
+}
+</script>
+
+
+
+<div id="tree_view">
+
+</div>
+
+<div class="crc-form">
+	<% form_for(:location, @location, :url => {:controller => "locations", :action => "create"}, :html => {:id => "location_form"}) do |f| %> 
+	
+	 <fieldset class="tree_view_form">
+		<legend><b>New Premises Details:</b></legend>
+	<p>
+		<b><label>Country</label></b>				
+		<%= collection_select("region_country_id", "", Country.all, :id, :name, {},
+{:onchange => "drawRegionMenu();"} ) %>		
+	</p>
+    <!-- This code is added for cucumber testing -->
+	<% if(RAILS_ENV == "test") %>
+		 <input type="hidden" id="location[region_id]" name="location[region_id]" value="<%= Region.first.id %>" />
+	<% else %>
+	<p>
+		<b><label>Region</label></b>
+									
+		<div id="DivArea">
+			<script>drawRegionMenu();</script>
+		</div>
+																
+	 </p>
+    <% end %>
+	<p>
+		<b><label>Name</label></b>
+		 
+		<%= text_field :location, :name %>
+	 </p>
+	<p>
+		<%= f.submit "Create", :class => 'submit_button' %>
+	</p>
+	 </fieldset>
+	<% end %>
+</div>
+
+
+<div class="crc-form">
+	<fieldset class="tree_view_form">
+		<legend><b>New Meter Group</b></legend>
+<% form_for(:meter_group, @meter_group, :url => {:controller => "meter_groups", :action => "create"}, :html => {:id => "meter_group_form"}) do |f| %>
+<b>
+<p>
+Parent: <span class ="selected_node_text">Select a node</span>
+</p>
+</b>
+<p>
+  <b> <%= f.label :name%></b>
+   <%= f.text_field :name %>
+ </p>
+ <input type="hidden" id="meter_group_parent_id" name="meter_group[parent_id]" value="" />
+
+          	<!-- This code is added for cucumber testing -->
+	<% if(RAILS_ENV == "test") %>
+		 <input type="hidden" id="meter_parent_id" name="meter_group[parent_id]" value="<%= NodeEntry.first.id %>" />
+		<%= f.submit 'meter_group_submit' %>
+	<% else %>
+		<!-- end of testing code-->
+		  <p>
+            <a href="#" id="meter_group_submit" class="blank_button no_hover">Create</a>
+          </p>
+	<% end %>
+
+</fieldset>
+
+<% end %>
+</div>
+
+
+<div class="crc-form">
+<fieldset class="tree_view_form">
+	<legend><b>New Meter Details:</b></legend>
+<% form_for(:meter, @meter, :url => {:controller => "meters", :action => "create"}, :html => {:id => "meter_form"}) do |f| %>
+<b>
+<p id ="selected_node">
+Parent: <span class ="selected_node_text">Select a node</span>
+</p>
+</b>
+  <p>
+    <b><%= f.label :meter_identifier %></b>
+    <%= f.text_field :meter_identifier %>
+  </p>
+  
+  <p>
+	 <b><%= f.label :source_type %>
+	 <%= collection_select(:meter, :source_type, @all_sources_types, :id, :name, options ={:prompt => "Select a source type"}) %></b>
+  </p>
+  
+  <p>
+    <b><%= f.label :name %></b>
+    <%= f.text_field :name %>
+  </p>
+	<!-- This code is added for cucumber testing -->
+	<% if(RAILS_ENV == "test") %>
+		 <input type="hidden" id="meter_parent_id" name="meter[parent_id]" value="<%= NodeEntry.first.id %>" />
+		<%= f.submit 'meter_submit' %>
+	<% else %>
+		<!-- end of testing code-->  
+	
+		<input type="hidden" id="meter_parent_id" name="meter[parent_id]"/>
+		  <p>
+			<a href="#" id="meter_submit" class="blank_button no_hover">Create</a>
+		  </p>
+	<% end %>
+  
+<% end %>
+</div>
+
+<div class="crc-form">
+<fieldset class="tree_view_form">
+	<legend><b>Remove Nodes:</b></legend>
+	<form action="/meters/destroy" id="meter_delete_form" method="post">
+		
+		<input type="hidden" id="node_entry_id" name="node_entry_id"/>
+	<p>
+		<a href="#" id="meter_delete" class="blank_button no_hover">Delete</a>
+	</p>
+	</form>
+</div>
+
+

@@ -1,0 +1,27 @@
+<table class="list_table">
+  <tr>
+	<th>Name</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Uploaded By</th>
+	<th>Document Type</th>
+	<th>Download</th>
+	<th>Show</th>
+	<th>Edit</th>
+	<th>Delete</th>
+  </tr>
+
+<% @document_uploads.each do |document_upload| %>
+  <tr class="<%= cycle('odd','even') %>">
+	<td><%=h document_upload.name %></td>
+	<td><%=h TimeUtils.to_uk_s(document_upload.start_date) %></td>
+    <td><%=h TimeUtils.to_uk_s(document_upload.end_date) %></td>
+    <td><%=h document_upload.user.username %></td>
+	<td><%=h document_upload.document_type.name %></td>
+    <td><a href="<%=h document_upload.public_filename(thumbnail = nil) %>" class="blank_button">Download</a></td>
+	<td><%= link_to "Show", document_upload, :class => "show_button nohover" %></td>
+    <td><%= link_to "Edit", edit_document_upload_path(document_upload), :class => "edit_button nohover"%></td>
+    <td><%= link_to 'Delete', document_upload, :confirm => 'Are you sure?', :method => :delete, :class => "delete_button nohover" %></button></td>
+  </tr>
+<% end %>
+</table>

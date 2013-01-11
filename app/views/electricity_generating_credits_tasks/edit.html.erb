@@ -1,0 +1,24 @@
+
+			<div class="crc-form">
+				<fieldset id = "the_fieldset">
+					<legend><b>Report Generating Electricity Credits</b></legend>
+					<% form_for(@electricity_generating_credits_task) do |f| %>	
+						<%= f.error_messages %>
+					  	<p>
+							<%= f.label :credits %><br />
+							<%= f.text_field :credits %>
+						</p>
+
+                        <%= render :partial => "shared/status", :locals => {:task_status => @electricity_generating_credits_task.status} %>
+
+
+						<p>
+							<%= f.submit 'Confirm', :class => "submit_button" %>
+						</p>
+						
+					<% end %>
+				</fieldset>
+			</div>
+
+
+<%= link_to 'Back', annual_reports_path, :class => "back_button" %>
