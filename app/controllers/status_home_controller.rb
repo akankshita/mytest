@@ -36,6 +36,7 @@ class StatusHomeController < ApplicationController
       jstring = jstring[0...-1]
       jstring += "]"
       @electricity_data = jstring
+
       
     end
     
@@ -76,6 +77,7 @@ class StatusHomeController < ApplicationController
       
     end    
     
+
     #######################
 
 
