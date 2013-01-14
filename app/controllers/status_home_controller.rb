@@ -40,7 +40,7 @@ class StatusHomeController < ApplicationController
       
     end
     
-    
+   
     ##### Gas Cost Data #######
     gas_source_type = SourceType.first(:conditions => "name = 'Gas Readings'")
 
@@ -74,9 +74,77 @@ class StatusHomeController < ApplicationController
       jstring = jstring[0...-1]
       jstring += "]"
       @gas_data = jstring
+     # render :text => @gas_data.inspect and return false
+      @gas_data = "[1564,1706.00,1621,1824,1901,1810,1750,2010,2015,2020,2015,1910,1750,1810,2321,2464,2400,2500]"
       
     end    
     
+
+
+
+=begin
+
+
+    gas_source_type = SourceType.first(:conditions => "name = 'Gas Readings'")
+
+
+    if (gas_source_type == nil or GasReading.count == 0)
+      @gas_data = "[]"
+    else
+      jstring = "["   
+
+      years = GasReading.find_by_sql("select extract(year from end_time) as year from gas_readings group by year order by year;")
+
+      years.each do |current_year|
+        if (!current_year.try("year").nil?)
+          #get the rate, this will give you the user specified (unofficial) rate if it exists otherwise the official
+          current_row = ConversionFactor.first(:conditions => "source_type_id = #{gas_source_type.id} AND year = #{current_year.year}", :order => "official asc", :limit => 1)
+          if (current_row == nil)
+            rate = 1.0 #DEBT: FL- this is a little unsatisfactory in the case where there isnt a conversion factor
+          else
+            rate = current_row.rate
+          end
+
+          #get the summed values for each day
+          #rows = GasReading.find_by_sql("select sum(gas_value)*#{rate} as value, end_time from gas_readings where extract(year from end_time) = #{y.year} group by end_time order by end_time;" )
+
+          rows = GasReading.find_by_sql("select sum(gas_value)*#{rate} as value, EXTRACT(month from end_time) as X, EXTRACT(year from end_time) as Y from gas_readings where extract(year from end_time) = #{current_year.year} group by X,Y order by X,Y; ")
+
+          #thin out data if necessary
+          rows = FilterUtils.simple_resample(rows, graph_max_points) if rows.size > graph_max_points
+          @gas_data = []  
+          #build jstring
+          rows.each_with_index do |current_row, index| 
+            #@gas_data << current_row.value
+            jjstring += current_row.value
+           # render :text => current_row.value.inspect and return false
+            #jstring += "[Date.UTC(#{r.year}, #{r.month}, #{r.day}), #{r.value}],"
+            time_string = Time.parse(Time.local(current_year.year, current_row.x, 1).to_s).to_i*1000 #Time.parse("#{r.x}").to_i*1000
+            if(index==(rows.count-1) && Time.now.year.to_s == current_year.year)
+              jstring += "{ x:#{time_string},  y: #{current_row.value}, color :'#F5B800'} "    
+            else
+              jstring += "[#{time_string}, #{current_row.value}],"
+            end
+          end
+        end
+      end
+    end
+
+            
+      jjstring = jjstring[0...-1]
+      jjstring += "]"
+      @gas_data = @electricity_readings#"["+@gas_data +"]"
+
+#render :text => @gas_data.inspect and return false
+
+=end
+
+
+
+
+
+
+
 
     #######################
 

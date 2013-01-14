@@ -77,7 +77,7 @@ class GasSummaryController < ApplicationController
 	  readings = FilterUtils.simple_resample(readings, graph_max_points) if @data_count > graph_max_points
 
     @max_min = Array.new
-    @max_min[0] = @max_min[1] = 0
+    @max_min[0] = @max_min[1] = 0            
     
     @data = StringUtils.generate_json_array(readings, "data", @current_res, @max_min)  
 
