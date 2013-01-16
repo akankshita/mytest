@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   #check_authorization
-   before_filter:aka
+   before_filter:internate_connection
 require 'socket'
 def internate_connection
   
