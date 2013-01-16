@@ -224,16 +224,4 @@
 </body>
 </html>
 
-<script>
-setInterval(function(){
-    if(navigator.onLine){
-       // $("body").html("Connected.");
-    }else{
-		<%=@user_session = UserSession.find%>
-    <%if !@user_session.nil?%>
-      <%@user_session.destroy%>
-    <%end%>
-       // $("body").html("Not connected.");
-    }
-},1000);
-</script>
+
