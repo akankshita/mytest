@@ -172,7 +172,7 @@
                     },
 
                     title: {
-                        text: 'Electricity energy',
+                        text: 'Electricity Usage',
                         margin: 15,
                         style: {
                             color: '#4572A7',
@@ -191,7 +191,7 @@
                         }
                     },
                     title: {
-                        text: 'Gas Emissions (tCO2e)',
+                        text: 'Gas Usage',
                         margin: 15,
                         style: {
                             color: '#C10000',
@@ -212,7 +212,7 @@
 
             tooltip: {
                 formatter: function() {
-                    return '€' + Highcharts.numberFormat(this.y, 0) ;
+                    return '£' + Highcharts.numberFormat(this.y, 0) ;
                 }
             },
             legend: {

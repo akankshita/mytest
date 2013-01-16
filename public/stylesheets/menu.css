@@ -37,6 +37,7 @@ div#menu a {
     font: normal 17px Trebuchet MS;
 }
 div#menu a:hover, div#menu a:hover span { color: #fff; }
+
 div#menu li.current a {
 	
 }
@@ -141,7 +142,7 @@ div#menu li.back .left {
 }
 
 
-
+ .selected { background: blue; }
 
 
 

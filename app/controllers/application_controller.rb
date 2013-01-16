@@ -3,6 +3,8 @@
 
 class ApplicationController < ActionController::Base
   #check_authorization
+before_filter :menu
+
 
 
   helper :all # include all helpers, all the time
@@ -10,7 +12,66 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
-
+  def menu
+    if (params[:controller] == "gas_readings" or params[:controller] == "gas_uploads" or params[:controller] == "electricity_readings" or params[:controller] == "electricity_uploads" )
+      @hback = ''
+      @uback = 'background:#37910E;margin-top:2px;height:36px;'
+      @rback = ''
+      @dback = ''
+      @gback = ''
+      @aback = ''
+      @helpback = ''
+    elsif(params[:controller] == "annual_reports" or params[:controller] == "footprint_report_page")
+      @hback = ''
+      @uback = ''
+      @rback = 'background:#37910E;margin-top:2px;height:36px;'
+      @dback = ''
+      @gback = ''
+      @aback = ''
+      @helpback = ''
+    elsif(params[:controller] == "document_uploads" )
+      @hback = ''
+      @uback = ''
+      @rback = ''
+      @dback = 'background:#37910E;margin-top:2px;height:36px;'
+      @gback = ''
+      @aback = ''
+      @helpback = ''
+    elsif(params[:controller] == "status_home" or params[:controller] == "electricity_summary" or params[:controller] == "gas_summary" or params[:controller] == "electricity_detail" or params[:controller] == "gas_detail" or params[:controller] == "profiles")
+      @hback = ''
+      @uback = ''
+      @rback = ''
+      @dback = ''
+      @gback = 'background:#37910E;margin-top:2px;height:36px;'
+      @aback = ''
+      @helpback = ''
+    elsif(params[:controller] == "users" or params[:controller] == "conversion_factors" or params[:controller] == "source_manager" or params[:controller] == "activity_logs")
+      @hback = ''
+      @uback = ''
+      @rback = ''
+      @dback = ''
+      @gback = ''
+      @aback = 'background:#37910E;margin-top:2px;height:36px;'
+      @helpback = ''
+    elsif(params[:controller] == "welcome" or params[:controller] == "support_tickets" )
+      @hback = ''
+      @uback = ''
+      @rback = ''
+      @dback = ''
+      @gback = ''
+      @aback = ''
+      @helpback = 'background:#37910E;margin-top:2px;height:36px;'
+    else
+      @hback = 'background:#37910E;margin-top:2px;height:36px;'
+      @uback = ''
+      @rback = ''
+      @dback = ''
+      @gback = ''
+      @aback = ''
+      @helpback = ''
+    end
+    #render :text => params.inspect
+  end
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:notice] = "Access Denied.  Please log in"
