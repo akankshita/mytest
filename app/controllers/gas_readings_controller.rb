@@ -3,6 +3,10 @@ class GasReadingsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @all_gas = GasReadings.all
+    @all_gas.each do |gas_reading|
+      render :text => gas_reading.inspect and return false
+    end
     @gas_readings = GasReading.paginate :page => params[:page], :order => 'end_time DESC'
 
   end
