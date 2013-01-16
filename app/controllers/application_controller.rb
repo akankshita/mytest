@@ -3,20 +3,7 @@
 
 class ApplicationController < ActionController::Base
   #check_authorization
-   before_filter:internate_connection
-require 'socket'
-def internate_connection
-  
-  begin 
-  TCPSocket.new 'google.com', 80 
-  rescue SocketError
-    @user_session = UserSession.find
-    if !@user_session.nil?
-      @user_session.destroy
-    end
-end 
-  
-end
+
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
