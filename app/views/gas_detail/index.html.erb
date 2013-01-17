@@ -38,49 +38,49 @@ $(document).ready(function() {
 	//day
 	<%=h @day_data %>
 	<%=h @day_categories %>
-	generate_column_graph('day_graph','Energy Usage by Day', data, categories)
+	generate_column_graph('day_graph','Gas Usage by Day', data, categories)
  	//month
 	<%=h @month_data %>
 	<%=h @month_categories %>
 	//generate_detail_graph('month_graph','Emissions by Month', data, categories)
-    generate_column_graph('month_graph','Usage by Month', data, categories)
+    generate_column_graph('month_graph','Gas Usage by Month', data, categories)
 
  	//year
 	<%=h @year_data %>
 	<%=h @year_categories %>
 	//generate_detail_graph('year_graph','Emissions by Year', data, categories)
-	generate_column_graph('year_graph','Usage by Year', data, categories)
+	generate_column_graph('year_graph','Gas Usage by Year', data, categories)
 
  	//meter
 	<%=h @meter_data %>
 	<%=h @meter_categories %>
 	//generate_detail_graph('meter_graph','Emissions by Meters', data, categories)
-	generate_column_graph('meter_graph','Usage by Month', data, categories)
+	generate_column_graph('meter_graph','Gas Usage by Month', data, categories)
 
 	
 	//meter groups	
 	<%=h @meter_group_data %>
 	<%=h @meter_group_categories %>	
 	//generate_detail_graph('metergroup_graph', 'Emissions by Meter Group' , data, categories)
-	generate_column_graph('metergroup_graph', 'Usage by Meter Group' , data, categories)
+	generate_column_graph('metergroup_graph', 'Gas Usage by Meter Group' , data, categories)
 	
 	//location
 	<%=h @location_data %>
 	<%=h @location_categories %>	
 	//generate_detail_graph('location_graph', 'Emissions by Location' , data, categories)
-	generate_column_graph('location_graph', 'Usage by Location' , data, categories)
+	generate_column_graph('location_graph', 'Gas Usage by Location' , data, categories)
 
 	//region
 	<%=h @region_data %>
 	<%=h @region_categories %>	
 	//generate_detail_graph('region_graph', 'Emissions by Region' , data, categories)
-	generate_column_graph('region_graph', 'Usage by Region' , data, categories)
+	generate_column_graph('region_graph', 'Gas Usage by Region' , data, categories)
 
 	//country
 	<%=h @country_data %>
 	<%=h @country_categories %>	
 	//generate_detail_graph('country_graph', 'Emissions by Country' , data, categories)
-	generate_column_graph('country_graph', 'Usage by Country' , data, categories)
+	generate_column_graph('country_graph', 'Gas Usage by Country' , data, categories)
 
 });
 
