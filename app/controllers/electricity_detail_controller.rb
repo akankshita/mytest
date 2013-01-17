@@ -37,7 +37,7 @@ def index
 	values = Array.new
 	names  = Array.new
 	
-	select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
+	select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
 	result = ElectricityReading.find_by_sql(select_string)
@@ -61,7 +61,7 @@ def index
 	values= []
 	names=[]
 #render :text => calc_string.inspect and return false
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from end_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
+	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from end_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by month order by month;")
 	months = FilterUtils.get_month_hash
 	 
 	result.each do |k|
@@ -81,7 +81,7 @@ def index
 	names = []
 	result=[]
 
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from end_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")	
+	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from end_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")	
 	 
 	result.each do |k|	
 		values.push( k.value )		
@@ -97,7 +97,7 @@ def index
 	names = []
 	result=[]
 	
-	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
+	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
 	result.each do |k|
 		values.push(k.sum)				
 		names.push("'"+k.name+"'")

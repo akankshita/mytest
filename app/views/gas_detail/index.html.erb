@@ -31,11 +31,14 @@
 
 $(document).ready(function() {
 
-	//$("#gas_detail_tab").attr("id","selected_tab")
+	$("#gas_detail_tab").attr("id","selected_tab")
 		
 	
 /***************Function calls for each graph********/
-
+	//day
+	<%=h @day_data %>
+	<%=h @day_categories %>
+	generate_column_graph('day_graph','Energy Usage by Day', data, categories)
  	//month
 	<%=h @month_data %>
 	<%=h @month_categories %>
