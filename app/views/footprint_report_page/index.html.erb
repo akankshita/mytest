@@ -7,7 +7,7 @@
 <table id="footprint_report_table">
 
 <tr>
-<!--td><%#= link_to 'Designated Changes', edit_designated_change_path(@footprint_report.designated_changes_task.designated_changes.first), :class => 'footprint_report_button' unless @footprint_report.designated_changes_task.nil? %> </td--	>
+<!--td><%#= link_to 'Designated Changes', edit_designated_change_path(@footprint_report.designated_changes_task.designated_changes.first), :class => 'footprint_report_button' unless @footprint_report.designated_changes_task.nil? %> </td-->
 <td><%= link_to 'Designated Changes', @footprint_report.designated_changes_task.designated_changes.first, :class => 'footprint_report_button' unless @footprint_report.designated_changes_task.nil? %> </td>
 <td><%= status_colour_function @footprint_report.designated_changes_task.status unless @footprint_report.designated_changes_task.nil? %> </td>
 <td><a id="popup">More Info<span><%=h @footprint_report.designated_changes_task.more_info unless @footprint_report.designated_changes_task.nil? %> </span></a> </td>
