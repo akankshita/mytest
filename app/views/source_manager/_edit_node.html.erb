@@ -1,0 +1,39 @@
+<fieldset class="tree_view_form">
+	<legend><b>Edit Nodes:</b></legend>
+	<form action="/update_node" id="node_update_form" method="post">
+		<input type="hidden" name="node_id" value="<%=@all_node_detail.id%>">
+		<input type="hidden" name="node_node_id" value="<%=@all_node_detail.node_id%>">
+		<input type="hidden" name="node_type" value="<%=@all_node_detail.node_type%>">
+		<%if @all_node_detail.node_type == "MeterGroup"%>
+			<p>MeterGroup</p>
+			<p><b><label>Name</label></b> <input type="text"  name="meter_name" value="<%= @all_node_detail.name %>" /></p>
+		<%end%>
+		<%if @all_node_detail.node_type == "Location"%>
+			<p>Parent Meter</p>
+			<p><b><label>Country</label></b> <%= collection_select("country_id", "", Country.all, :id, :name, {:selected => @selected_country_id},{:onchange => "drawRegionMenu();"} ) %>	</p>
+			<p><b><label>Region</label></b> <%= collection_select("region_id", "", regionss, :id, :name ,{:selected => @selected_region_id}) %>	</p>
+			<p><b><label>Name</label></b> <input type="text"  name="meter_name" value="<%= @all_node_detail.name %>" /></p>
+		<%end%>
+		<%if @all_node_detail.node_type == "Meter"%>
+			<p>Meter Details</p>
+			<p><b><label>Meter identifier</label></b> <input type="text"  name="meter_meter_identifier" value="<%= @meter_detail.meter_identifier%>" />	</p>
+			<p><b><label>Source type</label></b> <%= collection_select(:meter, :source_type, @all_sources_types, :id, :name,{:select =>@meter_detail.source_type_id}, options ={:prompt => "Select a source type"}) %></p>
+			<p><b><label>Name</label></b> <input type="text"  name="meter_name" value="<%= @all_node_detail.name %>" /></p>
+		<%end%>
+		<%=submit_tag "Update",:class => 'blank_button no_hover ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only'%>
+	</form>
+	
+<script>
+	function drawRegionMenu()
+{
+	section = document.getElementById('DivArea1');	 		
+	choice = document.getElementById('region_country_id_edit_').value;	
+		
+	switch(choice)
+	{						
+		<%= @region_switch_statment %>
+	}
+}
+	
+</script>
+

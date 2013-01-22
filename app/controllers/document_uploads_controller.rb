@@ -26,6 +26,7 @@ class DocumentUploadsController < ApplicationController
     @end_date_formatted = TimeUtils.to_uk_date_s(@document_upload.end_date)
 
     @document_types = DocumentType.all
+    @selected_doc_types = DocumentType.find(@document_upload.document_type_id)
     @user = current_user
     
   end

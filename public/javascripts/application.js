@@ -88,8 +88,24 @@ $(document).ready(function() {
 		show: "blind",
 		hide: "explode"
 	});
+	
+	$("#conversion_factor_source_type_id").change(function(){
+		//alert($(this).val());
+		$.ajax({
+        url: '/cal_year',
+        type: "POST",
+        data: {'id':$(this).val()},
+        //dataType: 'json',
+        success: function (data) {
+			$("#coversion_year").html(data);
+		}
+		});
+         
+	});
+	
 });
 
 function generate_document_uploads_query_url(date, source_type) {
 	return "/document_uploads/list?date=" + date + "&" + "source_type="+ source_type;
 }
+

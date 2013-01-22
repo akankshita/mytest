@@ -17,7 +17,7 @@
   
 <% @elec_conversion_factors.each do |cfs| %>  
 
-	
+<!--	
 	  <% if cfs.official %>
 	  	<tr class="<%= cycle('odd','even') %>">
 		<td> <%=h cfs.rate %> </td>
@@ -32,7 +32,15 @@
         <td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button"%>      	</td>  		
     	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
     </tr>
-      <% end %>		
+      <% end %>
+-->
+  <tr class="<%= cycle('odd','even') %>">
+	<td> <%=h cfs.rate %> </td>
+	<td> <%=h cfs.year %> </td>
+	<td> Custom </td>
+	<td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button"%>      	</td>  		
+	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
+  </tr>
 <%end%>
 </table>
 
@@ -49,7 +57,7 @@
   
 <% @gas_conversion_factors.each do |cfs| %>  
 
-	
+<!--	
 	  <% if cfs.official %>
 	  	<tr class="<%= cycle('odd','even') %>">
 		<td> <%=h cfs.rate %> </td>
@@ -66,7 +74,15 @@
     	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
     </tr>
 
-      <% end %>		
+      <% end %>
+-->
+  <tr class="<%= cycle('odd','even') %>">
+	<td> <%=h cfs.rate %> </td>
+	<td> <%=h cfs.year %> </td>
+	<td> Custom </td>		
+	<td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button" %> </td>   		
+	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
+  </tr>
 <%end%>
 </table>
 

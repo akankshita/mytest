@@ -11,7 +11,11 @@
   </p>
   <p>
     <b><%= f.label :document_type %></b><br />
+	<% if(is_new) %>
     <%= collection_select(:document_upload, :document_type, @document_types, :id, :name, options ={:prompt => "-Select a document type"}) %>
+	<%else%>
+	  <%= collection_select(:document_upload, :document_type, @document_types, :id, :name,{:selected=>@selected_doc_types.id}) %>
+	<%end%>
   </p>
   <p>
     <b><%= f.label :start_date %></b><br />

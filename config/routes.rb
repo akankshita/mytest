@@ -145,6 +145,9 @@ ActionController::Routing::Routes.draw do |map|
   map.profiles '/profiles', :controller =>"profiles", :action => "index"
 
   map.sand_box '/sand_box', :controller => "sand_box", :action => "index"
+  map.cal_year '/cal_year', :controller => "conversion_factors", :action => "cal_year"
+  map.edit_node '/edit_node', :controller => "source_manager", :action => "edit_node"
+  map.update_node '/update_node', :controller => "source_manager", :action => "update_node"
 
   map.root :controller => "status_home"
   map.connect ':controller/:action/:id'

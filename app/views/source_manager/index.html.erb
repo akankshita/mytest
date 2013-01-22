@@ -4,6 +4,21 @@
 var init_data = [<%= @init_data %>]
  $(function () {
 	$("#tree_view").bind("select_node.jstree", function (event, data) {
+	 // alert(data.args[0].parentNode.id);
+	  	//$("#conversion_factor_source_type_id").change(function(){
+		//alert($(this).val());
+		$.ajax({
+        url: '/edit_node',
+        type: "POST",
+        data: {'id':data.args[0].parentNode.id},
+        //dataType: 'json',
+        success: function (ndata) {
+		 //alert(ndata);
+			$("#edit_node").html(ndata);
+		}
+		});
+         
+	//});
 		$(".selected_node_text").text(data.args[0].text);
 		$("#node_entry_id").val(data.args[0].parentNode.id);
 		$("#meter_parent_id").val(data.args[0].parentNode.id);
@@ -189,4 +204,6 @@ Parent: <span class ="selected_node_text">Select a node</span>
 	</form>
 </div>
 
+<div class="crc-form" id="edit_node">
+</div>
 
