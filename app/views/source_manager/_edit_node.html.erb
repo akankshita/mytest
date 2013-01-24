@@ -17,7 +17,7 @@
 		<%if @all_node_detail.node_type == "Meter"%>
 			<p>Meter Details</p>
 			<p><b><label>Meter identifier</label></b> <input type="text"  name="meter_meter_identifier" value="<%= @meter_detail.meter_identifier%>" />	</p>
-			<p><b><label>Source type</label></b> <%= collection_select(:meter, :source_type, @all_sources_types, :id, :name,{:select =>@meter_detail.source_type_id}, options ={:prompt => "Select a source type"}) %></p>
+			<p><b><label>Source type</label></b> <%= collection_select(:meter, :source_type, @all_sources_types, :id, :name,{:selected =>@meter_detail.source_type_id}, options ={:prompt => "Select a source type"}) %></p>
 			<p><b><label>Name</label></b> <input type="text"  name="meter_name" value="<%= @all_node_detail.name %>" /></p>
 		<%end%>
 		<%=submit_tag "Update",:class => 'blank_button no_hover ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only'%>
