@@ -1,0 +1,2 @@
+module CarbonDetailHelper
+end

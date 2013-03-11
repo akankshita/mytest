@@ -405,6 +405,75 @@ li,ul /* korekce pro IE6 */
 }
 
 
+/**********  CSS for the SubTabbing on the home page ****/
+
+
+
+#tabs 
+{
+   float:left;
+   width:100%;
+}
+
+
+#dtabs ul 
+{
+   clear:left;
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+   left:50%;
+   text-align:center;
+   margin-bottom:-1px;
+}
+
+
+#dtabs ul li 
+{
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+   right:50%;
+   padding-left:3px;
+   padding-right:3px; 
+}
+
+#dtabs ul li a 
+{
+   display:block;
+   margin:0 0 0 0px;
+   padding:3px 10px;
+   background:#6E9B2D;
+   color:white;
+   font-size:14px;
+   text-decoration:none;
+   border-top-right-radius:8px; 
+   border-top-left-radius:8px;
+   overflow:hidden;
+}
+
+#dtabs ul li a:hover
+{
+	color:#D9D9D9;
+}
+
+#dtabs #selected_tab a
+{
+	position: relative;  
+	color: black;
+	background-color:#E4ECE3;
+	border-top-right-radius:8px; 
+	border-top-left-radius:8px;
+	border-top:1px solid black;
+	border-left:1px solid black;
+	border-right:1px solid black;	
+}
+
+
 /*** These are the style properties for the Status Tab ****/
 
 #content_tabs 

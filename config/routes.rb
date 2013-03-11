@@ -67,6 +67,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :electricity_uploads
 
   map.resources :gas_readings
+  map.resources :carbon_readings
 
   map.resources :users
   
@@ -139,8 +140,11 @@ ActionController::Routing::Routes.draw do |map|
   map.electricity_summary '/electricity_summary', :controller => "electricity_summary", :action => "index"
 
   map.gas_detail '/gas_detail', :controller => "gas_detail", :action => "index"
-
   map.electricity_detail '/electricity_detail', :controller => "electricity_detail", :action => "index"
+  map.carbon_detail '/carbon_detail', :controller => "carbon_detail", :action => "index"
+  map.carbon_gas_detail '/carbon_gas_detail', :controller => "carbon_detail", :action => "carbon_gas_detail"
+  map.carbon_mixed_detail '/carbon_mixed_detail', :controller => "carbon_detail", :action => "carbon_mixed_detail"
+
   
   map.profiles '/profiles', :controller =>"profiles", :action => "index"
 
