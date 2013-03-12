@@ -612,7 +612,7 @@ class CarbonDetailController < ApplicationController
   
   @sum_day_data = Array.new
   values_ele.each_with_index do |val,i|
-    @sum_day_data <<  (val.to_f+values_gas[i].to_f)/2
+    @sum_day_data <<  (val.to_f+values_gas[i].to_f)
   end
   @day_data = StringUtils.generate_json_array_without_timestamp(@sum_day_data, "data")
  
@@ -651,7 +651,7 @@ class CarbonDetailController < ApplicationController
     @months_with_data = values_gas.size
     @sum_month_data = Array.new    
     values_ele.each_with_index do |val,i|
-      @sum_month_data <<  (val.to_f+values_gas[i].to_f)/2
+      @sum_month_data <<  (val.to_f+values_gas[i].to_f)
     end
     
 
@@ -684,7 +684,7 @@ class CarbonDetailController < ApplicationController
     end
     @sum_year_data = Array.new    
     values_ele.each_with_index do |val,i|
-      @sum_year_data <<  (val.to_f+values_gas[i].to_f)/2
+      @sum_year_data <<  (val.to_f+values_gas[i].to_f)
     end
 
     @year_data = StringUtils.generate_json_array_without_timestamp(@sum_year_data, "data")
@@ -714,7 +714,7 @@ class CarbonDetailController < ApplicationController
     end
     @sum_meter_data = Array.new    
     values_ele.each_with_index do |val,i|
-      @sum_meter_data <<  (val.to_f+values_gas[i].to_f)/2
+      @sum_meter_data <<  (val.to_f+values_gas[i].to_f)
     end
 
     @meter_data = StringUtils.generate_json_array_without_timestamp(@sum_meter_data, "data")
@@ -778,7 +778,7 @@ class CarbonDetailController < ApplicationController
 
     @sum_meter_group_data = Array.new    
     values_ele.each_with_index do |val,i|
-      @sum_meter_group_data <<  (val.to_f+values_gas[i].to_f)/2
+      @sum_meter_group_data <<  (val.to_f+values_gas[i].to_f)
     end
 
     @meter_group_data = StringUtils.generate_json_array_without_timestamp(@sum_meter_group_data, "data")
@@ -864,7 +864,7 @@ class CarbonDetailController < ApplicationController
 
     @sum_location_data = Array.new    
     values_ele.each_with_index do |val,i|
-      @sum_location_data <<  (val.to_f+values_gas[i].to_f)/2
+      @sum_location_data <<  (val.to_f+values_gas[i].to_f)
     end
 
     @location_data = StringUtils.generate_json_array_without_timestamp(@sum_location_data, "data")
@@ -964,7 +964,7 @@ class CarbonDetailController < ApplicationController
 
     @sum_region_data = Array.new    
     values_ele.each_with_index do |val,i|
-      @sum_region_data <<  (val.to_f+values_gas[i].to_f)/2
+      @sum_region_data <<  (val.to_f+values_gas[i].to_f)
     end
 
     @region_data = StringUtils.generate_json_array_without_timestamp(@sum_region_data, "data")
@@ -1058,7 +1058,7 @@ class CarbonDetailController < ApplicationController
 
     @sum_country_data = Array.new    
     values_ele.each_with_index do |val,i|
-      @sum_country_data <<  (val.to_f+values_gas[i].to_f)/2
+      @sum_country_data <<  (val.to_f+values_gas[i].to_f)
     end
 
     @country_data = StringUtils.generate_json_array_without_timestamp(@sum_country_data, "data")
