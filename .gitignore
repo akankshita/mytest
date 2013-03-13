@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 public/document_uploads/*
 public/electricity_uploads/*
@@ -23,7 +24,7 @@ script/logindb
 doc/.pgpass
 db/migrate/20101102192704_add_more_info_data.rb
 lib/tasks/application.rake
-=======
+
 *.gem
 *.rbc
 .bundle
@@ -42,4 +43,3 @@ tmp
 .yardoc
 _yardoc
 doc/
-
