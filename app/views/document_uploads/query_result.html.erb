@@ -1,0 +1,13 @@
+<div id="result_params" class = "aesthetics">
+	
+<p>
+Document Uploads
+</p>
+
+
+<% if(@document_uploads.size > 0 ) %>
+	<%= render :partial => "list" %>
+<% else %>
+	<p><b>No documents uploaded for this time and document type</b></p>
+<% end %>
+</div>

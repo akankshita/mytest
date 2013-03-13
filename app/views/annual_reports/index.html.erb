@@ -1,0 +1,71 @@
+<div class="crc-form">
+<fieldset id = "the_fieldset">
+	<legend><b>Annual Report Tasks</b></legend>
+		
+	<br/>	
+		
+<table id="footprint_report_table">
+
+<!-- this task is shared with the footprint report -->
+<tr>
+<td><%= link_to 'CCA Exemptions', cca_exemptions_path(:which_report => 'annual'), :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @footprint_report.cca_exemptions_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @footprint_report.cca_exemptions_task.more_info %> </span></a> </td>
+</tr>
+
+<tr>
+<td><%= link_to 'Renewables', edit_renewable_path(@annual_report.renewable_task.renewables.first), :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @annual_report.renewable_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @annual_report.renewable_task.more_info %> </span></a> </td>
+</tr>
+
+<tr>
+<td><%= link_to 'Confirm Core Energy Supply', edit_confirm_energy_supply_task_path(@annual_report.confirm_energy_supply_task), :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @annual_report.confirm_energy_supply_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @annual_report.confirm_energy_supply_task.more_info %></span></a> </td>
+</tr>
+
+<tr>
+<td><%= link_to 'Report Other Fuels', edit_report_other_fuels_task_path(@annual_report.report_other_fuels_task), :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @annual_report.report_other_fuels_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @annual_report.report_other_fuels_task.more_info %></span></a> </td>
+</tr>
+
+<tr>
+<td><%= link_to 'Electricity Generating Credits', edit_electricity_generating_credits_task_path(@annual_report.electricity_generating_credits_task), :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @annual_report.electricity_generating_credits_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @annual_report.electricity_generating_credits_task.more_info %></span></a> </td>
+</tr>
+
+<tr>
+<td><%= link_to 'Significant Group Undertakings', significant_group_undertakings_path, :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @annual_report.significant_group_undertakings_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @annual_report.significant_group_undertakings_task.more_info %></span></a> </td>
+</tr>
+
+<tr>
+<td><%= link_to 'Early Action Metrics', edit_early_action_metric_task_path(@annual_report.early_action_metric_task), :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @annual_report.early_action_metric_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @annual_report.early_action_metric_task.more_info %></span></a> </td>
+</tr>
+
+<tr>
+<td><%= link_to 'Growth Metrics', edit_growth_metric_task_path(@annual_report.growth_metric_task), :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @annual_report.growth_metric_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @annual_report.growth_metric_task.more_info %></span></a> </td>
+</tr>
+
+<tr>
+<td><%= link_to 'Disclosure of Information', edit_disclosure_task_path(@annual_report.disclosure_task), :class => 'footprint_report_button'%> </td>
+<td><%= status_colour_function @annual_report.disclosure_task.status %> </td>
+<td><a id="popup">More Info<span><%=h @annual_report.disclosure_task.more_info %></span></a> </td>
+</tr>
+
+</table>
+</fieldset>
+<!-- These breaks have to be in here to allow space for the last more info box to expand into -->
+<br/>
+<br/>
+<br/>
+<br />
+<br />

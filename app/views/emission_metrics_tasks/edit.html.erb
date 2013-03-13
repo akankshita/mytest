@@ -1,0 +1,70 @@
+
+	<div class="crc-form">
+<fieldset id = "the_fieldset">
+	<legend><b>Report Metrics (Emissions)</b></legend>
+
+<% form_for(@emission_metrics_task) do |f| %>
+  <%= f.error_messages %>
+
+<table class = "task_table">
+	<tr>
+		<td>
+  <p>
+    <%= f.label :core_energy_ETS %><br />
+    <%= f.text_field :core_energy_ETS %>
+  </p>
+
+		</td>
+<td>
+  <p>
+    <%= f.label :non_core_energy_ETS %><br />
+    <%= f.text_field :non_core_energy_ETS %>
+  </p>
+</td>
+<td>
+  <p>
+    <%= f.label :cca_subsidiaries %><br />
+    <%= f.text_field :cca_subsidiaries %>
+  </p>
+</td>
+<td>
+  <p>
+    <%= f.label :cca_core_energy %><br />
+    <%= f.text_field :cca_core_energy %>
+  </p>
+</td>
+</tr>
+<tr>
+	<td>
+  <p>
+    <%= f.label :cca_non_core_energy %><br />
+    <%= f.text_field :cca_non_core_energy %>
+  </p>
+	</td>
+	<td>
+  <p>
+    <%= f.label :electricity_generated_credit %><br />
+    <%= f.text_field :electricity_generated_credit %>
+  </p>
+	</td>
+	<td>
+  <p>
+    <%= f.label :renewables_generation %><br />
+    <%= f.text_field :renewables_generation %>
+  </p>
+	</td>
+	</tr>
+</table>
+
+    <%= render :partial => "shared/status", :locals => {:task_status => @emission_metrics_task.status} %>
+
+    <%= f.submit 'Update', :class => "submit_button" %>
+
+</fieldset>
+
+<% end %>
+</td>
+</div>
+
+
+<%= link_to 'Back', footprint_report_page_path, :class => "back_button"%>

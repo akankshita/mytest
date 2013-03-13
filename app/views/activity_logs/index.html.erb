@@ -1,0 +1,26 @@
+
+
+<div id = "paginate"> <%= will_paginate @records %> </div>
+
+<table class="list_table">
+  <tr>
+    
+    <th>Time stamp</th>
+    <th>User</th>
+    <th>Activity</th>
+    <th>IP</th>
+    
+  </tr>
+
+
+<% @records.each do |record| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%=h TimeUtils.to_uk_s(record.timestamp) %></td>
+    <td><%=h record.user.username if User.exists?( record.user_id ) %></td>
+    <td><%=h record.activity.name %></td>
+    <td><%=h record.ip %></td>
+  </tr>
+
+
+<% end %>
+</table>

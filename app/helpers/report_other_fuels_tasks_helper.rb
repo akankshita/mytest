@@ -1,0 +1,2 @@
+module ReportOtherFuelsTasksHelper
+end

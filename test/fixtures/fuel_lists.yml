@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  emission_factor: 1.5
+  residual: false
+
+two:
+  name: MyString
+  emission_factor: 1.5
+  residual: false

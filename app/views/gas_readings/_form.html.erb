@@ -1,0 +1,36 @@
+<div class="crc-form">
+	<fieldset id = "the_fieldset">
+		<legend><strong>Gas Reading</strong></legend>	
+		<% form_for(@gas_reading) do |f| %>
+		  <%= f.error_messages %>
+				
+		<table class="list_table">
+		  <tr>
+		    <th>Gas Value</th>
+		   	<th>Start Date & Time</th>
+		   	<th>End Date & Time</th>
+		   	<th>Units</th>
+			<th>Meter</th>	
+		  </tr>
+				
+		<tr class="<%= cycle('odd','even') %>">
+			<td><%= f.text_field :gas_value, :size =>"10" %></td>
+			<td>Date:<%= f.text_field :start_time, { :class => 'datepicker', :size => 12 } %>
+				<br/>
+				Time:<%= select_tag(:gas_reading_start_hour, options_for_select(@hours, "0")) %>
+				<%= select_tag(:gas_reading_start_minute, options_for_select(@minutes, "0")) %>
+			</td>
+			<td>
+				Date:<%= f.text_field :end_time, { :class => 'datepicker', :size => 12 } %>
+				<br/>
+				Time:<%= select_tag(:gas_reading_end_hour, options_for_select(@hours, "0")) %>
+				<%= select_tag(:gas_reading_end_minute, options_for_select(@minutes, "0")) %>
+			</td>
+			<td><%= select_tag('kwh_equivalents', options_from_collection_for_select(@all_units, 'id', 'name')) %> </td>
+			<td><%= collection_select(:gas_reading, :meter, @all_meters, :id, :get_name) %></td>
+		</tr>
+	</table>
+		    <%= f.submit 'Save', :class => "submit_button" %>
+		</fieldset>	  
+	<% end %>
+</div>

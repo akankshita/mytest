@@ -1,0 +1,29 @@
+<div id ="button_text">
+	
+	<input type="radio" id="time_res" name="current_res" value="1" 
+		<%if @current_res == "1" %>
+			checked="checked"
+		<%end%>
+	/>Half hour
+
+	<input type="radio" id="time_res" name="current_res" value="2" 
+		<%if @current_res == "2" %>
+			checked="checked"
+		<%end%>
+	/>Day
+
+<!--    FL: will put this awkward feature (postgres weeknum issue) back in for money 
+	   <input type="radio" id="time_res" name="current_res" value="3" 
+	   		<%if @current_res == "3" %>
+	   			checked="checked"
+	   		<%end%>
+	   	/>Week
+-->
+	
+	<input type="radio" id="time_res" name="current_res" value="4" 
+		<%if @current_res == "4" %>
+			checked="checked"
+		<%end%>
+	/>Month
+</div>	
+

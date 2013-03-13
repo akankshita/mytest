@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  deadline: 2010-08-17
+  title: MyString
+  more_info: MyString
+  phase: 1
+
+two:
+  deadline: 2010-08-17
+  title: MyString
+  more_info: MyString
+  phase: 1

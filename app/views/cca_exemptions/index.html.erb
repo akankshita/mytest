@@ -1,0 +1,43 @@
+
+<div class="crc-form">			
+	<fieldset id = "the_fieldset">
+		<legend><b>CCA Excemptions</b></legend>
+
+<%= link_to 'New CCA Exemption', new_cca_exemption_path, :class => 'new_button' %>
+			
+<table class="list_table">
+  <tr>
+    <th>Tui</th>
+    <th>Company name</th>
+    <th>Emissions covered</th>
+	<th>Show</th>
+    <th>Edit</th>
+	<th>Delete</th>
+  </tr>
+
+<% @cca_exemptions.each do |cca_exemption| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%=h cca_exemption.tui %></td>
+    <td><%=h cca_exemption.company_name %></td>
+    <td><%=h cca_exemption.emissions_covered %></td>
+    <td><%= link_to 'Show', cca_exemption, :class  => 'show_button' %></td>
+    <td><%= link_to 'Edit', edit_cca_exemption_path(cca_exemption), :class => 'edit_button' %></td>
+    <td><%= link_to 'Delete', cca_exemption, :class => 'delete_button', :confirm => 'Are you sure?', :method => :delete %></td>
+<% end %>
+  
+</td>
+</tr>
+</table>
+
+    <% form_for(:cca_exemption_task, @cca_exemptions_task, :url => {:controller => "cca_exemptions", :action => "status"}, :html => {:id => "status_form"}) do |f| %>
+        <%= render :partial => "shared/status", :locals => {:task_status => @cca_exemptions_task.status} %>
+        <%= f.submit "Save", :class => 'submit_button' %>
+    <% end %>
+			
+</fieldset>
+</div>
+
+
+</br>
+
+	<%= render :partial => "back_button"%>

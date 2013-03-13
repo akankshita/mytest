@@ -1,0 +1,25 @@
+<fieldset><legend>Other Fuels</legend>
+
+<p>
+  <b>Other fuels task:</b>
+  <%=h @other_fuel.other_fuels_task %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @other_fuel.description %>
+</p>
+<p>
+	<b>Amount:</b>
+	<%= @other_fuel.amount %> 
+</p>
+<p>
+  <b>Unit:</b>
+  <%=h @other_fuel.unit.name %>
+</p>
+
+</fieldset>
+
+<%= link_to 'Edit', edit_other_fuel_path(@other_fuel), :class => "edit_button" %> 
+<%= link_to 'Back', other_fuels_path, :class => "back_button" %>
+</fieldset>

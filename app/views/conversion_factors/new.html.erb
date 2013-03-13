@@ -1,0 +1,38 @@
+<div class="crc-form">
+<fieldset id = "the_fieldset">
+	<legend><b>Create Custom Conversion Factor</b></legend>
+
+
+<% form_for(@conversion_factor) do |f| %>
+  
+<%= f.error_messages %>
+  
+ 
+
+<table class="list_table">
+  <tr>
+    <th>Source Type</th>
+   	<th>Year</th>
+   	<th>Conversion Factor</th>
+  </tr>
+  
+	  <tr class="<%= cycle('odd','even') %>">
+        <td> <%= select(:conversion_factor, :source_type_id, (SourceType.all.collect{|source_type|[source_type.name, source_type.id]}))  %> </td>
+		<!--td> <%#= select(:conversion_factor, :year, (ConversionFactor.all.collect{|conversion_factor| [conversion_factor.year]}).uniq) %> </td-->
+		<td id="coversion_year"> <%= select(:conversion_factor, :year, (@elec_year.collect{|conversion_factor| [conversion_factor	]}).uniq) %> </td>
+		<td> <%=h f.text_field :rate %> </td>	    	
+    </tr>
+      
+</table>
+
+<%= f.submit 'Create', :class=>"submit_button" %>
+
+<% end %>
+
+</fieldset>
+</div>
+
+
+<div id="submit_reset">
+<%= link_to 'Back', conversion_factors_path, :class => "back_button" %>
+</div>

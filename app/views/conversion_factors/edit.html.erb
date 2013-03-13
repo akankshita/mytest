@@ -1,0 +1,26 @@
+<h3>Edit Custom Conversion Factor</h3>
+
+
+<% form_for(@conversion_factor) do |f| %>
+  <%= f.error_messages %>
+
+<table class="list_table">
+  <tr>
+    <th>Year</th>
+   	<th>Conversion factor</th>    
+    <th>Submit</th>	
+  </tr>
+
+<tr>
+	<td><%=h f.text_field :year, :disabled => 'disabled' %> </td>
+	<td><%=h f.text_field :rate %> </td>
+	<td> <%= f.submit 'Update', :class=>"submit_button" %> </td>
+</tr>
+
+</table>
+ 
+<% end %>
+
+<div id="submit_reset"> 
+<%= link_to 'Back', conversion_factors_path, :class=>"back_button" %>
+<div>

@@ -1,0 +1,24 @@
+<div class="show_table">
+	<fieldset id = "the_fieldset">
+		<legend>Electricity Upload</legend>
+	
+	
+<table class="list_table" >
+	<tr>
+		<th>Content Type</th>
+		<th>Filename</th>
+		<th>Size</th>
+		<th>Uploaded By</th>
+	</tr>	
+		
+	<tr class="<%= cycle('odd','even') %>">
+		<td> <%=h @electricity_upload.content_type %></td>
+		<td> <%=h @electricity_upload.filename %></td>
+		<td> <%=h @electricity_upload.size %></td>	
+		<td> <%=h @electricity_upload.user.username %></td>
+	</tr>
+		</table>
+	</fieldset>
+</div>
+<br/>
+<%= link_to 'Back', electricity_uploads_path, :class => "back_button nohover" %>

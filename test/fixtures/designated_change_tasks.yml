@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  deadline: 2010-08-19
+  status: 1
+  more_info: MyString
+  footprint_report: 
+
+two:
+  deadline: 2010-08-19
+  status: 1
+  more_info: MyString
+  footprint_report: 

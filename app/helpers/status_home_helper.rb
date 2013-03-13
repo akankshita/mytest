@@ -1,0 +1,2 @@
+module StatusHomeHelper
+end

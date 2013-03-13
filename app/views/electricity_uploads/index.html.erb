@@ -1,0 +1,31 @@
+<div id = "electricity_upload_buttons">
+<%= link_to 'Upload Electrical Data File', new_electricity_upload_path, :class => "new_button nohover" %>
+
+<%= link_to 'View Electrical Readings Data', electricity_readings_path, :class => "show_button nohover" %>
+
+</div>
+
+ 
+<table class="list_table">
+  <tr>
+    <th>Filename</th>
+    <th>Size</th>
+	<th>Meter</th>
+    <th>Uploaded By</th>
+	<th>Download</th>
+	<th>Show</th>
+	<th>Delete</th>
+  </tr>
+
+<% @electricity_uploads.each do |electricity_upload| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%=h electricity_upload.filename %></td>
+    <td><%=h electricity_upload.size %></td>
+	<td><%=h electricity_upload.meter.node_entry.name %></td>
+    <td><%=h electricity_upload.user.username %></td>
+	<td><a href="<%=h electricity_upload.public_filename(thumbnail = nil) %>" class="blank_button">Download</a></td>
+    <td><%= link_to 'Show', electricity_upload, :class => "show_button nohover" %></td>
+    <td><%= link_to 'Delete', electricity_upload, :confirm => 'Are you sure?', :method => :delete, :class => "delete_button nohover" %></td>
+  </tr>
+<% end %>
+</table>

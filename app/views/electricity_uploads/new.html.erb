@@ -1,0 +1,42 @@
+<div class="crc-form">
+<% form_for(@electricity_upload, :url => { :action => "create" },
+								 :html => {:multipart => true}) do |f| %> 
+<%= f.error_messages %>
+ <fieldset id = "the_fieldset">
+	<legend>Upload Electricity Data File</legend>
+	
+	<table class="list_table">
+	  <tr>
+	    <th>Electricity CSV File</th>
+		<th>Interval (Minutes)</th>
+		<th>Time/Date Column</th>
+	   	<th>kW Column</th>
+	   	<th>Meter</th>
+	
+		<th>Date Format</th>
+		
+	  </tr>
+	
+	<tr class="odd">
+		<td><%= f.file_field :uploaded_data, :class=>"submit" %></td>	
+		<td><%= f.text_field :interval, :size => 5%></td>		
+		<td><input id="date_column" name="date_column" size="5" type="text" /></td>		
+		<td><input id="kw_column" name="kw_column" size="5" type="text" /></td>
+		<td><%= collection_select(:electricity_upload, :meter, @all_meters, :id, :get_name) %></td>
+	
+		<td>	
+			<select name="date_format">
+			  <option value="european" selected>European DD/MM/YYYY</option>
+			  <option value="american">American MM/DD/YYYY</option>
+		    </select>
+				</td>
+	</tr>
+			</table>
+	
+    <%= f.submit 'Upload', :class => "submit_button" %>
+
+</fieldset>
+<% end %>
+</div>
+
+<%= link_to 'Back', electricity_uploads_path, :class => "back_button nohover" %>

@@ -1,0 +1,89 @@
+<%= render :partial => "shared/tabs" %>
+
+<div id="content_tabs">
+	
+<div id = "start_end_filters" class = "aesthetics">
+	<div id = "choose_start_end">Choose Time Period</div>
+
+		<% form_tag({:action => "index"}, {:id => "select_filters"}) do %>
+			Start date:
+			<%= text_field_tag :selected_start_date, @current_selected_start_date, :class => 'datepicker'  %>
+	&nbsp &nbsp		
+			End date:
+			<%= text_field_tag :selected_end_date, @current_selected_end_date, :class => 'datepicker' %>
+		&nbsp		
+			<%= submit_tag 'Filter', :class => "submit_button" %>
+	  <% end %>
+
+</div>
+
+
+	<%= render :partial => "shared/electricity_detail_graph_accordion"%>
+</div>
+ 
+</br>
+
+<!--<><>months_with_data<><><%= @months_with_data.to_s %><><>-->
+
+
+<script>
+
+$(document).ready(function() {
+
+	$("#electricity_detail_tab").attr("id","selected_tab")
+		
+	
+/***************Function calls for each graph********/
+
+	//day
+	<%=h @day_data %>
+	<%=h @day_categories %>
+	generate_column_graph('day_graph','Energy Usage by Day', data, categories)
+
+ 	//month
+	<%=h @month_data %>
+	<%=h @month_categories %>
+	generate_column_graph('month_graph','Energy Usage by Month', data, categories)
+
+ 	//year
+	<%=h @year_data %>
+	<%=h @year_categories %>
+	generate_column_graph('year_graph','Energy Usage by Year', data, categories)
+ 
+
+ 	//meter
+	<%=h @meter_data %>
+	<%=h @meter_categories %>
+	generate_column_graph('meter_graph','Energy Usage by Meters', data, categories)
+
+	
+	//meter groups	
+	<%=h @meter_group_data %>
+	<%=h @meter_group_categories %>	
+	generate_column_graph('metergroup_graph', 'Energy Usage by Meter Group' , data, categories)	
+	
+	//location
+	<%=h @location_data %>
+	<%=h @location_categories %>	
+	generate_column_graph('location_graph', 'Energy Usage by Location' , data, categories)
+
+	//region
+	<%=h @region_data %>
+	<%=h @region_categories %>	
+	generate_column_graph('region_graph', 'Energy Usage by Region' , data, categories)
+
+	//country
+	<%=h @country_data %>
+	<%=h @country_categories %>	
+	generate_column_graph('country_graph', 'Energy Usage by Country' , data, categories)
+
+});
+
+</script>
+
+
+
+
+
+
+

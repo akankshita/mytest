@@ -1,0 +1,23 @@
+
+	<%= link_to 'Add New User', new_user_path, :class => "new_button nohover" %>	
+		
+<table class = "list_table">
+  <tr>
+    <th>Name</th>
+<th>Show</th>
+<th>Edit</th>
+<th>Delete</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%=h user.username %></td>
+    <td><%= link_to 'Show', user, :class => "show_button nohover" %></td>
+    <td><%= link_to 'Edit', edit_user_path(user), :class => "edit_button nohover" %></td>
+    <td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete, :class => "delete_button nohover" %></td>
+  </tr>
+<% end %>
+</table>
+
+	
+</div>

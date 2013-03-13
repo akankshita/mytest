@@ -1,0 +1,14 @@
+<p>
+
+	<%=h @residual_emission.fuel_list.fuel_name %>
+	
+</p>
+
+<p>
+  <b>Tonnes c02:</b>
+  <%=h @residual_emission.tonnes_c02 %>
+</p>
+
+
+<%= link_to 'Edit', edit_residual_emission_path(@residual_emission), :class =>"edit_button" %> 
+<%= link_to 'Back', residual_emissions_path, :class => "back_button" %>

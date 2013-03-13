@@ -1,0 +1,24 @@
+<div class="crc-form">
+<fieldset id = "the_fieldset">
+	<legend><b>New Residual Emission</b></legend>
+
+<% form_for(@residual_emission) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+	<%= collection_select(:residual_emission, :fuel_list, @all_fuels, :id, :fuel_name ) %>
+	
+  </p>
+  <p>
+    <%= f.label :tonnes_c02 %><br />
+    <%= f.text_field :tonnes_c02 %>
+  </p>
+  
+    <%= f.submit 'Create', :class => 'submit_button' %>
+  
+<% end %>
+
+</fieldset>
+</div>
+
+<%= link_to 'Back', residual_emissions_path, :class => "back_button" %>

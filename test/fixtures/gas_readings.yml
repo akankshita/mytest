@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+gas_one:
+    gas_value: 2.3 
+    start_date: 2010-03-29
+    mid_date: 2010-04-15
+    end_date: 2010-04-29
+    user_id: 1
+
+gas_two:
+    gas_value: 4.2 
+    start_date: 2010-04-29
+    mid_date: 2010-05-15
+    end_date: 2010-05-29
+    user_id: 1
+
+gas_three:
+    gas_value: 6.2 
+    start_date: 2010-05-29
+    mid_date: 2010-06-15
+    end_date: 2010-06-29
+    user_id: 1
+    
+gas_four:
+    gas_value: 5.1 
+    start_date: 2010-06-29
+    mid_date: 2010-07-15
+    end_date: 2010-07-29
+    user_id: 1

@@ -1,0 +1,26 @@
+<div class="crc-form">
+	<fieldset>
+		<legend><b>Edit Premises</b></legend>
+<% form_for(@location) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </p>
+  <p>
+    <%= f.label :region %><br />
+    <%= f.text_field :region %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+</fieldset>
+  <p>
+    <%= f.submit 'Update', :class => "submit_button" %>
+  </p>
+<% end %>
+</div>
+<%= link_to 'Show', @location, :class => "show_button nohover" %> 
+<%= link_to 'Back', locations_path, :class => "back_button nohover" %>

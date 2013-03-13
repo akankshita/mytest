@@ -1,0 +1,18 @@
+<p>
+  <b>Country:</b>
+  <%=h @location.country %>
+</p>
+
+<p>
+  <b>Region:</b>
+  <%=h @location.region %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @location.node_entry.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_location_path(@location), :class => "edit_button nohover" %> 
+<%= link_to 'Back', locations_path, :class => "back_button nohover" %>

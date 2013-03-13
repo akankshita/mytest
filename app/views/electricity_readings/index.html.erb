@@ -1,0 +1,37 @@
+<%= link_to 'Enter New Electricity Reading', new_electricity_reading_path, :class => "show_button nohover" %>
+<br/>
+<br/>
+
+<div id = "paginate"> <%= will_paginate @electricity_readings %> </div>
+
+<table class="list_table">
+  <tr>
+    <th>Electricity value (kWh)</th>
+    <th>Timestamp</th>
+	<th>Meter</th>
+	<th>Electricity upload File name</th>
+	<th>User</th>
+	<th>Show</th>
+	<th>Edit</th>
+	<th>Delete</th>
+  </tr>
+
+<% @electricity_readings.each do |electricity_reading| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%=h format_decimal(electricity_reading.electricity_value) %></td>
+    <td><%=h TimeUtils.to_uk_s(electricity_reading.end_time) %></td>
+	<td><%=h electricity_reading.meter.node_entry.name %></td>
+	<% if electricity_reading.electricity_upload.nil? %>
+		<td>Manual input</td>
+	<% else %>
+		<td><%=h electricity_reading.electricity_upload.filename %></td>
+	<% end %>
+	<td><%=h electricity_reading.user.username %></td>
+	<td><%= link_to 'Show', electricity_reading, :class => "show_button nohover" %></td>
+	<td><%= link_to 'Edit', edit_electricity_reading_path(electricity_reading), :class => "edit_button nohover" %></td>
+    <td><%= link_to 'Delete', electricity_reading, :confirm => 'Are you sure?', :method => :delete, :class => "delete_button nohover" %></td>
+	
+  </tr>
+<% end %>
+</table>
+

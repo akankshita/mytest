@@ -1,0 +1,28 @@
+<div class="crc-form">
+
+<% form_for(@cca_exemption) do |f| %>
+  <%= f.error_messages %>
+
+
+<fieldset id = "the_fieldset">
+	<legend>CCA exemption details</legend>
+  <p>
+    <%= f.label :tui %><br />
+    <%= f.text_field :tui %>
+  </p>
+  <p>
+    <%= f.label :company_name %><br />
+    <%= f.text_field :company_name %>
+  </p>
+  <p>
+    <%= f.label :emissions_covered %><br />
+    <%= f.text_field :emissions_covered %>
+  </p>
+
+    <%= f.submit 'Save', :class => "submit_button" %>
+
+</fieldset>
+
+<% end %>
+</br>
+</div>

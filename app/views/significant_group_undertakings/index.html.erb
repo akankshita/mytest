@@ -1,0 +1,38 @@
+
+
+
+			<div class="crc-form">
+				<fieldset id = "the_fieldset">
+					<legend><b>Signifigant Group Undertakings</b></legend>
+	<%= link_to 'New significant group undertaking', new_significant_group_undertaking_path, :class => "new_button" %>		
+		
+<table class="list_table" style="width:700px">
+  <tr>
+    <th style="width:200px">Name</th>
+    <th>Carbon emitted</th>
+    <th>Show</th>
+	<th>Edit</th>
+	<th>Delete</th>
+  </tr>
+
+<% @significant_group_undertakings.each do |significant_group_undertaking| %>
+  <tr>
+    <td><%=h significant_group_undertaking.name %></td>
+    <td><%=h significant_group_undertaking.carbon_emitted %></td>
+    <td><%= link_to 'Show', significant_group_undertaking, :class => "show_button" %></td>
+    <td><%= link_to 'Edit', edit_significant_group_undertaking_path(significant_group_undertaking), :class => "edit_button" %></td>
+    <td><%= link_to 'Delete', significant_group_undertaking, :confirm => 'Are you sure?', :method => :delete, :class => "delete_button" %></td>
+  </tr>
+<% end %>
+</table>
+
+  <% form_for(:significant_group_undertakings_task, @significant_group_undertakings_task, :url => {:controller => "significant_group_undertakings", :action => "status"}, :html => {:id => "status_form"}) do |f| %>
+      <%= render :partial => "shared/status", :locals => {:task_status => @significant_group_undertakings_task.status} %>
+      <%= f.submit "Save", :class => 'submit_button' %>
+  <% end %>
+
+</fieldset>
+</div>
+
+<%= link_to 'Back', annual_reports_path, :class => "back_button"%>
+

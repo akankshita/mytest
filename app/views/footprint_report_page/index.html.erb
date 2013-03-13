@@ -1,0 +1,73 @@
+<div class="crc-form">
+<fieldset id = "the_fieldset">
+	<legend><b>Footprint Report Tasks</b></legend>
+		
+	<br/>	
+		
+<table id="footprint_report_table">
+
+<tr>
+<!--td><%#= link_to 'Designated Changes', edit_designated_change_path(@footprint_report.designated_changes_task.designated_changes.first), :class => 'footprint_report_button' unless @footprint_report.designated_changes_task.nil? %> </td-->
+<td><%= link_to 'Designated Changes', @footprint_report.designated_changes_task.designated_changes.first, :class => 'footprint_report_button' unless @footprint_report.designated_changes_task.nil? %> </td>
+<td><%= status_colour_function @footprint_report.designated_changes_task.status unless @footprint_report.designated_changes_task.nil? %> </td>
+<td><a id="popup">More Info<span><%=h @footprint_report.designated_changes_task.more_info unless @footprint_report.designated_changes_task.nil? %> </span></a> </td>
+
+</tr>
+
+
+
+<tr>
+<td><%= link_to 'CCA Exemptions', cca_exemptions_path, :class => 'footprint_report_button' unless @footprint_report.cca_exemptions_task.nil? %> </td>
+<td><%= status_colour_function @footprint_report.cca_exemptions_task.status unless @footprint_report.cca_exemptions_task.nil? %> </td>
+<td><a id="popup">More Info<span><%=h @footprint_report.cca_exemptions_task.more_info unless @footprint_report.cca_exemptions_task.nil? %> </span></a> </td>
+</tr>
+
+
+
+
+<tr>
+<td><%= link_to 'Re-confirm CCA Exemptions', edit_reconfirmation_exemption_task_path( @footprint_report.reconfirmation_exemption_task), :class => "footprint_report_button" unless @footprint_report.reconfirmation_exemption_task.nil? %> </td>
+<td><%= status_colour_function @footprint_report.reconfirmation_exemption_task.status unless @footprint_report.reconfirmation_exemption_task.nil? %> </td>
+<td><a id="popup">More Info<span><%=h @footprint_report.reconfirmation_exemption_task.more_info unless @footprint_report.reconfirmation_exemption_task.nil? %> </span></a> </td>
+</tr>
+
+
+
+
+<tr>
+<td><%= link_to 'Energy Supply', edit_energy_metrics_task_path(@footprint_report.energy_metrics_task), :class => "footprint_report_button" unless @footprint_report.energy_metrics_task.nil?  %> </td>
+<td><%= status_colour_function @footprint_report.energy_metrics_task.status unless @footprint_report.energy_metrics_task.nil? %> </td>
+<td><a id="popup">More Info<span><%=h @footprint_report.energy_metrics_task.more_info unless @footprint_report.energy_metrics_task.nil? %> </span></a> </td>
+</tr>
+
+
+
+
+<tr>
+<td><%= link_to 'ETS and CCA Metrics', edit_emission_metrics_task_path(@footprint_report.emission_metrics_task), :class => "footprint_report_button" unless @footprint_report.emission_metrics_task.nil? %> </td>
+<td><%= status_colour_function @footprint_report.emission_metrics_task.status unless @footprint_report.emission_metrics_task.nil? %> </td>
+<td><a id="popup">More Info<span><%=h @footprint_report.emission_metrics_task.more_info unless @footprint_report.emission_metrics_task.nil?  %> </span></a> </td>
+</tr>
+
+
+
+
+<tr>
+<td><%= link_to 'Residual Emissions', residual_emissions_path, :class => "footprint_report_button" unless @footprint_report.residual_emissions_task.nil? %> </td>
+<td><%= status_colour_function @footprint_report.residual_emissions_task.status unless @footprint_report.residual_emissions_task.nil? %> </td>
+<td><a id="popup">More Info<span><%=h @footprint_report.residual_emissions_task.more_info unless @footprint_report.residual_emissions_task.nil? %> </span></a> </td>
+</tr>
+
+
+
+
+<tr>
+<td><%= link_to 'Other Fuels', other_fuels_path, :class => "footprint_report_button" unless @footprint_report.other_fuels_task.nil? %> </td>
+<td><%= status_colour_function @footprint_report.other_fuels_task.status unless @footprint_report.other_fuels_task.nil? %> </td>
+<td><a id="popup">More Info<span><%=h @footprint_report.other_fuels_task.more_info unless @footprint_report.other_fuels_task.nil?    %> </span></a> </td>
+</tr>
+
+</fieldset>
+</div>
+
+</table>
