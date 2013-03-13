@@ -26,7 +26,7 @@ class GasDetailController < ApplicationController
 ####Comparison by day of week
 	values = Array.new
 	names  = Array.new
-	result = GasReading.find_by_sql("select sum(gas_value) as value, extract(dow from end_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by dow order by dow;")
+	result = GasReading.find_by_sql("select sum(gas_value) as value, extract(dow from end_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
 	#select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
@@ -51,7 +51,7 @@ class GasDetailController < ApplicationController
     values = Array.new
     names = Array.new
 
-    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(month from end_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by month order by month;")
+    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(month from end_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
     months = FilterUtils.get_month_hash
 
     result.each do |k|
@@ -63,6 +63,7 @@ class GasDetailController < ApplicationController
     @months_with_data = values.size
 
     @month_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+   # render :text => @month_data.inspect and return false
     @month_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 ####by year 
@@ -79,6 +80,7 @@ class GasDetailController < ApplicationController
 
     @year_data = StringUtils.generate_json_array_without_timestamp(values, "data")
     #render :text => @year_data.inspect and return false
+    
     @year_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 
@@ -94,6 +96,7 @@ class GasDetailController < ApplicationController
     end
 
     @meter_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+    
     @meter_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 
@@ -125,6 +128,7 @@ class GasDetailController < ApplicationController
     end
 
     @meter_group_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+    
     @meter_group_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 
@@ -166,6 +170,7 @@ class GasDetailController < ApplicationController
     end
 
     @location_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+    
     @location_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 
@@ -214,6 +219,7 @@ class GasDetailController < ApplicationController
     end
 
     @region_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+    #render :text => @region_data.inspect and return false
     @region_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 
