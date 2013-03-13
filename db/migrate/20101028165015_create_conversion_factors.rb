@@ -11,7 +11,11 @@ class CreateConversionFactors < ActiveRecord::Migration
     elec_id = SourceType.first(:conditions => "name = 'Electrical Readings'").id
     gas_id = SourceType.first(:conditions => "name = 'Gas Readings'").id
     
+<<<<<<< HEAD
     rates = [0.77651,0.75631,0.70589,0.62491,0.61475,0.58443,0.57254,0.52802,0.52947,0.49652,0.52705,0.54469,0.52643,0.54218,0.54294,0.53098,0.56113,0.54820,0.54284,0.54284,0.54284,0.54284,0.54284]  #DEBT: FL - currently (10,11,2010)there are not official values for 2009/2010 so im simply repeating 2008 twice. This should be updated	
+=======
+    rates = [0.77651,0.75631,0.70589,0.62491,0.61475,0.58443,0.57254,0.52802,0.52947,0.49652,0.52705,0.54469,0.52643,0.54218,0.54294,0.53098,0.56113,0.54820,0.54284,0.54284,0.54284,0.48152]  #DEBT: FL - currently (10,11,2010)there are not official values for 2009/2010 so im simply repeating 2008 twice. This should be updated	
+>>>>>>> 4f01526f0c39378959228d5260fc233cf2379243
 	  starting_year = 1990
 	
 	rates.each do |r|

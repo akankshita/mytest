@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4f01526f0c39378959228d5260fc233cf2379243
 public/document_uploads/*
 public/electricity_uploads/*
 
@@ -24,6 +27,7 @@ script/logindb
 doc/.pgpass
 db/migrate/20101102192704_add_more_info_data.rb
 lib/tasks/application.rake
+<<<<<<< HEAD
 
 *.gem
 *.rbc
@@ -43,3 +47,5 @@ tmp
 .yardoc
 _yardoc
 doc/
+=======
+>>>>>>> 4f01526f0c39378959228d5260fc233cf2379243
