@@ -9,7 +9,7 @@ class GasDetailController < ApplicationController
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
 
       start_date = TimeUtils.parse_european_date(params[:selected_start_date])
-      end_date = TimeUtils.parse_european_date(params[:selected_end_date])
+      end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
 
       result = Array.new
       errors = Array.new
@@ -26,11 +26,7 @@ class GasDetailController < ApplicationController
 ####Comparison by day of week
 	values = Array.new
 	names  = Array.new
-	result = GasReading.find_by_sql("select sum(gas_value) as value, extract(dow from end_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
-	#select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
-  #render :text =>  select_string.inspect and return false
-	
-	#result = ElectricityReading.find_by_sql(select_string)
+	result = GasReading.find_by_sql("select sum(gas_value) as value, extract(dow from start_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
 	days = FilterUtils.get_days_of_week_hash
 	 
 	result.each do |k|
@@ -50,8 +46,7 @@ class GasDetailController < ApplicationController
 ####Comparison by Months
     values = Array.new
     names = Array.new
-
-    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(month from end_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
+    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(month from start_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
     months = FilterUtils.get_month_hash
 
     result.each do |k|
@@ -63,7 +58,7 @@ class GasDetailController < ApplicationController
     @months_with_data = values.size
 
     @month_data = StringUtils.generate_json_array_without_timestamp(values, "data")
-   # render :text => @month_data.inspect and return false
+#    render :text => @month_data.inspect and return false
     @month_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 ####by year 
@@ -71,7 +66,7 @@ class GasDetailController < ApplicationController
     names = []
     result=[]
 #render :text => end_date.inspect and return false
-    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(year from end_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")
+    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")
 
     result.each do |k|
       values.push(k.value)
@@ -89,13 +84,15 @@ class GasDetailController < ApplicationController
     values = Array.new
     names = Array.new
 
-    result = GasReading.all(:select => "sum(gas_value) AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
+    result = GasReading.all(:select => "sum(gas_value) AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
     result.each do |k|
       values.push(k.sum)
       names.push("'"+k.name+"'")
     end
 
     @meter_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+    #render :text =>@meter_data.inspect and return false
+    
     
     @meter_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
@@ -128,7 +125,7 @@ class GasDetailController < ApplicationController
     end
 
     @meter_group_data = StringUtils.generate_json_array_without_timestamp(values, "data")
-    
+    #render :text => @meter_group_data.inspect and return false
     @meter_group_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 
@@ -170,7 +167,7 @@ class GasDetailController < ApplicationController
     end
 
     @location_data = StringUtils.generate_json_array_without_timestamp(values, "data")
-    
+    #render :text => @location_data.inspect and return false
     @location_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 

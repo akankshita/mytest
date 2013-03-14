@@ -10,7 +10,7 @@ def index
   	  end_date = Date.civil(3000,1,1).to_s(:db)
    else
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
-      end_date = TimeUtils.parse_european_date(params[:selected_end_date])
+      end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
    end
 
    #start date
@@ -37,7 +37,7 @@ def index
 	values = Array.new
 	names  = Array.new
 	
-	select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by dow order by dow;"
+	select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
 	result = ElectricityReading.find_by_sql(select_string)
@@ -61,7 +61,7 @@ def index
 	values= []
 	names=[]
 #render :text => calc_string.inspect and return false
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from end_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by month order by month;")
+	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from start_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
 	months = FilterUtils.get_month_hash
 	 
 	result.each do |k|
@@ -74,6 +74,7 @@ def index
   @months_with_data = values.size
 
 	@month_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+	#render :text =>  @month_data .inspect and return false
 	@month_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 ####by year 
@@ -81,7 +82,7 @@ def index
 	names = []
 	result=[]
 
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from end_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")	
+	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from start_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")	
 	 
 	result.each do |k|	
 		values.push( k.value )		
@@ -226,6 +227,7 @@ def index
 	end
 
 	@region_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+	render :text =>  @region_data .inspect and return false
 	@region_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")		
 
 
