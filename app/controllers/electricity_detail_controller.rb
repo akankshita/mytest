@@ -227,7 +227,7 @@ def index
 	end
 
 	@region_data = StringUtils.generate_json_array_without_timestamp(values, "data")
-	render :text =>  @region_data .inspect and return false
+	#render :text =>  @region_data .inspect and return false
 	@region_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")		
 
 
