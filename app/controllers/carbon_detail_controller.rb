@@ -8,7 +8,7 @@ class CarbonDetailController < ApplicationController
   	  end_date = Date.civil(3000,1,1).to_s(:db)
    else
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
-      end_date = TimeUtils.parse_european_date(params[:selected_end_date])
+      end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
    end
 
    #start date
@@ -35,7 +35,7 @@ class CarbonDetailController < ApplicationController
 	values = Array.new
 	names  = Array.new
 	
-	select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by dow order by dow;"
+	select_string = " select #{calc_string} as value, extract(dow from start_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
 	result = ElectricityReading.find_by_sql(select_string)
@@ -59,7 +59,7 @@ class CarbonDetailController < ApplicationController
 	values= []
 	names=[]
 #render :text => calc_string.inspect and return false
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from end_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by month order by month;")
+	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from start_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
 	months = FilterUtils.get_month_hash
 	 
 	result.each do |k|
@@ -79,7 +79,7 @@ class CarbonDetailController < ApplicationController
 	names = []
 	result=[]
 
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from end_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")	
+	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from start_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")	
 	 
 	result.each do |k|	
 		values.push( k.value )		
@@ -95,7 +95,7 @@ class CarbonDetailController < ApplicationController
 	names = []
 	result=[]
 	
-	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
+	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
 	result.each do |k|
 		values.push(k.sum)				
 		names.push("'"+k.name+"'")
@@ -284,7 +284,7 @@ class CarbonDetailController < ApplicationController
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
 
       start_date = TimeUtils.parse_european_date(params[:selected_start_date])
-      end_date = TimeUtils.parse_european_date(params[:selected_end_date])
+      end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
 
       result = Array.new
       errors = Array.new
@@ -301,7 +301,7 @@ class CarbonDetailController < ApplicationController
 ####Comparison by day of week
 	values = Array.new
 	names  = Array.new
-	result = GasReading.find_by_sql("select sum(gas_value) as value, extract(dow from end_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by dow order by dow;")
+	result = GasReading.find_by_sql("select sum(gas_value) as value, extract(dow from start_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
 	#select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
@@ -326,7 +326,7 @@ class CarbonDetailController < ApplicationController
     values = Array.new
     names = Array.new
 
-    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(month from end_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by month order by month;")
+    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(month from start_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
     months = FilterUtils.get_month_hash
 
     result.each do |k|
@@ -345,7 +345,7 @@ class CarbonDetailController < ApplicationController
     names = []
     result=[]
 #render :text => end_date.inspect and return false
-    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(year from end_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")
+    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")
 
     result.each do |k|
       values.push(k.value)
@@ -362,7 +362,7 @@ class CarbonDetailController < ApplicationController
     values = Array.new
     names = Array.new
 
-    result = GasReading.all(:select => "sum(gas_value) AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
+    result = GasReading.all(:select => "sum(gas_value) AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
     result.each do |k|
       values.push(k.sum)
       names.push("'"+k.name+"'")
@@ -546,7 +546,7 @@ class CarbonDetailController < ApplicationController
   	  end_date = Date.civil(3000,1,1).to_s(:db)
    else
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
-      end_date = TimeUtils.parse_european_date(params[:selected_end_date])
+      end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
    end
 
    #start date
@@ -554,7 +554,7 @@ class CarbonDetailController < ApplicationController
   	 start_date = Date.civil(1000,1,1).to_s(:db)
   else
     @current_selected_start_date = FilterUtils.handle_textfield_memory(params[:selected_start_date])
-    start_date = TimeUtils.parse_european_date(params[:selected_start_date])
+    start_date = TimeUtils.parse_european_date(params[:selected_start_date]) 
     
     result = Array.new
     errors = Array.new
@@ -572,7 +572,7 @@ class CarbonDetailController < ApplicationController
 	values_ele = Array.new
 	names  = Array.new
 	
-	select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by dow order by dow;"
+	select_string = " select #{calc_string} as value, extract(dow from start_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
 	result = ElectricityReading.find_by_sql(select_string)
@@ -594,7 +594,7 @@ class CarbonDetailController < ApplicationController
  ####Comparison by day of week
 	values_gas = Array.new
 	names  = Array.new
-	result = GasReading.find_by_sql("select sum(gas_value) as value, extract(dow from end_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by dow order by dow;")
+	result = GasReading.find_by_sql("select sum(gas_value) as value, extract(dow from start_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
 	#select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
@@ -620,7 +620,7 @@ class CarbonDetailController < ApplicationController
 	values_ele= []
 	names=[]
 #render :text => calc_string.inspect and return false
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from end_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by month order by month;")
+	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from start_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
 	months = FilterUtils.get_month_hash
 	 
 	result.each do |k|
@@ -639,7 +639,7 @@ class CarbonDetailController < ApplicationController
     values_gas = Array.new
     names = Array.new
 
-    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(month from end_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by month order by month;")
+    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(month from start_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
     months = FilterUtils.get_month_hash
 
     result.each do |k|
@@ -662,7 +662,7 @@ class CarbonDetailController < ApplicationController
 	names = []
 	result=[]
 
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from end_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")	
+	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from start_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")	
 	 
 	result.each do |k|	
 		values_ele.push( k.value )		
@@ -676,7 +676,7 @@ class CarbonDetailController < ApplicationController
     names = []
     result=[]
 #render :text => end_date.inspect and return false
-    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(year from end_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")
+    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")
 
     result.each do |k|
       values_gas.push(k.value)
@@ -694,7 +694,7 @@ class CarbonDetailController < ApplicationController
 	names = []
 	result=[]
 	
-	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
+	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
 	result.each do |k|
 		values_ele.push(k.sum)				
 		names.push("'"+k.name+"'")
@@ -707,7 +707,7 @@ class CarbonDetailController < ApplicationController
     values_gas = Array.new
     names = Array.new
 
-    result = GasReading.all(:select => "sum(gas_value) AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
+    result = GasReading.all(:select => "sum(gas_value) AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
     result.each do |k|
       values_gas.push(k.sum)
       names.push("'"+k.name+"'")
