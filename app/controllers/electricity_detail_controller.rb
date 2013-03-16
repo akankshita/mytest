@@ -98,13 +98,14 @@ def index
 	names = []
 	result=[]
 	
-	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
+	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
 	result.each do |k|
 		values.push(k.sum)				
 		names.push("'"+k.name+"'")
 	end
 
 	@meter_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+	#render :text => @meter_data.inspect and return false
 	@meter_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 	
 	
@@ -136,6 +137,7 @@ def index
 	end
 	
   @meter_group_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+  #render :text => @meter_group_data.inspect and return false
 	@meter_group_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")		
 
 

@@ -63,6 +63,7 @@ class ConversionFactorsController < ApplicationController
 
   # PUT /conversion_factors/1  
   def update
+	#render :text => params.inspect and return false
 	  if(@conversion_factor.update_attributes(params[:conversion_factor]))
       redirect_to(conversion_factors_path, :notice => 'ConversionFactor was successfully updated.')
     else

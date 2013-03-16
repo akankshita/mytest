@@ -74,7 +74,7 @@ function generate_column_ggraph(renderto, thetitle, data, categories)
 	 tooltip: {
          formatter: function() {
             return ''+
-               Highcharts.numberFormat(this.y, 3) +' kW hours';
+               Highcharts.numberFormat(this.y, 3) +' kg CO2';
          }
       },
     

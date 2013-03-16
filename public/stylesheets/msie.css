@@ -326,7 +326,7 @@ li,ul /* korekce pro IE6 */
    clear:left;
    float:left;
    list-style:none;
-   margin-left:150px;
+   margin-left:50px;
    text-align:center;
    margin-bottom:-1px;
 }
@@ -712,6 +712,7 @@ li,ul /* korekce pro IE6 */
 	height:auto;
 	padding:5px;
 	margin-bottom:5px;
+	margin-top:15px;
 	-pie-background: linear-gradient(#F5F0DB,#E4ECE3 );
 	border-radius:8px;
 	behavior: url('/stylesheets/PIE.htc');	

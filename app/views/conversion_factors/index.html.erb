@@ -5,85 +5,112 @@
 </div>
 
 <h3 style="margin-top:0px; margin-bottom:0px">Electricity</h3>
-
 <table class="list_table">
   <tr>
-    <th>Conversion factor</th>
-   	<th>Year</th>
-    <th>Official or Custom value </th>	
-	<th>Edit</th>
-    <th>Show</th>
-</tr>
-  
-<% @elec_conversion_factors.each do |cfs| %>  
+	<td>
+	  <table class="list_table">
+		<tr>
+		  <th width="15%">Conversion factor</th>
+		  <!--th width="20%">Country</th-->
+		  <th width="9%">Year</th>
+		  <th width="26%">Official or Custom value </th>	
+		  <th width="15%">Edit</th>
+		  <th width="15%">Delete</th>
+		</tr>		
+	  </table>
+	</td>
+  </tr>
+  <tr>
+	<td>
+	  <div style="height: 250px;overflow: auto">
+		<table class="list_table">
+		  <% @elec_conversion_factors.each do |cfs| %>
+			<tr class="<%= cycle('odd','even') %>"  >
+			  <td width="15%"> <%=h cfs.rate %> </td>
+			  <!--td width="20%"><%#= collection_select("country_id","", Country.all, :id, :name, {:selected => cfs.country_id},{:disabled => true}) %></td-->
+			  <td width="9%"> <%=h cfs.year %> </td>
+			  <td width="26%"> Custom </td>
+			  <td width="15%"><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button"%>      	</td>  		
+			  <td width="15%"><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
+			</tr>
+		  <%end%>
+		</table>
+	  </div>
+	</td>
+  </tr>
+</table>
+
 
 <!--	
-	  <% if cfs.official %>
-	  	<tr class="<%= cycle('odd','even') %>">
-		<td> <%=h cfs.rate %> </td>
-		<td> <%=h cfs.year %> </td>
+	  <%# if cfs.official %>
+	  	<tr class="<%#= cycle('odd','even') %>">
+		<td> <%#=h cfs.rate %> </td>
+		<td> <%#=h cfs.year %> </td>
 		<td> Official </td>		
 		</tr>
-	  <% else %>
+	  <%# else %>
 	  <tr class= "red_row" >
-        <td> <%=h cfs.rate %> </td>
-		<td> <%=h cfs.year %> </td>
+        <td> <%#=h cfs.rate %> </td>
+		<td> <%#=h cfs.year %> </td>
 		<td> Custom </td>
-        <td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button"%>      	</td>  		
-    	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
+        <td><%#= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button"%>      	</td>  		
+    	<td><%#= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
     </tr>
-      <% end %>
+      <%# end %>
 -->
-  <tr class="<%= cycle('odd','even') %>">
-	<td> <%=h cfs.rate %> </td>
-	<td> <%=h cfs.year %> </td>
-	<td> Custom </td>
-	<td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button"%>      	</td>  		
-	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
-  </tr>
-<%end%>
-</table>
 
 <h3>Gas</h3>
 
 <table class="list_table">
   <tr>
-    <th>Conversion factor</th>
-   	<th>Year</th>
-    <th>Official or Custom value </th>
-	<th>Edit</th>
-    <th>Show</th>
+	<td>
+	  <table class="list_table">
+		<tr>
+		  <th width="15%">Conversion factor</th>
+		  <!--th width="20%">Country</th-->
+		  <th width="9%">Year</th>
+		  <th width="26%">Official or Custom value </th>	
+		  <th width="15%">Edit</th>
+		  <th width="15%">Delete</th>
+		</tr>		
+	  </table>
+	</td>
   </tr>
-  
-<% @gas_conversion_factors.each do |cfs| %>  
-
+  <tr>
+	<td>
+	  <div style="height: 250px;overflow: auto">
+		<table class="list_table">
+		  <% @gas_conversion_factors.each do |cfs| %>
+			<tr class="<%= cycle('odd','even') %>"  >
+			  <td width="15%"> <%=h cfs.rate %> </td>
+			  <!--td width="20%"><%#= collection_select("country_id","", Country.all, :id, :name, {:selected => cfs.country_id},{:disabled => true}) %></td-->
+			  <td width="9%"> <%=h cfs.year %> </td>
+			  <td width="26%"> Custom </td>
+			  <td width="15%"><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button"%>      	</td>  		
+			  <td width="15%"><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
+			</tr>
+		  <%end%>
+		</table>
+	  </div>
+	</td>
+  </tr>
+</table>
 <!--	
-	  <% if cfs.official %>
-	  	<tr class="<%= cycle('odd','even') %>">
-		<td> <%=h cfs.rate %> </td>
-		<td> <%=h cfs.year %> </td>
+	  <%# if cfs.official %>
+	  	<tr class="<%#= cycle('odd','even') %>">
+		<td> <%#=h cfs.rate %> </td>
+		<td> <%#=h cfs.year %> </td>
 		<td> Official </td>		
 		</tr>
-	  <% else %>
+	  <%# else %>
   
 	  <tr class= "red_row">
-        <td> <%=h cfs.rate %> </td>
-		<td> <%=h cfs.year %> </td>
+        <td> <%#=h cfs.rate %> </td>
+		<td> <%#=h cfs.year %> </td>
 		<td> Custom </td>		
-    	<td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button" %> </td>   		
-    	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
+    	<td><%#= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button" %> </td>   		
+    	<td><%#= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
     </tr>
 
-      <% end %>
+      <%# end %>
 -->
-  <tr class="<%= cycle('odd','even') %>">
-	<td> <%=h cfs.rate %> </td>
-	<td> <%=h cfs.year %> </td>
-	<td> Custom </td>		
-	<td><%= link_to 'Edit', edit_conversion_factor_path(cfs), :class=>"edit_button" %> </td>   		
-	<td><%= link_to 'Delete', cfs, :confirm => 'Are you sure?', :method => :delete, :class=>"delete_button" %></td>
-  </tr>
-<%end%>
-</table>
-
-
