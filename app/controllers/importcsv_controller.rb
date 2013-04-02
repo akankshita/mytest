@@ -31,13 +31,21 @@ class ImportcsvController < ApplicationController
     @gmeter << gmeter_deatil.meter_ip
     end
 
+   # ActiveRecord::Base.establish_connection(
+    #  :adapter  => "postgresql",
+     # :host     => "localhost",
+      #:username => "barringtonss",
+      #:password =>"barringtonss", 
+      #:database => "emm-phase2_development"
+    #)
     ActiveRecord::Base.establish_connection(
       :adapter  => "postgresql",
-      :host     => "localhost",
-      :username => "barringtonss",
-      :password =>"barringtonss", 
-      :database => "emm-phase2_development"
-    )
+      :host     => "ec2-54-243-238-144.compute-1.amazonaws.com",
+      :port => 5432,
+      :username => "mbqnxvumycnhxs",
+      :password =>"lC_HYsKxXsJerxoLpR_a5sMAwg", 
+      :database => "d89hd8fvckog43"
+    )    
     csvarray = CSV.read("test.csv")
     total_count = csvarray.length-1
     csvinfo= {}
