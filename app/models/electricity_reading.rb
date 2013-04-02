@@ -4,7 +4,7 @@ class ElectricityReading < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 50
 
-  validates_presence_of :meter, :start_time, :end_time, :electricity_value
+  #validates_presence_of :meter, :start_time, :end_time, :electricity_value
 
   belongs_to :electricity_upload
   belongs_to :meter

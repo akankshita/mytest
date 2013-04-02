@@ -21,6 +21,8 @@ class StatusHomeController < ApplicationController
       jstring2 = "["
 
       #this query assumes the following two views: charges_day_monthly, charges_night_monthly
+      #aka = "select (charges_day_monthly.value*tariffs.day_rate + charges_night_monthly.value*tariffs.night_rate) as value, charges_day_monthly.X as X, charges_day_monthly.Y as Y from charges_day_monthly, charges_night_monthly, tariffs where charges_day_monthly.X = charges_night_monthly.X and charges_day_monthly.Y = charges_night_monthly.Y order by Y,X asc;"
+      #render :text => aka.inspect and return false
       rows = ElectricityReading.find_by_sql("select (charges_day_monthly.value*tariffs.day_rate + charges_night_monthly.value*tariffs.night_rate) as value, charges_day_monthly.X as X, charges_day_monthly.Y as Y from charges_day_monthly, charges_night_monthly, tariffs where charges_day_monthly.X = charges_night_monthly.X and charges_day_monthly.Y = charges_night_monthly.Y order by Y,X asc;")
       month_array = FilterUtils.get_month_array
       #build jstring

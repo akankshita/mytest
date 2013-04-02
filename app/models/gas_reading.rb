@@ -4,7 +4,7 @@ class GasReading < ActiveRecord::Base
   attr_reader :per_page
   @@per_page = 10
   
-  validates_presence_of :gas_value, :start_time, :end_time, :meter
+  #validates_presence_of :gas_value, :start_time, :end_time, :meter
   validates_numericality_of :gas_value    
   
   belongs_to :user

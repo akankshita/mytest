@@ -66,7 +66,7 @@ class GasDetailController < ApplicationController
     names = []
     result=[]
 #render :text => end_date.inspect and return false
-    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date} 23:30'  group by year order by year;")
+    result = GasReading.find_by_sql("select sum(gas_value) as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")
 
     result.each do |k|
       values.push(k.value)

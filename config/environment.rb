@@ -48,14 +48,29 @@ Rails::Initializer.run do |config|
 
 end
 
-ActionMailer::Base.smtp_settings = {
+=begin
+ActionMailer::Base.smtp_settings = {  
+  :address              => "smtp.gmail.com",  
+  :port                 => 587,  
+  :domain               => "gmail.com",  
+  :user_name            => "sandboxtest1987",  
+  :password             => "sandboxtest1987",  
+  :authentication       => "plain",  
+  :enable_starttls_auto => true  
+}
+=end
+ ActionMailer::Base.smtp_settings = {
     :address => "mail.e-missionmanagement.com",
     :port => 587,
     :domain => "e-missionmanagement.com",
     :authentication => :login,
     :user_name => "support@e-missionmanagement.com",
     :password => "harry1potter2"
-}
+ }
 
+AWS::S3::Base.establish_connection!(
+  :access_key_id     => 'AKIAJ7FKYZFHJPZ2EPOQ',
+  :secret_access_key => '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'
+)
 #TODO BoD figure out why this is happening and if we can get rid of it
 require 'will_paginate'

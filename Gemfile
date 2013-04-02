@@ -12,7 +12,7 @@ gem "cancan"
 gem "authlogic"
 gem "rdoc"
 gem "td"
-gem 'newrelic_rpm'  
+gem 'newrelic_rpm'
 
 group :production do
   gem "ruby-debug"
