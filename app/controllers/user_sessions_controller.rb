@@ -1,11 +1,6 @@
 class UserSessionsController < ApplicationController
   def new
-    @user = User.new
-    @user.username="sdl_house"
-    @user.email="jh.looney@sustainabledirection.com"
-    @user.password="GL214522"
-    @user.password_confirmation="GL214522"
-    @user.save
+
     @user_session = UserSession.new
   end
 
