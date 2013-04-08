@@ -48,11 +48,11 @@ class ImportcsvController < ApplicationController
 =end 
   ActiveRecord::Base.establish_connection(
       :adapter  => "postgresql",
-      :host     => "ec2-54-243-238-144.compute-1.amazonaws.com",
+      :host     => "ec2-54-243-180-196.compute-1.amazonaws.com",
       :port => 5432,
-      :username => "mbqnxvumycnhxs",
-      :password =>"lC_HYsKxXsJerxoLpR_a5sMAwg", 
-      :database => "d89hd8fvckog43"
+      :username => "lhyveujqjniwpk",
+      :password =>"LHH3vRQcA6Bk3xMhPiUn6ZP3H6", 
+      :database => "d5fad1g8mpuaha"
     )
    
     csvarray = CSV.read("test.csv")
