@@ -7,20 +7,24 @@ class ImportcsvController < ApplicationController
 
   
   def index
+  #  aka ="20130405"
+   # @aka1 = aka.split('');
+    #render :text => aka[6..7].inspect and return false
    # @user = 'akankshita.satapathy@php2india.com'
    # Notifier.deliver_welcome()
     #Notifier.welcome('akankshita.satapathy@php2india.com').deliver
     #render :text => '====' and return false
-    @cid = '001'#customer.customer_id
-    $tdate = Time.now.strftime("%d-%m-%Y")
-    $fname = @cid +'/'+$tdate+'.csv'
+    @cid = '04420001'#customer.customer_id
+    $tdate = Time.now.strftime("%Y%m%d")#Time.now.strftime("%d-%m-%Y")
+   # $fname = @cid +'/'+$tdate+'.csv'
+   $fname ='20130406.csv'
     #@csv_info = AWS::S3::Bucket.objects('emissionmanagement',:prefix => $fname )
     open('test.csv', 'w') do |newfile|
-      AWS::S3::S3Object.stream($fname,'emissionmanagement') do |chunk|
+      AWS::S3::S3Object.stream($fname,'meter-readings-data') do |chunk|
         newfile.write chunk
       end
     end
-    @emeter = []
+=begin    @emeter = []
     @gmeter = []
     @emeter_deatils = Meter.find(:all,:conditions => ["source_type_id = 1"])
     @emeter_deatils.each do |emeter_deatil|
@@ -30,22 +34,27 @@ class ImportcsvController < ApplicationController
     @gmeter_deatils.each do |gmeter_deatil|
     @gmeter << gmeter_deatil.meter_ip
     end
+=end
+@emeter = ["357322043223012"]
 
-   # ActiveRecord::Base.establish_connection(
-    #  :adapter  => "postgresql",
-     # :host     => "localhost",
-      #:username => "barringtonss",
-      #:password =>"barringtonss", 
-      #:database => "emm-phase2_development"
-    #)
-    ActiveRecord::Base.establish_connection(
+
+=begin     ActiveRecord::Base.establish_connection(
+      :adapter  => "postgresql",
+      :host     => "localhost",
+      :username => "barringtonss",
+      :password =>"barringtonss", 
+      :database => "emm-phase2_development"
+    )
+=end 
+  ActiveRecord::Base.establish_connection(
       :adapter  => "postgresql",
       :host     => "ec2-54-243-238-144.compute-1.amazonaws.com",
       :port => 5432,
       :username => "mbqnxvumycnhxs",
       :password =>"lC_HYsKxXsJerxoLpR_a5sMAwg", 
       :database => "d89hd8fvckog43"
-    )    
+    )
+   
     csvarray = CSV.read("test.csv")
     total_count = csvarray.length-1
     csvinfo= {}
@@ -60,30 +69,21 @@ class ImportcsvController < ApplicationController
     @csvinfo = Csvinfo.new(csvinfo)
     if @csvinfo.save
 
-      @table = []
-      File.open("test.csv") do|f|
-        columns = f.readline.chomp.split(',')
-        until f.eof?
-          row = f.readline.chomp.split(',')
-          row = columns.zip(row).flatten #build hash from array
-          @table << Hash[*row]
-        end
-      end
 
  #render :text => @table.inspect and return false
-      @table.each do |row|
+      CSV.foreach("test.csv") do |row|
      # CSV.foreach("test.csv", {:headers => true, :header_converters => :symbol}) do |row|
        # render :text => row.inspect and return false
-     #   @all_arr = row.split(',')
-      #  render :text => row.inspect and return false
+       @all = row.split(',')[0]
+       # render :text =>   @all_arr@all[10].inspect and return false
         graph_data = {}
         graph_data['csvinfo_id'] = @csvinfo.id
-        graph_data['meter_ip'] = row['Meter_IP']#"1.1.1.1"#@all_arr[0]
-        graph_data['meter_id'] = row['Meter_id']#@all_arr[5]
-        graph_data['usuage_value'] = row['Kwh_equivalents']#@all_arr[1]
-        graph_data['start_time'] = row['Start_time']#@all_arr[6]
-        graph_data['end_time'] = row['End_time']#@all_arr[2]
-        graph_data['kwh'] = row['Kwh_equivalents']#"100"#@all_arr[5]
+        graph_data['meter_ip'] = @all[10]#row['Meter_IP']#"1.1.1.1"#@all_arr[0]
+        graph_data['meter_id'] = @all[9]#row['Meter_id']#@all_arr[5]
+        graph_data['usuage_value'] =@all[0] #row['Kwh_equivalents']#@all_arr[1]
+        graph_data['start_time'] =@all[1][0..3]+'-'+@all[1][4..5] + '-'+ @all[1][6..7]+ ' '+ @all[2]+':'+@all[3] +':00'#row['Start_time']#@all_arr[6]
+        graph_data['end_time'] = @all[4][0..3]+'-'+@all[4][4..5] + '-'+ @all[4][6..7]+ ' '+ @all[5]+':'+@all[6] +':00'#row['End_time']#@all_arr[2]
+        graph_data['kwh'] = @all[7]#row['Kwh_equivalents']#"100"#@all_arr[5]
         @meter_reading = MeterReading.new(graph_data)
         @meter_reading.save
       end
@@ -102,8 +102,8 @@ class ImportcsvController < ApplicationController
              #render :text => '2ndif' and return false
               @electricity_reading = ElectricityReading.new
               
-              @electricity_reading['electricity_value'] = current_meter_reading["kwh"]#@all_arr[1]
-              @electricity_reading['meter_id'] = current_meter_reading["meter_ip"]#@all_arr[2]
+              @electricity_reading['electricity_value'] = current_meter_reading["usuage_value"]#@all_arr[1]
+              @electricity_reading['meter_id'] = 12#current_meter_reading["meter_ip"]#@all_arr[2]
               @electricity_reading['end_time'] = current_meter_reading["end_time"]#@all_arr[2]
               @electricity_reading['start_time'] = current_meter_reading["start_time"]#@all_arr[6]
               #render :text => current_meter_reading.inspect and return false
@@ -128,7 +128,7 @@ class ImportcsvController < ApplicationController
            $time_diff_last = ((current_meter_reading.start_time - @last_record_details.start_time)/60).round.to_i if !@last_record_details.nil?
            if($time_diff_last == 30 || @last_record_details.nil?)
               @gas_reading = GasReading.new
-              @gas_reading['gas_value'] = current_meter_reading["kwh"]#@all_arr[1]
+              @gas_reading['gas_value'] = current_meter_reading["usuage_value"]#@all_arr[1]
               @gas_reading['end_time'] = current_meter_reading["end_time"]#@all_arr[2]
               @gas_reading['start_time'] = current_meter_reading["start_time"]#@all_arr[6]
               @gas_reading.save             

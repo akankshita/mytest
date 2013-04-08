@@ -69,8 +69,8 @@ ActionMailer::Base.smtp_settings = {
  }
 
 AWS::S3::Base.establish_connection!(
-  :access_key_id     => 'AKIAJ7FKYZFHJPZ2EPOQ',
-  :secret_access_key => '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'
+  :access_key_id     => 'AKIAIORLHH3Q24UEEJIQ',
+  :secret_access_key => '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'
 )
 #TODO BoD figure out why this is happening and if we can get rid of it
 require 'will_paginate'
