@@ -21,7 +21,7 @@ class ImportcsvController < ApplicationController
        @current_meter_readings.each do |current_meter_reading|
           $time_diff = ((current_meter_reading.end_time - current_meter_reading.start_time)/60).round.to_i
          if $time_diff == 30
-              ActiveRecord::Base.establish_connection('development')
+              ActiveRecord::Base.establish_connection('production')
               @electricity_reading = ElectricityReading.new
               @electricity_reading['electricity_value'] = current_meter_reading["usuage_value"]#@all_arr[1]
               @electricity_reading['meter_id'] = 3180#current_meter_reading["meter_ip"]#@all_arr[2]
