@@ -17,7 +17,7 @@ class ImportcsvController < ApplicationController
     @cid = '04420001'#customer.customer_id
     $tdate = Time.now.strftime("%Y%m%d")#Time.now.strftime("%d-%m-%Y")
    # $fname = @cid +'/'+$tdate+'.csv'
-   $fname =@cid +'/20130406.csv'
+   $fname =@cid +'/20130407.csv'
     #@csv_info = AWS::S3::Bucket.objects('emissionmanagement',:prefix => $fname )
     open('test.csv', 'w') do |newfile|
       AWS::S3::S3Object.stream($fname,'meter-readings-data') do |chunk|
