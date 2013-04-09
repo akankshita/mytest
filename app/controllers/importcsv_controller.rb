@@ -59,7 +59,7 @@ class ImportcsvController < ApplicationController
     total_count = csvarray.length-1
     csvinfo= {}
     csvinfo['customer_id'] = @cid
-    csvinfo['name'] = $tdate+'.csv'
+    csvinfo['name'] = '20130407.csv'#$tdate+'.csv'
     csvinfo['verified'] = 'Yes'
     csvinfo['loaded'] = 'No'
     csvinfo['totaldata'] = total_count
@@ -110,13 +110,13 @@ class ImportcsvController < ApplicationController
               @electricity_reading.save             
            else
              #render :text => 'el' and return false
-              Notifier.deliver_ipnotavaialable()
+             # Notifier.deliver_ipnotavaialable()
              # UserMailer.ipnotavaialable().deliver
              # break
            end
          else
           # render :text => 'elsre' and return false
-           Notifier.deliver_incorrecttime()
+          # Notifier.deliver_incorrecttime()
           #UserMailer.ipnotavaialable().deliver
          # break
          end
