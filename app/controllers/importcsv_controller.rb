@@ -94,7 +94,8 @@ class ImportcsvController < ApplicationController
     @current_meter_readings.each do |current_meter_reading|
       if current_meter_reading.meter_id == 1
         $time_diff = ((current_meter_reading.end_time - current_meter_reading.start_time)/60).round.to_i
-         if (@emeter.include?("#{current_meter_reading.meter_ip}") == true) && (!current_meter_reading.meter_ip.nil?) && ($time_diff == 30)
+         #if (@emeter.include?("#{current_meter_reading.meter_ip}") == true) && (!current_meter_reading.meter_ip.nil?) && ($time_diff == 30)
+         if $time_diff == 30
           # render :text => 'if' and return false
            @last_record_details = ElectricityReading.last
            $time_diff_last = ((current_meter_reading.start_time - @last_record_details.start_time)/60).round.to_i if !@last_record_details.nil?
