@@ -17,7 +17,7 @@ class ImportcsvController < ApplicationController
     @cid = '04420001'#customer.customer_id
     $tdate = Time.now.strftime("%Y%m%d")#Time.now.strftime("%d-%m-%Y")
    # $fname = @cid +'/'+$tdate+'.csv'
-   $fname =@cid +'/20130407.csv'
+   $fname =@cid +'/20130406.csv'
     #@csv_info = AWS::S3::Bucket.objects('emissionmanagement',:prefix => $fname )
     open('test.csv', 'w') do |newfile|
       AWS::S3::S3Object.stream($fname,'meter-readings-data') do |chunk|
@@ -103,7 +103,7 @@ class ImportcsvController < ApplicationController
               @electricity_reading = ElectricityReading.new
               
               @electricity_reading['electricity_value'] = current_meter_reading["usuage_value"]#@all_arr[1]
-              @electricity_reading['meter_id'] = 12#current_meter_reading["meter_ip"]#@all_arr[2]
+              @electricity_reading['meter_id'] = 3180#current_meter_reading["meter_ip"]#@all_arr[2]
               @electricity_reading['end_time'] = current_meter_reading["end_time"]#@all_arr[2]
               @electricity_reading['start_time'] = current_meter_reading["start_time"]#@all_arr[6]
               #render :text => current_meter_reading.inspect and return false
@@ -112,13 +112,13 @@ class ImportcsvController < ApplicationController
              #render :text => 'el' and return false
               Notifier.deliver_ipnotavaialable()
              # UserMailer.ipnotavaialable().deliver
-              break
+             # break
            end
          else
           # render :text => 'elsre' and return false
            Notifier.deliver_incorrecttime()
           #UserMailer.ipnotavaialable().deliver
-          break
+         # break
          end
       end
       if current_meter_reading.meter_id == 2
