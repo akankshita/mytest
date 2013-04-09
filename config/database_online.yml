@@ -20,6 +20,14 @@ development:
   Port: 5432
   username: zxelceopncqhtu
   password: tHgggpvcWWCv66XGGkx47w-8V4
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: de8hboo9dh09d  
+  host: ec2-107-22-169-45.compute-1.amazonaws.com
+  Port: 5432
+  username: zxelceopncqhtu
+  password: tHgggpvcWWCv66XGGkx47w-8V4
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have

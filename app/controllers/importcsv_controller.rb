@@ -16,12 +16,13 @@ class ImportcsvController < ApplicationController
       :database => "d5fad1g8mpuaha"
     )
        @current_meter_readings = MeterReading.find(:all,:conditions => ['csvinfo_id = ?',14])
-       ActiveRecord::Base.establish_connection('production')
+      # render :text =>  @current_meter_readings.inspect and return false
+       #ActiveRecord::Base.establish_connection('development')
        @current_meter_readings.each do |current_meter_reading|
           $time_diff = ((current_meter_reading.end_time - current_meter_reading.start_time)/60).round.to_i
-         if $time_diff ==30
-                         @electricity_reading = ElectricityReading.new
-              
+         if $time_diff == 30
+              ActiveRecord::Base.establish_connection('development')
+              @electricity_reading = ElectricityReading.new
               @electricity_reading['electricity_value'] = current_meter_reading["usuage_value"]#@all_arr[1]
               @electricity_reading['meter_id'] = 3180#current_meter_reading["meter_ip"]#@all_arr[2]
               @electricity_reading['end_time'] = current_meter_reading["end_time"]#@all_arr[2]
@@ -31,6 +32,7 @@ class ImportcsvController < ApplicationController
         else
          end
        end
+       ActiveRecord::Base.establish_connection('development')
        render :text => 'ok' and return false
   end
 end
