@@ -210,7 +210,7 @@ function  generate_summary_graph(data, start_date, end_date, xTitle, yTitle, doc
 	      },
 	      yAxis: {
 	         title: {
-	            text: 'Kilowatts',
+	            text: yTitle,
 				margin: 10,
 				style: {
 					fontSize:'16px',
@@ -225,7 +225,7 @@ function  generate_summary_graph(data, start_date, end_date, xTitle, yTitle, doc
 	         formatter: function() {
 	            return ''+
 	               Highcharts.dateFormat('%H:%M - %A %e %B %Y', this.x) + ' - '+
-	               ''+ Highcharts.numberFormat(this.y, 3) +' kW';
+	               ''+ Highcharts.numberFormat(this.y, 3) +' kWh';
 	         }
 	      },
 	      legend: {
