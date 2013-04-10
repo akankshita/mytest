@@ -104,7 +104,7 @@ class ImportcsvController < ApplicationController
               ActiveRecord::Base.establish_connection('production')
               @electricity_reading = ElectricityReading.new
               
-              @electricity_reading['electricity_value'] = current_meter_reading["usuage_value"]#@all_arr[1]
+              @electricity_reading['electricity_value'] = current_meter_reading["kwh"]#@all_arr[1]
               @electricity_reading['meter_id'] = 4#current_meter_reading["meter_ip"]#@all_arr[2]
               @electricity_reading['end_time'] = current_meter_reading["end_time"]#@all_arr[2]
               @electricity_reading['start_time'] = current_meter_reading["start_time"]#@all_arr[6]
