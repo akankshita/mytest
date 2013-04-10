@@ -1,20 +1,35 @@
 <%= render :partial => "shared/tabs" %>
 
 
+<script>
+  $(document).ready(function() {
+  $(".datepicker").datepicker();
+  	$("#carbon_start_date").datepicker({
+		onSelect: function(selectedDate) {
+			the_date = '31/12/'+$("#carbon_start_date").val().split('/')[2];
+			$("#carbon_end_date").val('31/12/'+$("#carbon_start_date").val().split('/')[2]);
+			$("#carbon_end_date").datepicker('option', 'maxDate', the_date)
+		}
+	});
+	 $("#carbon_end_date").datepicker({maxDate:'31/12/'+$("#carbon_start_date").val().split('/')[2]});
+  });
+	
+</script>
 <div id="content_tabs">
   <div id = "start_end_filters" class = "aesthetics">
 	  <div id = "choose_start_end">Choose Time Period</div>
-		<% form_tag({:action => "index"}, {:id => "select_filters"}) do %>
+		<% form_tag({:action => "carbon_mixed_detail"}, {:id => "select_filters"}) do %>
 			Start date:
-			<%= text_field_tag :selected_start_date, @current_selected_start_date, :class => 'datepicker'  %>
+			<%= text_field_tag :selected_start_date, @current_selected_start_date, :class => 'datepicker2' ,:id=>"carbon_start_date" %>
 	&nbsp &nbsp
 			End date:
-			<%= text_field_tag :selected_end_date, @current_selected_end_date, :class => 'datepicker' %>
+			<%= text_field_tag :selected_end_date, @current_selected_end_date, :class => 'datepicker1',:id=>"carbon_end_date" %>
 	&nbsp
 			<%= submit_tag 'Filter', :class => "submit_button" %>
 	  <% end %>
    
 </div>
+
 <br /><br />	
 <%= render :partial => "shared/sub_tab" %>	
   <div id="sub_content_tabs">

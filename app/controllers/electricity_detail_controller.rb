@@ -7,7 +7,11 @@ def index
   
    #end date
    if(params[:selected_end_date] == nil || params[:selected_end_date] == '')
-  	  end_date = Date.civil(3000,1,1).to_s(:db)
+  	 #end_date = Date.civil(3000,1,1).to_s(:db)
+  	 # end_date = "2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	#  @current_selected_end_date = "31/12/2012"
+  	  end_date =(Date.today>>1).strftime("%Y-%m-%d")#"2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	  @current_selected_end_date = Date.today.strftime("%d/%m/%Y")#"31/12/2012"
    else
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
       end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
@@ -15,7 +19,12 @@ def index
 
    #start date
   if(params[:selected_start_date] == nil || params[:selected_start_date] == '')
-  	 start_date = Date.civil(1000,1,1).to_s(:db)
+  	 #start_date = Date.civil(1000,1,1).to_s(:db)
+     #start_date = "2012-01-01"#Date.civil(1000,1,1).to_s(:db)
+     #@current_selected_start_date = "01/01/2012"
+	  start_date = Time.now.year.to_s + "-01-01"#Date.civil(1000,1,1).to_s(:db)
+	  @current_selected_start_date = "01/01/"+Time.now.year.to_s      
+
   else
     @current_selected_start_date = FilterUtils.handle_textfield_memory(params[:selected_start_date])
     start_date = TimeUtils.parse_european_date(params[:selected_start_date])
@@ -37,7 +46,7 @@ def index
 	values = Array.new
 	names  = Array.new
 	
-	select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
+	select_string = " select #{calc_string} as value, extract(dow from start_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
 	result = ElectricityReading.find_by_sql(select_string)
@@ -90,6 +99,7 @@ def index
 	end
 	
 	@year_data = StringUtils.generate_json_array_without_timestamp(values, "data")
+	#render :text =>  @year_data .inspect and return false
 	@year_categories = StringUtils.generate_json_array_without_timestamp(names, "categories")
 
 

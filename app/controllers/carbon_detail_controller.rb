@@ -5,7 +5,10 @@ class CarbonDetailController < ApplicationController
   
    #end date
    if(params[:selected_end_date] == nil || params[:selected_end_date] == '')
-  	  end_date = Date.civil(3000,1,1).to_s(:db)
+  	  #end_date = "2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	 # @current_selected_end_date = "31/12/2012"
+  	  end_date =(Date.today>>1).strftime("%Y-%m-%d")#"2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	  @current_selected_end_date = Date.today.strftime("%d/%m/%Y")#"31/12/2012"  	 
    else
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
       end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
@@ -13,10 +16,17 @@ class CarbonDetailController < ApplicationController
 
    #start date
   if(params[:selected_start_date] == nil || params[:selected_start_date] == '')
-  	 start_date = Date.civil(1000,1,1).to_s(:db)
+  	#start_date = "2012-01-01"#Date.civil(1000,1,1).to_s(:db)
+  	#@current_selected_start_date = "01/01/2012"
+  	#@con_fac_year = 2012
+  	start_date = Time.now.year.to_s + "-01-01"#Date.civil(1000,1,1).to_s(:db)
+	@current_selected_start_date = "01/01/"+Time.now.year.to_s
+	@con_fac_year = Time.now.year
   else
     @current_selected_start_date = FilterUtils.handle_textfield_memory(params[:selected_start_date])
     start_date = TimeUtils.parse_european_date(params[:selected_start_date])
+    #render :text => start_date.year.inspect and return false
+    @con_fac_year = start_date.year
     
     result = Array.new
     errors = Array.new
@@ -28,16 +38,26 @@ class CarbonDetailController < ApplicationController
   end
 
 
- # sql query to convert kW to kWhours, taking in to account the duration of power applied 
- #calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value)"
- #0.49390 kg per kWh in 2010
- calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value * 0.49390)" 
+ ecrate = ConversionFactor.find_by_year_and_source_type_id(@con_fac_year,2)
+ if !ecrate.nil?
+   econversionrate = ecrate.rate
+ else
+   econversionrate = 1
+ end
+ gcrate = ConversionFactor.find_by_year_and_source_type_id(@con_fac_year,1)
+ if !gcrate.nil?
+   gconversionrate = gcrate.rate
+ else
+   gconversionrate = 1
+ end
+ #render :text => crate.rate.inspect and return false
+ calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value )" 
 
 ####Comparison by day of week
 	values = Array.new
 	names  = Array.new
 	
-	select_string = " select #{calc_string}  as value, extract(dow from start_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
+	select_string = " select #{calc_string} * #{econversionrate}   as value, extract(dow from start_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
 	result = ElectricityReading.find_by_sql(select_string)
@@ -61,7 +81,7 @@ class CarbonDetailController < ApplicationController
 	values= []
 	names=[]
 #render :text => calc_string.inspect and return false
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from start_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
+	result = ElectricityReading.find_by_sql("select #{calc_string} * #{econversionrate} as value, extract(month from start_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
 	months = FilterUtils.get_month_hash
 	 
 	result.each do |k|
@@ -81,7 +101,7 @@ class CarbonDetailController < ApplicationController
 	names = []
 	result=[]
 
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from start_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")	
+	result = ElectricityReading.find_by_sql("select #{calc_string} * #{econversionrate} as value, extract(year from start_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")	
 	 
 	result.each do |k|	
 		values.push( k.value )		
@@ -97,7 +117,7 @@ class CarbonDetailController < ApplicationController
 	names = []
 	result=[]
 	
-	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
+	result = ElectricityReading.all(:select => "#{calc_string} * #{econversionrate} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
 	result.each do |k|
 		values.push(k.sum)				
 		names.push("'"+k.name+"'")
@@ -127,8 +147,10 @@ class CarbonDetailController < ApplicationController
 		end
 		
 		result = ElectricityReading.all(:select => "#{calc_string}", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN (" + meter_ids +")"   ) 
-		if(result.first.sum != nil)			
-			values.push( result.first.sum )
+		if(result.first.sum != nil)
+		   newval = (result.first.sum.to_f * econversionrate).to_s
+		  # render :text => newval.inspect and return false
+			values.push(newval)
 			names.push("'"+group_key+"'")
 		end
 			
@@ -169,8 +191,9 @@ class CarbonDetailController < ApplicationController
 		
 		result = ElectricityReading.all(:select => "#{calc_string}", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")" )
 
-		if(result.first.sum != nil)			
-			values.push( result.first.sum )
+		if(result.first.sum != nil)
+		   newval = (result.first.sum.to_f * econversionrate).to_s
+			values.push(newval)
 			names.push("'"+l.name+"'")
 		end
 		
@@ -218,7 +241,8 @@ class CarbonDetailController < ApplicationController
 		result = ElectricityReading.all(:select => "#{calc_string}", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")")
 
 		if(result.first.sum != nil)
-		    values.push( result.first.sum )
+		    newval = (result.first.sum.to_f * econversionrate).to_s
+		    values.push( newval)
 			region_object = Region.all(:conditions => ["id = (?)",r])
 			names.push("'"+region_object.first.name+"'")
 		end
@@ -264,8 +288,9 @@ class CarbonDetailController < ApplicationController
 							
 			result = ElectricityReading.all(:select => "#{calc_string}", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")" )
 	
-			if(result.first.sum != nil)			
-				values.push( result.first.sum )
+			if(result.first.sum != nil)
+			    newval = (result.first.sum.to_f * econversionrate).to_s
+				values.push( newval)
 				names.push("'"+c.name+"'")
 			end			
 		end
@@ -278,32 +303,58 @@ class CarbonDetailController < ApplicationController
 
   def carbon_gas_detail
 
-    if (params[:selected_start_date] == nil)
-      start_date = Date.civil(1000, 1, 1).to_s(:db)
-      end_date = Date.civil(3000, 1, 1).to_s(:db)
-    else
-      @current_selected_start_date = FilterUtils.handle_textfield_memory(params[:selected_start_date])
+   #end date
+   if(params[:selected_end_date] == nil || params[:selected_end_date] == '')
+  	 # end_date = "2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	  #@current_selected_end_date = "31/12/2012"
+  	  end_date =(Date.today>>1).strftime("%Y-%m-%d")#"2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	  @current_selected_end_date = Date.today.strftime("%d/%m/%Y")#"31/12/2012"
+   else
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
-
-      start_date = TimeUtils.parse_european_date(params[:selected_start_date])
       end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
+   end
 
-      result = Array.new
-      errors = Array.new
-      errors += FilterUtils.perform_start_end_date_validation(params)
-      errors += FilterUtils.validate_both_start_end_present(params)
-      if errors.size > 0
+   #start date
+  if(params[:selected_start_date] == nil || params[:selected_start_date] == '')
+  	#start_date = "2012-01-01"#Date.civil(1000,1,1).to_s(:db)
+  #	@current_selected_start_date = "01/01/2012"
+	start_date = Time.now.year.to_s + "-01-01"#Date.civil(1000,1,1).to_s(:db)
+	@current_selected_start_date = "01/01/"+Time.now.year.to_s 
+  	@con_fac_year = Time.now.year
+  else
+    @current_selected_start_date = FilterUtils.handle_textfield_memory(params[:selected_start_date])
+    start_date = TimeUtils.parse_european_date(params[:selected_start_date])
+    #render :text => start_date.year.inspect and return false
+    @con_fac_year = start_date.year
+    
+    result = Array.new
+    errors = Array.new
+    errors += FilterUtils.perform_start_end_date_validation(params)
+    if errors.size > 0
         flash[:notice] = FilterUtils.format_errors(errors)
         return
-      end
-
     end
+  end
+
+
+ ecrate = ConversionFactor.find_by_year_and_source_type_id(@con_fac_year,2)
+ if !ecrate.nil?
+   econversionrate = ecrate.rate
+ else
+   econversionrate = 1
+ end
+ gcrate = ConversionFactor.find_by_year_and_source_type_id(@con_fac_year,1)
+ if !gcrate.nil?
+   gconversionrate = gcrate.rate
+ else
+   gconversionrate = 1
+ end
 
 
 ####Comparison by day of week
 	values = Array.new
 	names  = Array.new
-	result = GasReading.find_by_sql("select sum(gas_value) * 0.49390 as value, extract(dow from start_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
+	result = GasReading.find_by_sql("select sum(gas_value) * #{gconversionrate} as value, extract(dow from start_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
 	#select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
@@ -327,8 +378,9 @@ class CarbonDetailController < ApplicationController
 ####Comparison by Months
     values = Array.new
     names = Array.new
-
-    result = GasReading.find_by_sql("select sum(gas_value) * 0.49390 as value, extract(month from start_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
+#aka = "select sum(gas_value) as value, extract(month from start_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;"
+#render :text => aka.insert
+    result = GasReading.find_by_sql("select sum(gas_value) * #{gconversionrate} as value, extract(month from start_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
     months = FilterUtils.get_month_hash
 
     result.each do |k|
@@ -347,7 +399,7 @@ class CarbonDetailController < ApplicationController
     names = []
     result=[]
 #render :text => end_date.inspect and return false
-    result = GasReading.find_by_sql("select sum(gas_value) * 0.49390 as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")
+    result = GasReading.find_by_sql("select sum(gas_value) * #{gconversionrate} as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")
 
     result.each do |k|
       values.push(k.value)
@@ -364,7 +416,7 @@ class CarbonDetailController < ApplicationController
     values = Array.new
     names = Array.new
 
-    result = GasReading.all(:select => "sum(gas_value) * 0.49390 AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
+    result = GasReading.all(:select => "sum(gas_value) * #{gconversionrate} AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
     result.each do |k|
       values.push(k.sum)
       names.push("'"+k.name+"'")
@@ -395,7 +447,8 @@ class CarbonDetailController < ApplicationController
 
       result = GasReading.all(:select => "sum(gas_value)", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN (" + meter_ids +")")
       if (result.first.sum != nil)
-        values.push((result.first.sum ) * 0.49390)
+		newval = (result.first.sum.to_f * gconversionrate).to_s
+        values.push(newval)
         names.push("'"+group_key+"'")
       end
 
@@ -437,7 +490,8 @@ class CarbonDetailController < ApplicationController
       result = GasReading.all(:select => "sum(gas_value)", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")")
 
       if (result.first.sum != nil)
-        values.push((result.first.sum) * 0.49390 )
+		newval = (result.first.sum.to_f * gconversionrate).to_s
+        values.push(newval )
         names.push("'"+l.name+"'")
       end
     end
@@ -484,7 +538,8 @@ class CarbonDetailController < ApplicationController
       result = GasReading.all(:select => "sum(gas_value)", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")")
 
       if (result.first.sum != nil)
-        values.push((result.first.sum * 0.49390))
+		 newval = (result.first.sum.to_f * gconversionrate).to_s
+        values.push(newval)
         region_object = Region.all(:conditions => ["id = (?)", r])
         names.push("'"+region_object.first.name+"'")
       end
@@ -529,7 +584,8 @@ class CarbonDetailController < ApplicationController
         result = GasReading.all(:select => "sum(gas_value)", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")")
 
         if (result.first.sum != nil)
-          values.push((result.first.sum * 0.49390))
+		  newval = (result.first.sum.to_f * gconversionrate).to_s
+          values.push(newval)
           names.push("'"+c.name+"'")
         end
       end
@@ -544,8 +600,12 @@ class CarbonDetailController < ApplicationController
   
   def carbon_mixed_detail
     
+   #end date
    if(params[:selected_end_date] == nil || params[:selected_end_date] == '')
-  	  end_date = Date.civil(3000,1,1).to_s(:db)
+  	 # end_date = "2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	  #@current_selected_end_date = "31/12/2012"
+  	  end_date =(Date.today>>1).strftime("%Y-%m-%d")#"2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	  @current_selected_end_date = Date.today.strftime("%d/%m/%Y")#"31/12/2012"  	  
    else
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
       end_date = TimeUtils.parse_european_date(params[:selected_end_date]) + 1.day
@@ -553,10 +613,16 @@ class CarbonDetailController < ApplicationController
 
    #start date
   if(params[:selected_start_date] == nil || params[:selected_start_date] == '')
-  	 start_date = Date.civil(1000,1,1).to_s(:db)
+  	#start_date = "2012-01-01"#Date.civil(1000,1,1).to_s(:db)
+  	#@current_selected_start_date = "01/01/2012"
+	start_date = Time.now.year.to_s + "-01-01"#Date.civil(1000,1,1).to_s(:db)
+	@current_selected_start_date = "01/01/"+Time.now.year.to_s   	
+  	@con_fac_year = Time.now.year
   else
     @current_selected_start_date = FilterUtils.handle_textfield_memory(params[:selected_start_date])
-    start_date = TimeUtils.parse_european_date(params[:selected_start_date]) 
+    start_date = TimeUtils.parse_european_date(params[:selected_start_date])
+    #render :text => start_date.year.inspect and return false
+    @con_fac_year = start_date.year
     
     result = Array.new
     errors = Array.new
@@ -567,15 +633,29 @@ class CarbonDetailController < ApplicationController
     end
   end
 
+
+ ecrate = ConversionFactor.find_by_year_and_source_type_id(@con_fac_year,2)
+ if !ecrate.nil?
+   econversionrate = ecrate.rate
+ else
+   econversionrate = 1
+ end
+ gcrate = ConversionFactor.find_by_year_and_source_type_id(@con_fac_year,1)
+ if !gcrate.nil?
+   gconversionrate = gcrate.rate
+ else
+   gconversionrate = 1
+ end
+
   # sql query to convert kW to kWhours, taking in to account the duration of power applied 
   #calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value)"
-  calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value * 0.49390)" 
+  calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value )" 
 
 ####Comparison by day of week
 	values_ele = Array.new
 	names  = Array.new
 	
-	select_string = " select #{calc_string} as value, extract(dow from start_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
+	select_string = " select #{calc_string} * #{econversionrate} as value, extract(dow from start_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
 	result = ElectricityReading.find_by_sql(select_string)
@@ -597,7 +677,7 @@ class CarbonDetailController < ApplicationController
  ####Comparison by day of week
 	values_gas = Array.new
 	names  = Array.new
-	result = GasReading.find_by_sql("select sum(gas_value) * 0.49390 as value, extract(dow from start_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
+	result = GasReading.find_by_sql("select sum(gas_value) * #{gconversionrate} as value, extract(dow from start_time) as dow from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;")
 	#select_string = " select #{calc_string} as value, extract(dow from end_time) as dow from electricity_readings  where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by dow order by dow;"
   #render :text =>  select_string.inspect and return false
 	
@@ -623,7 +703,7 @@ class CarbonDetailController < ApplicationController
 	values_ele= []
 	names=[]
 #render :text => calc_string.inspect and return false
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(month from start_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
+	result = ElectricityReading.find_by_sql("select #{calc_string} * #{econversionrate} as value, extract(month from start_time) as month from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
 	months = FilterUtils.get_month_hash
 	 
 	result.each do |k|
@@ -642,7 +722,7 @@ class CarbonDetailController < ApplicationController
     values_gas = Array.new
     names = Array.new
 
-    result = GasReading.find_by_sql("select sum(gas_value) * 0.49390 as value, extract(month from start_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
+    result = GasReading.find_by_sql("select sum(gas_value) * #{gconversionrate} as value, extract(month from start_time) as month from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by month order by month;")
     months = FilterUtils.get_month_hash
 
     result.each do |k|
@@ -665,7 +745,7 @@ class CarbonDetailController < ApplicationController
 	names = []
 	result=[]
 
-	result = ElectricityReading.find_by_sql("select #{calc_string} as value, extract(year from start_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")	
+	result = ElectricityReading.find_by_sql("select #{calc_string} * #{econversionrate} as value, extract(year from start_time) as year from electricity_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")	
 	 
 	result.each do |k|	
 		values_ele.push( k.value )		
@@ -679,7 +759,7 @@ class CarbonDetailController < ApplicationController
     names = []
     result=[]
 #render :text => end_date.inspect and return false
-    result = GasReading.find_by_sql("select sum(gas_value) * 0.49390 as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")
+    result = GasReading.find_by_sql("select sum(gas_value) * #{gconversionrate} as value, extract(year from start_time) as year from gas_readings where start_time >= '#{start_date}' AND end_time <= '#{end_date}'  group by year order by year;")
 
     result.each do |k|
       values_gas.push(k.value)
@@ -699,7 +779,8 @@ class CarbonDetailController < ApplicationController
 	
 	result = ElectricityReading.all(:select => "#{calc_string} AS sum, node_entries.name AS name", :from => "electricity_readings, meters, node_entries", :conditions => "electricity_readings.meter_id = meters.id AND electricity_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "electricity_readings.meter_id, node_entries.name", :order => "meter_id")
 	result.each do |k|
-		values_ele.push(k.sum)				
+		enewval = (k.sum.to_f * econversionrate).to_s
+		values_ele.push(enewval)				
 		names.push("'"+k.name+"'")
 	end
 
@@ -710,16 +791,16 @@ class CarbonDetailController < ApplicationController
     values_gas = Array.new
     names = Array.new
 
-    result = GasReading.all(:select => "sum(gas_value) * 0.49390 AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
+    result = GasReading.all(:select => "sum(gas_value) AS sum, node_entries.name AS name", :from => "gas_readings, meters, node_entries", :conditions => "gas_readings.meter_id = meters.id AND gas_readings.meter_id = node_entries.node_id AND node_entries.node_type = 'Meter' AND start_time >= '#{start_date}' AND end_time <= '#{end_date}'", :group => "gas_readings.meter_id, node_entries.name", :order => "meter_id")
     result.each do |k|
-      values_gas.push(k.sum)
+	  gnewval = (k.sum.to_f * gconversionrate).to_s
+      values_gas.push(gnewval)
       names.push("'"+k.name+"'")
     end
     @sum_meter_data = Array.new    
     values_ele.each_with_index do |val,i|
       @sum_meter_data <<  (val.to_f+values_gas[i].to_f)
     end
-
     @meter_data = StringUtils.generate_json_array_without_timestamp(@sum_meter_data, "data")
 
 ####meter groups
@@ -742,8 +823,9 @@ class CarbonDetailController < ApplicationController
 		end
 		
 		result = ElectricityReading.all(:select => "#{calc_string}", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN (" + meter_ids +")"   ) 
-		if(result.first.sum != nil)			
-			values_ele.push( result.first.sum )
+		if(result.first.sum != nil)
+		    enewval = (result.first.sum.to_f * econversionrate).to_s
+			values_ele.push( enewval)
 			names.push("'"+group_key+"'")
 		end
 			
@@ -773,7 +855,8 @@ class CarbonDetailController < ApplicationController
 
       result = GasReading.all(:select => "sum(gas_value)", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN (" + meter_ids +")")
       if (result.first.sum != nil)
-        values_gas.push((result.first.sum * 0.49390))
+		gnewval = (result.first.sum.to_f * gconversionrate).to_s
+        values_gas.push(gnewval)
         names.push("'"+group_key+"'")
       end
 
@@ -818,8 +901,9 @@ class CarbonDetailController < ApplicationController
 		
 		result = ElectricityReading.all(:select => "#{calc_string}", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")" )
 
-		if(result.first.sum != nil)			
-			values_ele.push(( result.first.sum * 0.49390))
+		if(result.first.sum != nil)
+		   enewval = (result.first.sum.to_f * econversionrate).to_s
+			values_ele.push(enewval)
 			names.push("'"+l.name+"'")
 		end
 		
@@ -860,7 +944,8 @@ class CarbonDetailController < ApplicationController
       result = GasReading.all(:select => "sum(gas_value)", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")")
 
       if (result.first.sum != nil)
-        values_gas.push((result.first.sum * 0.49390))
+		gnewval = (result.first.sum.to_f * gconversionrate).to_s
+        values_gas.push(gnewval)
         names.push("'"+l.name+"'")
       end
     end
@@ -912,7 +997,8 @@ class CarbonDetailController < ApplicationController
 		result = ElectricityReading.all(:select => "#{calc_string}", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")")
 
 		if(result.first.sum != nil)
-		    values_ele.push(( result.first.sum * 0.49390))
+		    enewval = (result.first.sum.to_f * econversionrate).to_s
+		    values_ele.push(enewval)
 			region_object = Region.all(:conditions => ["id = (?)",r])
 			names.push("'"+region_object.first.name+"'")
 		end
@@ -959,7 +1045,8 @@ class CarbonDetailController < ApplicationController
       result = GasReading.all(:select => "sum(gas_value)", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")")
 
       if (result.first.sum != nil)
-        values_gas.push((result.first.sum * 0.49390))
+		gnewval = (result.first.sum.to_f * gconversionrate).to_s
+        values_gas.push(gnewval)
         region_object = Region.all(:conditions => ["id = (?)", r])
         names.push("'"+region_object.first.name+"'")
       end
@@ -1007,8 +1094,9 @@ class CarbonDetailController < ApplicationController
 							
 			result = ElectricityReading.all(:select => "#{calc_string}", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")" )
 	
-			if(result.first.sum != nil)			
-				values_ele.push(( result.first.sum * 0.49390))
+			if(result.first.sum != nil)
+			   enewval = (result.first.sum.to_f * econversionrate).to_s
+				values_ele.push(enewval)
 				names.push("'"+c.name+"'")
 			end			
 		end
@@ -1052,7 +1140,8 @@ class CarbonDetailController < ApplicationController
         result = GasReading.all(:select => "sum(gas_value)", :conditions => "start_time >= '#{start_date}' AND end_time <= '#{end_date}' AND meter_id IN ("+meter_ids+")")
 
         if (result.first.sum != nil)
-          values_gas.push((result.first.sum * 0.49390))
+		  gnewval = (result.first.sum.to_f * gconversionrate).to_s
+          values_gas.push(gnewval)
           names.push("'"+c.name+"'")
         end
       end

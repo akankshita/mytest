@@ -2,8 +2,13 @@ class GasDetailController < ApplicationController
 
   def index
     if (params[:selected_start_date] == nil)
-      start_date = Date.civil(1000, 1, 1).to_s(:db)
-      end_date = Date.civil(3000, 1, 1).to_s(:db)
+      #start_date = Date.civil(1000, 1, 1).to_s(:db)
+      #end_date = Date.civil(3000, 1, 1).to_s(:db)
+	  start_date = Time.now.year.to_s + "-01-01"#Date.civil(1000,1,1).to_s(:db)
+	  @current_selected_start_date = "01/01/"+Time.now.year.to_s 
+  	  end_date =(Date.today>>1).strftime("%Y-%m-%d")#"2013-01-01"#Date.civil(3000,1,1).to_s(:db)
+  	  @current_selected_end_date = Date.today.strftime("%d/%m/%Y")#"31/12/2012"
+  	
     else
       @current_selected_start_date = FilterUtils.handle_textfield_memory(params[:selected_start_date])
       @current_selected_end_date = FilterUtils.handle_textfield_memory(params[:selected_end_date])
