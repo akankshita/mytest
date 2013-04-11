@@ -39,8 +39,11 @@ def index
   end
 
 
- # sql query to convert kW to kWhours, taking in to account the duration of power applied 
- calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value)" 
+ # sql query to convert kW to kWhours, taking in to account the duration of power applied
+ # electicty value coming kw
+# calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value)" 
+ # electicty value coming kwh
+ calc_string = "sum( electricity_value)" 
 
 ####Comparison by day of week
 	values = Array.new

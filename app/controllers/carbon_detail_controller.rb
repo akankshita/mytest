@@ -51,7 +51,10 @@ class CarbonDetailController < ApplicationController
    gconversionrate = 1
  end
  #render :text => crate.rate.inspect and return false
- calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value )" 
+ #electricity_value coming in kw
+ #calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value )"
+#electricity_value coming in kwh
+calc_string = "sum( electricity_value )"
 
 ####Comparison by day of week
 	values = Array.new
@@ -649,7 +652,10 @@ class CarbonDetailController < ApplicationController
 
   # sql query to convert kW to kWhours, taking in to account the duration of power applied 
   #calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value)"
-  calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value )" 
+ #electricity_value coming in kw
+ #calc_string = "sum((((extract(epoch from end_time)) - (extract(epoch from start_time))) / (extract(epoch from (interval '1 hour')))) * electricity_value )"
+#electricity_value coming in kwh
+calc_string = "sum( electricity_value )"
 
 ####Comparison by day of week
 	values_ele = Array.new
