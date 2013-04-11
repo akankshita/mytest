@@ -17,7 +17,7 @@ class ImportcsvController < ApplicationController
     @cid = '04420001'#customer.customer_id
     $tdate = Time.now.strftime("%Y%m%d")#Time.now.strftime("%d-%m-%Y")
    # $fname = @cid +'/'+$tdate+'.csv'
-   $fname =@cid +'/20130410.csv'
+   $fname =@cid +'/20130409.csv'
     #@csv_info = AWS::S3::Bucket.objects('emissionmanagement',:prefix => $fname )
     open('test.csv', 'w') do |newfile|
       AWS::S3::S3Object.stream($fname,'meter-readings-data') do |chunk|
@@ -59,7 +59,7 @@ class ImportcsvController < ApplicationController
     total_count = csvarray.length-1
     csvinfo= {}
     csvinfo['customer_id'] = @cid
-    csvinfo['name'] = '20130410.csv'#$tdate+'.csv'
+    csvinfo['name'] = '20130409.csv'#$tdate+'.csv'
     csvinfo['verified'] = 'Yes'
     csvinfo['loaded'] = 'No'
     csvinfo['totaldata'] = total_count
@@ -102,10 +102,11 @@ class ImportcsvController < ApplicationController
            #if($time_diff_last == 30 || @last_record_details.nil?)
              #render :text => '2ndif' and return false
               ActiveRecord::Base.establish_connection('production')
+              @meter_info = Meter.find_by_meter_identifier(current_meter_reading["meter_ip"])
               @electricity_reading = ElectricityReading.new
               
               @electricity_reading['electricity_value'] = current_meter_reading["kwh"]#@all_arr[1]
-              @electricity_reading['meter_id'] = 4#current_meter_reading["meter_ip"]#@all_arr[2]
+              @electricity_reading['meter_id'] = @meter_info.id#4#current_meter_reading["meter_ip"]#@all_arr[2]
               @electricity_reading['end_time'] = current_meter_reading["end_time"]#@all_arr[2]
               @electricity_reading['start_time'] = current_meter_reading["start_time"]#@all_arr[6]
               #render :text => current_meter_reading.inspect and return false
