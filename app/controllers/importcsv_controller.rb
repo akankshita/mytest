@@ -17,7 +17,7 @@ class ImportcsvController < ApplicationController
     @cid = '04420001'#customer.customer_id
     $tdate = Time.now.strftime("%Y%m%d")#Time.now.strftime("%d-%m-%Y")
    # $fname = @cid +'/'+$tdate+'.csv'
-   $fname =@cid +'/20130410.csv'
+   $fname =@cid +'/20130411.csv'
     #@csv_info = AWS::S3::Bucket.objects('emissionmanagement',:prefix => $fname )
     open('test.csv', 'w') do |newfile|
       AWS::S3::S3Object.stream($fname,'meter-readings-data') do |chunk|
@@ -59,7 +59,7 @@ class ImportcsvController < ApplicationController
     total_count = csvarray.length-1
     csvinfo= {}
     csvinfo['customer_id'] = @cid
-    csvinfo['name'] = '20130410.csv'#$tdate+'.csv'
+    csvinfo['name'] = '20130411.csv'#$tdate+'.csv'
     csvinfo['verified'] = 'Yes'
     csvinfo['loaded'] = 'No'
     csvinfo['totaldata'] = total_count
@@ -130,8 +130,10 @@ class ImportcsvController < ApplicationController
            @last_record_details = GasReading.last
            $time_diff_last = ((current_meter_reading.start_time - @last_record_details.start_time)/60).round.to_i if !@last_record_details.nil?
            if($time_diff_last == 30 || @last_record_details.nil?)
+              @meter_info = Meter.find_by_meter_identifier(current_meter_reading["meter_ip"])
               @gas_reading = GasReading.new
-              @gas_reading['gas_value'] = current_meter_reading["usuage_value"]#@all_arr[1]
+              @gas_reading['gas_value'] =  current_meter_reading["kwh"]#@all_arr[1]
+              @gas_reading['meter_id'] = @meter_info.id
               @gas_reading['end_time'] = current_meter_reading["end_time"]#@all_arr[2]
               @gas_reading['start_time'] = current_meter_reading["start_time"]#@all_arr[6]
               @gas_reading.save             
