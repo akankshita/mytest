@@ -1,7 +1,7 @@
 class UserSessionsController < ApplicationController
   def new
     @users = User.all
-    if @users.nil?
+    if @users.length == 0
       @user = User.new
       @user.username = 'emm_admin'
       @user.password = 'emm_admin'
