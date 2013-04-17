@@ -8,9 +8,10 @@ class UserSessionsController < ApplicationController
       @user.email = 'admin@e-missionmanagement.com' 
       @user.password = 'emm_admin'
       @user.password_confirmation = 'emm_admin'
-      if @user.save
-        redirect_to root_url
-      end
+      @user.save
+      #if @user.save
+      #  redirect_to root_url
+      #end
     end
     @user_session = UserSession.new
   end
