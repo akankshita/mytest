@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
       @user.password = 'emm_admin'
       @user.password_confirmation = 'emm_admin'
       @user.save
-      @current_user = nil
+    #  @current_user = nil
      # @user_session = UserSession.new
       #redirect_to root_url
       #if @user.save
