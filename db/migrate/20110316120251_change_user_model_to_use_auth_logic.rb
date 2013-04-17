@@ -19,6 +19,7 @@ class ChangeUserModelToUseAuthLogic < ActiveRecord::Migration
       t.timestamps
     end
     User.reset_column_information
+=begin    
     User.create(
     :username => 'data_entry_bot', 
     :email => 'data_entry_bot@e-missionmanagement.com', 
@@ -33,6 +34,7 @@ class ChangeUserModelToUseAuthLogic < ActiveRecord::Migration
     :password_salt => 'ddX41us3YB11fxEqxa9', 
     :persistence_token => '2a6419e95b915e0e72b7a27b145c6df29937e813bfd498cca78041f0403ae43abd5b35a993f9c88d7a0c5a1dcc6cd8e2fbc600427598c1bcb04e9dedeefb7f12' )
   end
+=end  
 
   def self.down
     drop_table(:users)
