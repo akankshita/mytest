@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
       @user.password = 'emm_admin'
       @user.password_confirmation = 'emm_admin'
       @user.save
-      @current_user = nil
+      #@current_user = nil
     end
     @user_session = UserSession.new
   end
