@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20130315131302) do
     t.boolean  "official"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "region_id"
+    t.integer  "country_id"
   end
 
   create_table "countries", :force => true do |t|

@@ -26,12 +26,12 @@ class ChangeUserModelToUseAuthLogic < ActiveRecord::Migration
     :password_salt => 'YIawPguajCpwFhdoNTRF', 
     :persistence_token => 'e966c788d0770e9280b553f5da738e8e0f67a685d3f35dab344ffbdc7c75e4854672ec2cda6a1c99e22a0b242068ff06b70e24f1f1bd8f8546ad575a77248341' )
 
-      User.create(
-      :username => 'emm_admin', 
-      :email => 'admin@e-missionmanagement.com', 
-      :crypted_password => '15df8d926eba1d5d25bfa28760817d435a9dcd2bfcf2ea93f76ef8b50584d50efdda3de0434561778242f03cc906c42078dc386bbe1ace29156dd4258135d769', 
-      :password_salt => 'OMvNDyrblfk6LKA40e', 
-      :persistence_token => '1f4ec686a4fd7226cbb72f5c971309df6f57db901421158a5d89c9b3b51882eee178cbb7ed99b67fe2e21aab6f7b329d1688755cb67577e41f8fdb4b220f3083' )
+    User.create(
+    :username => 'emm_admin', 
+    :email => 'admin@e-missionmanagement.com', 
+    :crypted_password => 'dcae002a6f8809021d7db381e9ea8b90bd5de9a4349243080c04dfbe72b310e3850759928cdce50cb20f0ff61759b8561981af6b7a62d9d5540204ce1f08e259', 
+    :password_salt => 'ddX41us3YB11fxEqxa9', 
+    :persistence_token => '2a6419e95b915e0e72b7a27b145c6df29937e813bfd498cca78041f0403ae43abd5b35a993f9c88d7a0c5a1dcc6cd8e2fbc600427598c1bcb04e9dedeefb7f12' )
   end
 
   def self.down
