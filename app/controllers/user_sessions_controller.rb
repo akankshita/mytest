@@ -1,9 +1,11 @@
 class UserSessionsController < ApplicationController
   def new
     @users = User.all
+   # render :text => @users.length.inspect and return false
     if @users.length == 0
       @user = User.new
       @user.username = 'emm_admin'
+      @user.email = 'admin@e-missionmanagement.com' 
       @user.password = 'emm_admin'
       @user.password_confirmation = 'emm_admin'
       @user.save

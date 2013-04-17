@@ -13,7 +13,7 @@ before_filter :menu
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
   def menu
-   ActiveRecord::Base.establish_connection('production')
+  # ActiveRecord::Base.establish_connection('production')
     if (params[:controller] == "gas_readings" or params[:controller] == "gas_uploads" or params[:controller] == "electricity_readings" or params[:controller] == "electricity_uploads" )
       @hback = ''
       @uback = 'background:#37910E;margin-top:2px;height:36px;'
