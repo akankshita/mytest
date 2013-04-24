@@ -17,7 +17,7 @@ class ImportcsvController < ApplicationController
     @cid = '04420001'#customer.customer_id
     $tdate = Time.now.strftime("%Y%m%d")#Time.now.strftime("%d-%m-%Y")
    # $fname = @cid +'/'+$tdate+'.csv'
-   $fname =@cid +'/20130418.csv'
+   $fname =@cid +'/20130419.csv'
     #@csv_info = AWS::S3::Bucket.objects('emissionmanagement',:prefix => $fname )
     open('test.csv', 'w') do |newfile|
       AWS::S3::S3Object.stream($fname,'meter-readings-data') do |chunk|
@@ -59,7 +59,7 @@ class ImportcsvController < ApplicationController
     total_count = csvarray.length-1
     csvinfo= {}
     csvinfo['customer_id'] = @cid
-    csvinfo['name'] = '20130418.csv'#$tdate+'.csv'
+    csvinfo['name'] = '20130419.csv'#$tdate+'.csv'
     csvinfo['verified'] = 'Yes'
     csvinfo['loaded'] = 'No'
     csvinfo['totaldata'] = total_count
